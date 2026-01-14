@@ -273,33 +273,61 @@ function parseSlides(content: string): Slide[] {
     const slides: Slide[] = [];
     const sections = content.split(/(?=^## )/gm);
 
+    let slideCount = 0;
     for (let i = 0; i < sections.length; i++) {
         const section = sections[i].trim();
         if (!section) continue;
 
         // Extract title from H2 or use H1 for first section
         const titleMatch = section.match(/^##?\s+(.+)$/m);
-        let title = titleMatch ? titleMatch[1].replace(/\*\*/g, '').trim() : `Slide ${i + 1}`;
+        const sectionTitle = titleMatch ? titleMatch[1].replace(/\*\*/g, '').trim() : `Slide ${i + 1}`;
 
-        // Look for present blocks - prioritizes 4-colon variant for nesting support
-        let presentMatch = section.match(/::::present\n([\s\S]*?)\n::::/);
-        if (!presentMatch) {
-            presentMatch = section.match(/:::present\n([\s\S]*?)\n:::/);
+        // Find all present blocks
+        // Using a global regex to find multiple blocks
+        const presentRegex = /::::present\n([\s\S]*?)\n::::/g;
+        const fallbackRegex = /:::present\n([\s\S]*?)\n:::/g;
+
+        let presentBlocks = Array.from(section.matchAll(presentRegex));
+        if (presentBlocks.length === 0) {
+            presentBlocks = Array.from(section.matchAll(fallbackRegex));
         }
 
-        let slideContent = presentMatch ? presentMatch[1].trim() : section;
+        if (presentBlocks.length > 0) {
+            presentBlocks.forEach((match) => {
+                let slideContent = match[1].trim();
 
-        // Strip the title from the content if it's there
-        if (titleMatch) {
-            slideContent = slideContent.replace(titleMatch[0], '').trim();
+                // Try to find a specific title for this slide (e.g. ### from within the block)
+                const internalTitleMatch = slideContent.match(/^###?\s+(.+)$/m);
+                const slideTitle = internalTitleMatch
+                    ? internalTitleMatch[1].replace(/\*\*/g, '').trim()
+                    : sectionTitle;
+
+                // Strip the title from the content if it's there
+                if (internalTitleMatch) {
+                    slideContent = slideContent.replace(internalTitleMatch[0], '').trim();
+                }
+
+                slides.push({
+                    id: `slide-${slideCount++}`,
+                    title: slideTitle,
+                    content: slideContent,
+                    order: slideCount - 1,
+                });
+            });
+        } else {
+            // No present blocks, treat section as a single slide
+            let slideContent = section;
+            if (titleMatch) {
+                slideContent = slideContent.replace(titleMatch[0], '').trim();
+            }
+
+            slides.push({
+                id: `slide-${slideCount++}`,
+                title: sectionTitle,
+                content: slideContent,
+                order: slideCount - 1,
+            });
         }
-
-        slides.push({
-            id: `slide-${i}`,
-            title,
-            content: slideContent,
-            order: i,
-        });
     }
 
     return slides;

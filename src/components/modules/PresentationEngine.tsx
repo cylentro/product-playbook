@@ -523,7 +523,7 @@ function EnhancedMarkdown({ content }: { content: string }) {
     let inCols = false;
     let colBuffer: React.ReactNode[][] = []; // Start empty
 
-    let currentList: string[] = [];
+    let currentList: { text: string; indent: number }[] = [];
     let currentTable: string[][] = [];
     let currentQuote: { type: string | null; lines: string[] } | null = null;
     let inCodeBlock = false;
@@ -560,11 +560,11 @@ function EnhancedMarkdown({ content }: { content: string }) {
             const listNode = (
                 <motion.ul
                     key={`list-${key}`}
-                    className="space-y-4 mb-6 pl-0"
+                    className="space-y-3 mb-6 pl-0"
                     initial="hidden"
                     animate="visible"
                     variants={{
-                        visible: { transition: { staggerChildren: 0.1 } }
+                        visible: { transition: { staggerChildren: 0.05 } }
                     }}
                 >
                     {currentList.map((item, i) => (
@@ -574,12 +574,12 @@ function EnhancedMarkdown({ content }: { content: string }) {
                                 hidden: { opacity: 0, x: -10 },
                                 visible: { opacity: 1, x: 0 }
                             }}
-                            className="flex items-start gap-3 text-lg md:text-xl text-muted-foreground group"
+                            className={`flex items-start gap-3 text-lg md:text-xl text-muted-foreground group ${item.indent > 0 ? 'ml-10 opacity-80' : ''}`}
                         >
-                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 group-hover:scale-110 transition-transform">
-                                <ChevronRight className="w-4 h-4" />
+                            <span className={`flex-shrink-0 w-5 h-5 rounded-full ${item.indent > 0 ? 'bg-primary/5' : 'bg-primary/10'} flex items-center justify-center text-primary mt-1.5 group-hover:scale-110 transition-transform`}>
+                                <ChevronRight className={item.indent > 0 ? 'w-3 h-3' : 'w-4 h-4'} />
                             </span>
-                            <span dangerouslySetInnerHTML={{ __html: formatInline(item) }} />
+                            <span dangerouslySetInnerHTML={{ __html: formatInline(item.text) }} />
                         </motion.li>
                     ))}
                 </motion.ul>
@@ -698,8 +698,13 @@ function EnhancedMarkdown({ content }: { content: string }) {
                 flushTable(index);
                 flushQuote(index);
                 flushCols(index);
-                return;
             }
+            return;
+        }
+
+        // Ignore present block markers
+        if (trimmed.match(/^::::?present$/)) {
+            return;
         }
 
         // Handle code blocks
@@ -789,10 +794,15 @@ function EnhancedMarkdown({ content }: { content: string }) {
         }
 
         // List item
-        if (trimmed.match(/^(\*|-)\s+/)) {
+        if (line.match(/^\s*(\*|-)\s+/)) {
             flushTable(index);
             flushQuote(index);
-            currentList.push(trimmed.replace(/^(\*|-)\s+/, ''));
+            const indent = line.match(/^\s*/)?.[0].length || 0;
+            currentList.push({ 
+                text: line.trim().replace(/^(\*|-)\s+/, ''), 
+                indent: Math.floor(indent / 2) 
+            });
+            return;
         }
         // Table row
         else if (trimmed.startsWith('|')) {
@@ -826,25 +836,34 @@ function EnhancedMarkdown({ content }: { content: string }) {
                 }
             }
         }
-        // Subheader (H3)
-        else if (trimmed.startsWith('###')) {
+        // Header (H3 to H6)
+        else if (trimmed.match(/^#{3,6}/)) {
             flushList(index);
             flushTable(index);
             flushQuote(index);
-            const text = trimmed.replace(/^###\s+/, '');
-            const h3Node = (
-                <motion.h3
+            const level = trimmed.match(/^#+/)?.[0].length || 3;
+            const text = trimmed.replace(/^#+\s+/, '');
+            
+            // Map header level to size
+            const sizeClass = level === 3 ? "text-2xl font-bold" : "text-xl font-bold";
+            const borderClass = level === 3 ? "border-l-4 border-primary pl-4" : "border-l-2 border-primary/50 pl-3";
+            
+            const headerNode = (
+                <motion.div
                     key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-2xl font-bold text-foreground mt-4 mb-4 border-l-4 border-primary pl-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className={`${sizeClass} text-foreground mt-4 mb-4 ${borderClass}`}
                     dangerouslySetInnerHTML={{ __html: formatInline(text) }}
                 />
             );
-            addToCurrentSection(h3Node);
+            addToCurrentSection(headerNode);
         }
         // Normal paragraph
         else {
+            // Final safety: if it's a known structural marker, ignore it
+            if (trimmed === '::' || trimmed === ':::' || trimmed === '::::') return;
+            
             flushList(index);
             flushTable(index);
             flushQuote(index);
@@ -875,6 +894,7 @@ function formatInline(text: string): string {
     return text
         .replace(/\*\*(.*?)\*\*/g, '<b class="text-foreground font-bold">$1</b>')
         .replace(/\*(.*?)\*/g, '<i class="italic">$1</i>')
-        .replace(/`(.*?)`/g, '<code class="px-1.5 py-0.5 rounded bg-primary/10 text-primary text-sm font-mono">$1</code>');
+        .replace(/`(.*?)`/g, '<code class="px-1.5 py-0.5 rounded bg-primary/10 text-primary text-sm font-mono">$1</code>')
+        .replace(/\?\[(.*?)\]\((.*?)\)/g, '<span class="group relative inline-block underline decoration-dotted underline-offset-4 decoration-primary/30 cursor-help">$1<span class="absolute bottom-full left-0 -translate-x-4 mb-3 w-80 p-5 bg-card border border-primary/10 text-foreground text-sm rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] font-normal leading-relaxed text-left pointer-events-none after:content-[\'\'] after:absolute after:w-3 after:h-3 after:bg-card after:border-r after:border-b after:border-primary/10 after:rotate-45 after:-bottom-1.5 after:left-6">$2</span></span>');
 }
 
