@@ -1,4 +1,4 @@
-// TypeScript interfaces for PM-AI Learning Nexus
+// TypeScript interfaces for PM-AI Learning
 
 export type LearningMode = 'presentation' | 'learning' | 'quiz';
 

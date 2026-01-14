@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import {
     Search,
@@ -27,68 +28,138 @@ const phases = [
 ];
 
 export function PDLCOverview() {
+    const [activePhase, setActivePhase] = React.useState<number | null>(null);
+    const [radius, setRadius] = React.useState(190);
+
+    React.useEffect(() => {
+        const updateRadius = () => {
+            setRadius(window.innerWidth < 768 ? 120 : 190);
+        };
+        updateRadius();
+        window.addEventListener('resize', updateRadius);
+        return () => window.removeEventListener('resize', updateRadius);
+    }, []);
+
     return (
-        <div className="relative w-full py-6 flex items-center justify-center">
-            {/* Background Decorative Rings */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-[280px] h-[280px] md:w-[400px] md:h-[400px] rounded-full border border-primary/10 border-dashed animate-[spin_60s_linear_infinite]" />
-                <div className="absolute w-[180px] h-[180px] md:w-[320px] md:h-[320px] rounded-full border border-primary/5" />
+        <div 
+            className="relative w-full py-8 md:py-12 flex items-center justify-center overflow-visible"
+            onClick={() => setActivePhase(null)}
+        >
+            {/* Background Decorative Rings - Aligned with icon path */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                <div 
+                    style={{ width: radius * 2, height: radius * 2 }}
+                    className="rounded-full border border-primary/20 border-dashed animate-[spin_80s_linear_infinite]" 
+                />
+                <div 
+                    style={{ width: (radius * 2) - 80, height: (radius * 2) - 80 }}
+                    className="absolute rounded-full border border-primary/5" 
+                />
             </div>
 
-            {/* Center Logo/Label */}
+            {/* Center Logo/Label - Dimmed when active */}
             <motion.div
                 initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
+                animate={{ 
+                    scale: activePhase ? 0.9 : 1, 
+                    opacity: activePhase ? 0.2 : 1 
+                }}
+                transition={{ type: 'spring', stiffness: 200 }}
                 className="absolute z-10 w-20 h-20 md:w-28 md:h-28 rounded-full glass border-primary/20 flex flex-col items-center justify-center text-center p-4 shadow-xl"
             >
-                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">PDLC</span>
-                <span className="text-xs md:text-sm font-bold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">Nexus</span>
+                <span className="text-[9px] md:text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Product</span>
+                <span className="text-xs md:text-sm font-bold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">Playbook</span>
             </motion.div>
 
-            {/* Phase Items (Circular) */}
-            <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
+            {/* Phase Items & Detail Card Container */}
+            <div className="relative w-[280px] h-[280px] md:w-[450px] md:h-[450px]">
+                {/* Unified Active Detail Card - Placed BEFORE phases in DOM */}
+                <AnimatePresence>
+                    {activePhase && (
+                        <div className="absolute inset-0 flex items-center justify-center z-[150] pointer-events-none">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                className="w-44 h-44 md:w-56 md:h-56 p-6 md:p-8 rounded-full bg-background border-2 border-primary/20 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-center flex flex-col items-center justify-center pointer-events-auto"
+                            >
+                                {(() => {
+                                    const phase = phases.find(p => p.id === activePhase);
+                                    if (!phase) return null;
+                                    return (
+                                        <>
+                                            <div className={cn("inline-flex p-3 rounded-2xl mb-4 mx-auto", phase.bg)}>
+                                                <phase.icon className={cn("w-6 h-6 md:w-8 md:h-8", phase.color)} />
+                                            </div>
+                                            <h4 className="text-base md:text-lg font-black text-foreground mb-1.5 uppercase tracking-tighter">{phase.name}</h4>
+                                            <p className="text-xs md:text-sm font-medium text-muted-foreground leading-relaxed">
+                                                {phase.desc}
+                                            </p>
+                                        </>
+                                    );
+                                })()}
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>
+
+                {/* Phase Items (Circular) - Placed AFTER card in DOM to ensure top-level stacking */}
                 {phases.map((phase, index) => {
                     const angle = (index * (360 / phases.length)) - 90;
-                    const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 120 : 190;
                     const x = radius * Math.cos((angle * Math.PI) / 180);
                     const y = radius * Math.sin((angle * Math.PI) / 180);
+                    const isActive = activePhase === phase.id;
 
                     return (
                         <motion.div
                             key={phase.id}
                             initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
-                            animate={{ scale: 1, opacity: 1, x, y }}
+                            animate={{ 
+                                scale: isActive ? 1.1 : (activePhase ? 0.9 : 1), 
+                                opacity: isActive ? 1 : (activePhase ? 0.6 : 1), 
+                                x, 
+                                y 
+                            }}
                             transition={{
-                                delay: 0.8 + (index * 0.1),
+                                delay: 0.2 + (index * 0.04),
                                 type: 'spring',
                                 stiffness: 100,
                                 damping: 12
                             }}
-                            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group hover:z-50"
+                            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group"
+                            style={{ zIndex: isActive ? 200 : 100 }}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setActivePhase(isActive ? null : phase.id);
+                            }}
                         >
-                            <div className="relative flex flex-col items-center">
-                                {/* Tooltip on hover */}
-                                <div className={cn(
-                                    "absolute w-40 p-3 rounded-xl glass border-primary/30 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 pointer-events-none z-[100] text-center shadow-xl",
-                                    phase.id === 1 ? "top-full mt-3" : "bottom-full mb-3"
-                                )}>
-                                    <p className="text-xs font-bold text-foreground mb-1">{phase.name}</p>
-                                    <p className="text-[10px] text-muted-foreground leading-tight">{phase.desc}</p>
-                                </div>
-
+                            <div className="relative flex items-center justify-center" style={{ isolation: 'isolate' }}>
+                                {/* Active indicator - centered behind the node */}
+                                {isActive && (
+                                    <div className="absolute pointer-events-none z-0">
+                                        <div className="w-14 h-14 md:w-20 md:h-20 rounded-full border-2 border-primary bg-background/80 backdrop-blur-sm shadow-[0_0_20px_rgba(var(--primary),0.2)]" />
+                                    </div>
+                                )}
                                 {/* Node */}
                                 <div className={cn(
-                                    "w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg border border-white/10 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(var(--primary),0.3)] z-10",
-                                    phase.bg
+                                    "w-11 h-11 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg border border-white/10 relative z-10",
+                                    "bg-background", // Base solid layer
+                                    phase.bg, // Colored translucent layer
+                                    "hover:scale-110 hover:shadow-[0_0_20px_rgba(var(--primary),0.3)]",
+                                    isActive && "scale-110 shadow-primary/20"
                                 )}>
-                                    <phase.icon className={cn("w-6 h-6 md:w-8 md:h-8", phase.color)} />
+                                    <phase.icon className={cn("w-5 h-5 md:w-8 md:h-8", phase.color)} />
                                 </div>
 
-                                {/* Labels - Visible on desktop */}
-                                <span className="mt-2 text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors hidden md:block">
-                                    {phase.name}
-                                </span>
+                                {/* Labels - Hidden when active because it's in the center */}
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 pointer-events-none">
+                                    <span className={cn(
+                                        "block text-[9px] md:text-xs font-bold text-muted-foreground transition-all duration-300 text-center w-20 leading-tight whitespace-nowrap",
+                                        isActive ? "opacity-0 translate-y-1" : (activePhase ? "opacity-40" : "opacity-70 group-hover:opacity-100")
+                                    )}>
+                                        {phase.name}
+                                    </span>
+                                </div>
                             </div>
                         </motion.div>
                     );

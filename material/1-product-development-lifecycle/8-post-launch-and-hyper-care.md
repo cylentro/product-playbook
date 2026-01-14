@@ -70,7 +70,7 @@ Focus: Maturity. For Anteraja products, we must extend monitoring to match the b
 
 ## **8.8 Exit Criteria (The Gate)**
 
-* [ ] System stability is confirmed (Error rate < threshold).
-* [ ] Multi-channel feedback has been synthesized into a backlog.
-* [ ] For Anteraja Pro/B2B: One full business cycle (Quarter/Month) has been monitored.
-* [ ] Recommendation (Scale, Pivot, or Rollback) signed off based on Long-term data.
+* System stability is confirmed (Error rate < threshold).
+* Multi-channel feedback has been synthesized into a backlog.
+* For Anteraja Pro/B2B: One full business cycle (Quarter/Month) has been monitored.
+* Recommendation (Scale, Pivot, or Rollback) signed off based on Long-term data.

@@ -222,113 +222,157 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                                                     </div>
                                                 </button>
                                             </PopoverTrigger>
-                                            <PopoverContent className="p-0 w-[350px]" align="start">
-                                                <Command>
-                                                    <CommandInput placeholder="Search chapters..." />
-                                                    <CommandList>
-                                                        <CommandEmpty>No chapter found.</CommandEmpty>
-                                                        <CommandGroup heading="Chapters">
-                                                            {allLessons.map((l, i) => {
-                                                                const isCurrent = l.title === title;
-                                                                return (
-                                                                    <CommandItem
-                                                                        key={l.slug}
-                                                                        value={l.title}
-                                                                        onSelect={() => {
-                                                                            router.push(`/module/${l.moduleSlug}/${l.slug}?mode=presentation`);
-                                                                            setChaptersOpen(false);
-                                                                        }}
-                                                                        className={cn(
-                                                                            "gap-2 cursor-pointer py-3",
-                                                                            isCurrent && "bg-accent text-accent-foreground"
-                                                                        )}
-                                                                    >
-                                                                        <div className={cn(
-                                                                            "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold border shrink-0",
-                                                                            isCurrent 
-                                                                                ? "bg-primary text-white border-primary" 
-                                                                                : "bg-muted text-muted-foreground border-border"
-                                                                        )}>
-                                                                            {i + 1}
-                                                                        </div>
-                                                                        <span className="truncate flex-1 font-medium">{l.title}</span>
-                                                                        {isCurrent && <Check className="w-4 h-4 text-primary ml-auto" />}
-                                                                    </CommandItem>
-                                                                );
-                                                            })}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                    </motion.div>
-                                ) : (
-                                    <motion.div 
-                                        className="flex flex-col items-start px-2"
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.15, duration: 0.25 }}
-                                    >
-                                        <div className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 mb-1">{moduleTitle}</div>
-                                        <span className="text-sm font-bold tracking-tight text-foreground truncate max-w-[200px] md:max-w-md">
-                                            {title}
-                                        </span>
-                                    </motion.div>
-                                )}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                    
-                    <Progress value={progress} className="h-1 flex-1 max-w-[120px]" />
-                    
-                    <Popover open={open} onOpenChange={setOpen}>
-                        <PopoverTrigger asChild>
-                            <button className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-primary/10 transition-colors group">
-                                <span className="text-xs font-mono font-bold text-muted-foreground group-hover:text-primary transition-colors">
-                                    {currentSlide + 1} / {slides.length}
-                                </span>
-                                <List className="w-3 h-3 text-muted-foreground/60 group-hover:text-primary transition-colors" />
-                            </button>
-                        </PopoverTrigger>
-                        <PopoverContent className="p-0 w-[300px]" align="end">
-                            <Command>
-                                <CommandInput placeholder="Search slides..." />
-                                <CommandList>
-                                    <CommandEmpty>No slide found.</CommandEmpty>
-                                    <CommandGroup heading="Slides">
-                                        {slides.map((s, i) => (
-                                            <CommandItem
-                                                key={i}
-                                                value={`${i + 1} ${s.title}`}
-                                                onSelect={() => {
-                                                    setCurrentSlide(i);
-                                                    setOpen(false);
-                                                    // Update URL with slide number
-                                                    const params = new URLSearchParams(window.location.search);
-                                                    params.set('slide', String(i + 1)); // 1-indexed for URL
-                                                    router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
-                                                }}
-                                                className={cn(
-                                                    "gap-2 cursor-pointer",
-                                                    i === currentSlide && "bg-accent text-accent-foreground"
-                                                )}
-                                            >
-                                                <span className={cn(
-                                                    "w-5 h-5 flex items-center justify-center rounded-md text-[10px] font-mono font-bold border",
-                                                    i === currentSlide ? "bg-primary text-primary-foreground border-primary" : "bg-muted text-muted-foreground border-border"
-                                                )}>
-                                                    {i + 1}
-                                                </span>
-                                                <span className="truncate flex-1">{s.title}</span>
-                                                {i === currentSlide && <Zap className="w-3 h-3 text-primary ml-auto" />}
-                                            </CommandItem>
-                                        ))}
-                                    </CommandGroup>
-                                </CommandList>
-                            </Command>
-                        </PopoverContent>
-                    </Popover>
+                                            <PopoverContent className="p-0 w-[calc(100vw-2rem)] sm:w-[350px]" align="center" sideOffset={8}>
+                                <Command>
+                                    <CommandInput placeholder="Search chapters..." />
+                                    <CommandList>
+                                        <CommandEmpty>No chapter found.</CommandEmpty>
+                                        <CommandGroup heading="Chapters">
+                                            {allLessons.map((l, i) => {
+                                                const isCurrent = l.title === title;
+                                                return (
+                                                    <CommandItem
+                                                        key={l.slug}
+                                                        value={l.title}
+                                                        onSelect={() => {
+                                                            router.push(`/module/${l.moduleSlug}/${l.slug}?mode=presentation`);
+                                                            setChaptersOpen(false);
+                                                        }}
+                                                        className={cn(
+                                                            "gap-2 cursor-pointer py-3",
+                                                            isCurrent && "bg-accent text-accent-foreground"
+                                                        )}
+                                                    >
+                                                        <div className={cn(
+                                                            "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold border shrink-0",
+                                                            isCurrent 
+                                                                ? "bg-primary text-white border-primary" 
+                                                                : "bg-muted text-muted-foreground border-border"
+                                                        )}>
+                                                            {i + 1}
+                                                        </div>
+                                                        <span className="truncate flex-1 font-medium">{l.title}</span>
+                                                        {isCurrent && <Check className="w-4 h-4 text-primary ml-auto" />}
+                                                    </CommandItem>
+                                                );
+                                            })}
+                                        </CommandGroup>
+                                    </CommandList>
+                                </Command>
+                            </PopoverContent>
+                        </Popover>
+                    </motion.div>
+                ) : (
+                    <motion.div 
+                        className="flex flex-col items-start px-2"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15, duration: 0.25 }}
+                    >
+                        <div className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 mb-1">{moduleTitle}</div>
+                        <span className="text-sm font-bold tracking-tight text-foreground truncate max-w-[200px] md:max-w-md">
+                            {title}
+                        </span>
+                    </motion.div>
+                )}
+            </motion.div>
+        )}
+    </AnimatePresence>
+    
+    <Progress value={progress} className="h-1 flex-1 max-w-[120px]" />
+
+    <div className="flex items-center gap-2">
+        <Popover>
+            <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-xl hover:bg-primary/10 transition-colors">
+                    <Info className="h-4 w-4 text-muted-foreground/60" />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[calc(100vw-2rem)] sm:w-72 p-0" align="center" sideOffset={8}>
+                <div className="p-4 border-b border-border/40 bg-muted/20">
+                    <h4 className="text-sm font-black uppercase tracking-widest text-foreground">Navigation Controls</h4>
                 </div>
+                <div className="p-4 space-y-4">
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="flex flex-col">
+                            <span className="text-xs font-bold text-foreground">Next Slide</span>
+                            <span className="text-[10px] text-muted-foreground font-medium italic">Jump to the next insight</span>
+                        </div>
+                        <div className="flex gap-1">
+                            <kbd className="px-1.5 py-0.5 rounded border border-border bg-muted/50 text-[10px] font-mono font-bold">→</kbd>
+                            <kbd className="px-1.5 py-0.5 rounded border border-border bg-muted/50 text-[10px] font-mono font-bold">Space</kbd>
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="flex flex-col">
+                            <span className="text-xs font-bold text-foreground">Previous Slide</span>
+                            <span className="text-[10px] text-muted-foreground font-medium italic">Revisit previous content</span>
+                        </div>
+                        <kbd className="px-1.5 py-0.5 rounded border border-border bg-muted/50 text-[10px] font-mono font-bold">←</kbd>
+                    </div>
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="flex flex-col">
+                            <span className="text-xs font-bold text-foreground">Click Actions</span>
+                            <span className="text-[10px] text-muted-foreground font-medium italic">Narrow side zones</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-[10px] font-mono font-bold text-muted-foreground/60">
+                            <LayoutGrid className="w-3 h-3" />
+                            Sides
+                        </div>
+                    </div>
+                </div>
+            </PopoverContent>
+        </Popover>
+
+        <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+                <button className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-primary/10 transition-colors group">
+                    <span className="text-xs font-mono font-bold text-muted-foreground group-hover:text-primary transition-colors">
+                        {currentSlide + 1} / {slides.length}
+                    </span>
+                    <List className="w-3 h-3 text-muted-foreground/60 group-hover:text-primary transition-colors" />
+                </button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 w-[calc(100vw-2rem)] sm:w-[300px]" align="center" sideOffset={8}>
+                <Command>
+                    <CommandInput placeholder="Search slides..." />
+                    <CommandList>
+                        <CommandEmpty>No slide found.</CommandEmpty>
+                        <CommandGroup heading="Slides">
+                            {slides.map((s, i) => (
+                                <CommandItem
+                                    key={i}
+                                    value={`${i + 1} ${s.title}`}
+                                    onSelect={() => {
+                                        setCurrentSlide(i);
+                                        setOpen(false);
+                                        // Update URL with slide number
+                                        const params = new URLSearchParams(window.location.search);
+                                        params.set('slide', String(i + 1)); // 1-indexed for URL
+                                        router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
+                                    }}
+                                    className={cn(
+                                        "gap-2 cursor-pointer",
+                                        i === currentSlide && "bg-accent text-accent-foreground"
+                                    )}
+                                >
+                                    <span className={cn(
+                                        "w-5 h-5 flex items-center justify-center rounded-md text-[10px] font-mono font-bold border",
+                                        i === currentSlide ? "bg-primary text-primary-foreground border-primary" : "bg-muted text-muted-foreground border-border"
+                                    )}>
+                                        {i + 1}
+                                    </span>
+                                    <span className="truncate flex-1">{s.title}</span>
+                                    {i === currentSlide && <Zap className="w-3 h-3 text-primary ml-auto" />}
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
+                    </CommandList>
+                </Command>
+            </PopoverContent>
+        </Popover>
+    </div>
+</div>
 
                 <div className="flex items-center gap-2 ml-4">
                     {/* Immersive/Slim Toggle */}
@@ -476,18 +520,47 @@ function EnhancedMarkdown({ content }: { content: string }) {
     const lines = cleanContent.split('\n');
     const sections: React.ReactNode[] = [];
 
+    let inCols = false;
+    let colBuffer: React.ReactNode[][] = []; // Start empty
+
     let currentList: string[] = [];
     let currentTable: string[][] = [];
+    let currentQuote: { type: string | null; lines: string[] } | null = null;
     let inCodeBlock = false;
     let codeContent = '';
     let codeLanguage = '';
 
+    const flushCols = (key: number) => {
+        if (inCols) {
+            sections.push(
+                <div key={`cols-${key}`} className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4 ml-7">
+                    {colBuffer.map((colNodes, i) => (
+                        <div key={i} className="space-y-4">
+                            {colNodes}
+                        </div>
+                    ))}
+                </div>
+            );
+            inCols = false;
+            colBuffer = [[]];
+        }
+    };
+
+    const addToCurrentSection = (node: React.ReactNode) => {
+        if (inCols) {
+            if (colBuffer.length === 0) colBuffer.push([]);
+            colBuffer[colBuffer.length - 1].push(node);
+        } else {
+            sections.push(node);
+        }
+    };
+
     const flushList = (key: number) => {
         if (currentList.length > 0) {
-            sections.push(
+            const listNode = (
                 <motion.ul
                     key={`list-${key}`}
-                    className="space-y-4 mb-6 pl-7"
+                    className="space-y-4 mb-6 pl-0"
                     initial="hidden"
                     animate="visible"
                     variants={{
@@ -511,14 +584,15 @@ function EnhancedMarkdown({ content }: { content: string }) {
                     ))}
                 </motion.ul>
             );
+            addToCurrentSection(listNode);
             currentList = [];
         }
     };
 
     const flushTable = (key: number) => {
         if (currentTable.length > 0) {
-            sections.push(
-                <div key={`table-wrapper-${key}`} className="relative overflow-hidden rounded-xl border border-border/40 mb-6 mt-3 group ml-7">
+            const tableNode = (
+                <div key={`table-wrapper-${key}`} className="relative overflow-hidden rounded-xl border border-border/40 mb-6 mt-3 group">
                     <div className="absolute inset-0 bg-primary/5 opacity-20 transition-opacity" />
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
@@ -546,42 +620,121 @@ function EnhancedMarkdown({ content }: { content: string }) {
                     </div>
                 </div>
             );
+            addToCurrentSection(tableNode);
             currentTable = [];
+        }
+    };
+
+    const flushQuote = (key: number) => {
+        if (currentQuote && currentQuote.lines.length > 0) {
+            const { type, lines } = currentQuote;
+            const text = lines.join(' ').trim();
+            
+            let quoteNode;
+            if (type) {
+                const alertStyles: Record<string, any> = {
+                    NOTE: { icon: <Info className="h-5 w-5" />, color: "bg-blue-500/10 border-blue-500/50 text-blue-700 dark:text-blue-300" },
+                    TIP: { icon: <Zap className="w-5 h-5" />, color: "bg-emerald-500/10 border-emerald-500/50 text-emerald-700 dark:text-emerald-300" },
+                    IMPORTANT: { icon: <Workflow className="w-5 h-5" />, color: "bg-purple-500/10 border-purple-500/50 text-purple-700 dark:text-purple-300" },
+                    WARNING: { icon: <AlertTriangle className="w-5 h-5" />, color: "bg-amber-500/10 border-amber-500/50 text-amber-700 dark:text-amber-300" },
+                    CAUTION: { icon: <AlertCircle className="w-5 h-5" />, color: "bg-red-500/10 border-red-500/50 text-red-700 dark:text-red-300" }
+                };
+                const style = alertStyles[type] || alertStyles.NOTE;
+                quoteNode = (
+                    <motion.div
+                        key={`alert-${key}`}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className={cn("p-6 rounded-2xl border flex gap-4 mb-6 shadow-sm", style.color)}
+                    >
+                        <div className="flex-shrink-0 mt-1">{style.icon}</div>
+                        <div className="text-lg font-medium" dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
+                    </motion.div>
+                );
+            } else {
+                quoteNode = (
+                    <motion.div
+                        key={`quote-${key}`}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="p-6 rounded-2xl bg-primary/5 border border-primary/20 flex gap-4 mb-6 shadow-sm"
+                    >
+                        <Lightbulb className="w-6 h-6 text-primary flex-shrink-0" />
+                        <div className="text-lg italic text-muted-foreground" dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
+                    </motion.div>
+                );
+            }
+            addToCurrentSection(quoteNode);
+            currentQuote = null;
         }
     };
 
     lines.forEach((line, index) => {
         const trimmed = line.trim();
 
+        // Handle columns
+        if (trimmed === ':::cols') {
+            flushList(index);
+            flushTable(index);
+            flushQuote(index);
+            inCols = true;
+            colBuffer = []; 
+            return;
+        }
+
+        if (trimmed === ':::col') {
+            flushList(index);
+            flushTable(index);
+            flushQuote(index);
+            if (inCols) {
+                colBuffer.push([]);
+            }
+            return;
+        }
+
+        if (trimmed === ':::') {
+            if (inCols) {
+                flushList(index);
+                flushTable(index);
+                flushQuote(index);
+                flushCols(index);
+                return;
+            }
+        }
+
         // Handle code blocks
         if (trimmed.startsWith('```')) {
+            flushList(index);
+            flushTable(index);
+            flushQuote(index);
+            
             if (inCodeBlock) {
                 // Flush code block
+                let codeNode;
                 if (codeLanguage === 'mermaid' || codeLanguage === 'mermaidjs') {
-                    // Simple mermaid rendering using mermaid.ink
                     try {
                         const encoded = btoa(codeContent.trim()).replace(/\+/g, '-').replace(/\//g, '_');
-                        sections.push(
-                            <div key={`mermaid-${index}`} className="my-14 w-full flex flex-col items-center overflow-visible">
+                        codeNode = (
+                            <div key={`mermaid-${index}`} className="my-10 w-full flex flex-col items-center overflow-visible">
                                 <motion.div 
                                     initial={{ opacity: 0, scale: 0.98 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="bg-muted/5 p-6 md:p-10 rounded-[3rem] border border-border/60 w-full flex justify-center items-center group/mermaid transition-all duration-500"
+                                    className="bg-muted/5 p-6 rounded-[2rem] border border-border/60 w-full flex justify-center items-center group/mermaid transition-all duration-500"
                                 >
                                     <img 
                                         src={`https://mermaid.ink/svg/${encoded}`} 
                                         alt="Mermaid diagram" 
-                                        className="w-full h-auto max-h-[80vh] object-contain transition-transform duration-700 group-hover/mermaid:scale-[1.01]" 
+                                        className="w-full h-auto max-h-[60vh] object-contain transition-transform duration-700 group-hover/mermaid:scale-[1.01]" 
                                     />
                                 </motion.div>
-                                <span className="text-[10px] text-muted-foreground uppercase tracking-[0.5em] font-black opacity-30 mt-10">Interactive Flowchart</span>
+                                <span className="text-[10px] text-muted-foreground uppercase tracking-[0.5em] font-black opacity-30 mt-6 text-center w-full block">Interactive Flowchart</span>
                             </div>
                         );
                     } catch (e) {
-                        sections.push(<div key={`mermaid-err-${index}`} className="text-red-500 pl-7">Error rendering diagram</div>);
+                        codeNode = <div key={`mermaid-err-${index}`} className="text-red-500">Error rendering diagram</div>;
                     }
                 } else {
-                    sections.push(
+                    codeNode = (
                         <pre key={`code-${index}`} className="p-6 rounded-2xl bg-muted/50 border border-border/40 mb-6 overflow-x-auto font-mono text-sm shadow-inner group">
                             <div className="flex justify-between mb-2">
                                 <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{codeLanguage || 'code'}</span>
@@ -590,12 +743,11 @@ function EnhancedMarkdown({ content }: { content: string }) {
                         </pre>
                     );
                 }
+                addToCurrentSection(codeNode);
                 inCodeBlock = false;
                 codeContent = '';
                 codeLanguage = '';
             } else {
-                flushList(index);
-                flushTable(index);
                 inCodeBlock = true;
                 codeLanguage = trimmed.slice(3).toLowerCase();
             }
@@ -607,13 +759,19 @@ function EnhancedMarkdown({ content }: { content: string }) {
             return;
         }
 
-        if (!trimmed) return;
+        if (!trimmed) {
+            flushList(index);
+            flushTable(index);
+            flushQuote(index);
+            return;
+        }
 
-        // Special PDLC Map Marker (Check first to avoid it being treated as a list item)
+        // Special PDLC Map Marker
         if (trimmed.includes('[PDLC_MAP]')) {
             flushList(index);
             flushTable(index);
-            sections.push(
+            flushQuote(index);
+            const mapNode = (
                 <motion.div
                     key={`pdlc-map-${index}`}
                     initial={{ opacity: 0, y: 30 }}
@@ -626,99 +784,89 @@ function EnhancedMarkdown({ content }: { content: string }) {
                     </div>
                 </motion.div>
             );
+            addToCurrentSection(mapNode);
             return;
         }
 
         // List item
         if (trimmed.match(/^(\*|-)\s+/)) {
+            flushTable(index);
+            flushQuote(index);
             currentList.push(trimmed.replace(/^(\*|-)\s+/, ''));
         }
         // Table row
         else if (trimmed.startsWith('|')) {
+            flushList(index);
+            flushQuote(index);
             if (trimmed.includes('---')) return;
             const cells = trimmed.split('|').filter(c => c.trim()).map(c => c.trim());
             currentTable.push(cells);
+        }
+        // Blockquote or Alert
+        else if (trimmed.startsWith('>')) {
+            flushList(index);
+            flushTable(index);
+            
+            const alertMatch = trimmed.match(/^> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/);
+            if (alertMatch) {
+                if (currentQuote) flushQuote(index);
+                currentQuote = {
+                    type: alertMatch[1],
+                    lines: [trimmed.replace(/^> \[!(.*?)\]\s*/, '').trim()].filter(Boolean)
+                };
+            } else {
+                const quoteText = trimmed.replace(/^>\s*/, '').trim();
+                if (currentQuote) {
+                    currentQuote.lines.push(quoteText);
+                } else {
+                    currentQuote = {
+                        type: null,
+                        lines: [quoteText]
+                    };
+                }
+            }
         }
         // Subheader (H3)
         else if (trimmed.startsWith('###')) {
             flushList(index);
             flushTable(index);
+            flushQuote(index);
             const text = trimmed.replace(/^###\s+/, '');
-            sections.push(
+            const h3Node = (
                 <motion.h3
                     key={index}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-2xl font-bold text-foreground mt-4 mb-4 border-l-4 border-primary pl-4 ml-7"
+                    className="text-2xl font-bold text-foreground mt-4 mb-4 border-l-4 border-primary pl-4"
                     dangerouslySetInnerHTML={{ __html: formatInline(text) }}
                 />
             );
+            addToCurrentSection(h3Node);
         }
-        // Normal paragraph or Callout
+        // Normal paragraph
         else {
             flushList(index);
             flushTable(index);
+            flushQuote(index);
 
-            // GitHub Alerts
-            if (trimmed.startsWith('> [!')) {
-                const match = trimmed.match(/^> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/);
-                if (match) {
-                    const type = match[1];
-                    const text = trimmed.replace(/^> \[!(.*?)\]\s*/, '');
-                    const alertStyles: Record<string, any> = {
-                        NOTE: { icon: <Info className="w-5 h-5" />, color: "bg-blue-500/10 border-blue-500/50 text-blue-700 dark:text-blue-300" },
-                        TIP: { icon: <Zap className="w-5 h-5" />, color: "bg-emerald-500/10 border-emerald-500/50 text-emerald-700 dark:text-emerald-300" },
-                        IMPORTANT: { icon: <Workflow className="w-5 h-5" />, color: "bg-purple-500/10 border-purple-500/50 text-purple-700 dark:text-purple-300" },
-                        WARNING: { icon: <AlertTriangle className="w-5 h-5" />, color: "bg-amber-500/10 border-amber-500/50 text-amber-700 dark:text-amber-300" },
-                        CAUTION: { icon: <AlertCircle className="w-5 h-5" />, color: "bg-red-500/10 border-red-500/50 text-red-700 dark:text-red-300" }
-                    };
-                    const style = alertStyles[type];
-                    sections.push(
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className={cn("p-6 rounded-2xl border flex gap-4 mb-6 shadow-sm ml-7", style.color)}
-                        >
-                            <div className="flex-shrink-0 mt-1">{style.icon}</div>
-                            <div className="text-lg font-medium" dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
-                        </motion.div>
-                    );
-                    return;
-                }
-            }
-
-            // Standard Quote
-            if (trimmed.startsWith('>')) {
-                const text = trimmed.replace(/^>\s*/, '');
-                sections.push(
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="p-6 rounded-2xl bg-primary/5 border border-primary/20 flex gap-4 mb-6 shadow-sm ml-7"
-                    >
-                        <Lightbulb className="w-6 h-6 text-primary flex-shrink-0" />
-                        <div className="text-lg italic text-muted-foreground" dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
-                    </motion.div>
-                );
-            } else {
-                sections.push(
-                    <motion.p
-                        key={index}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="text-xl leading-relaxed text-muted-foreground mb-6 pl-7"
-                        dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
-                    />
-                );
-            }
+            const pNode = (
+                <motion.p
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-xl leading-relaxed text-muted-foreground mb-6"
+                    dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
+                />
+            );
+            addToCurrentSection(pNode);
         }
     });
 
     // Final flushes
     flushList(lines.length);
     flushTable(lines.length);
+    flushQuote(lines.length);
+    flushCols(lines.length);
 
     return <div className="space-y-4">{sections}</div>;
 }

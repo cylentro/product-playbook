@@ -81,6 +81,6 @@ If a product is no longer viable, it must be decommissioned gracefully to protec
 
 ## **9.8 Exit Criteria (The Final Gate)**
 
-* [ ] The product has a documented "End of Life" date OR a clear "Scale-up/Expansion" plan.
-* [ ] Long-term profitability, cost-to-serve, and value-contribution are clearly tracked and reported.
-* [ ] The Cycle Closes: New pain points and unmet needs identified during long-term monitoring have been documented and fed back into Module 1: Discovery to begin the next generation of product solutions.
+* The product has a documented "End of Life" date OR a clear "Scale-up/Expansion" plan.
+* Long-term profitability, cost-to-serve, and value-contribution are clearly tracked and reported.
+* The Cycle Closes: New pain points and unmet needs identified during long-term monitoring have been documented and fed back into Module 1: Discovery to begin the next generation of product solutions.

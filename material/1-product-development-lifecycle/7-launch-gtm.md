@@ -75,7 +75,7 @@ The tactical rollout of the code and the activation of the marketing engine.
 
 ## **7.8 Exit Criteria (The Gate)**
 
-* [ ] Feature is live and functional for the target segment.
-* [ ] NPI deck has been presented and shared with all internal departments.
-* [ ] Financial settlement and reporting paths are verified as ready.
-* [ ] Marketing campaigns and support guides are active and consistent.
+* Feature is live and functional for the target segment.
+* NPI deck has been presented and shared with all internal departments.
+* Financial settlement and reporting paths are verified as ready.
+* Marketing campaigns and support guides are active and consistent.

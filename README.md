@@ -1,6 +1,6 @@
 # 🚀 The Modern PM Playbook
 
-An elite, interactive platform designed for Product Managers to master the **Product Development Lifecycle (PDLC)**. This project transforms standard product documentation into a high-vibe, immersive learning experience.
+An interactive platform designed for Product Managers to master the **Product Development Lifecycle (PDLC)**. This project transforms standard product documentation into a high-vibe, immersive learning experience.
 
 ![PDLC Overview](public/manifest.json) <!-- Replacement note: User can add a screenshot later -->
 

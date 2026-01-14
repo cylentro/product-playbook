@@ -186,7 +186,12 @@ export async function getLessonContent(
     const slides = parseSlides(content);
 
     // Prepare learn content by stripping presentation-only blocks
-    const learnMarkdown = content.replace(/:::present\n[\s\S]*?\n:::/g, '').trim();
+    const learnMarkdown = content
+        .replace(/^::::present[\s\S]*?\n::::/gm, '')
+        .replace(/^:::present[\s\S]*?\n:::/gm, '')
+        .replace(/:::(cols?|col)\n?/g, '')
+        .replace(/:::\n/g, '')
+        .trim();
 
     const processedContent = await remark()
         .use(gfm)
@@ -232,7 +237,12 @@ export async function getStandaloneLessonContent(
     const { data, content } = matter(fileContents);
     const frontmatter = data as LessonFrontmatter;
 
-    const learnMarkdown = content.replace(/:::present\n[\s\S]*?\n:::/g, '').trim();
+    const learnMarkdown = content
+        .replace(/^::::present[\s\S]*?\n::::/gm, '')
+        .replace(/^:::present[\s\S]*?\n:::/gm, '')
+        .replace(/:::(cols?|col)\n?/g, '')
+        .replace(/:::\n/g, '')
+        .trim();
     const processedContent = await remark()
         .use(gfm)
         .use(html, { sanitize: false })
@@ -271,8 +281,12 @@ function parseSlides(content: string): Slide[] {
         const titleMatch = section.match(/^##?\s+(.+)$/m);
         let title = titleMatch ? titleMatch[1].replace(/\*\*/g, '').trim() : `Slide ${i + 1}`;
 
-        // Look for :::present blocks
-        const presentMatch = section.match(/:::present\n([\s\S]*?)\n:::/);
+        // Look for present blocks - prioritizes 4-colon variant for nesting support
+        let presentMatch = section.match(/::::present\n([\s\S]*?)\n::::/);
+        if (!presentMatch) {
+            presentMatch = section.match(/:::present\n([\s\S]*?)\n:::/);
+        }
+
         let slideContent = presentMatch ? presentMatch[1].trim() : section;
 
         // Strip the title from the content if it's there

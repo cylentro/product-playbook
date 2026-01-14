@@ -26,10 +26,10 @@ This step bridges the gap between a high-level idea and a technical plan. We use
 * **Backlog Development (Operational Rigor):**
   * INVEST Stories: Stories must be Independent (can be developed in any order), Negotiable (open to discussion), Valuable (to the user), Estimable (by devs), Small (fits in a sprint), and Testable.
   * Definition of Ready (DoR): The "Safety Gate" for Engineering. A story is only "Ready" if it contains:
-    * [ ] User Story: "As a [User], I want [Action], so that [Value]."
-    * [ ] Gherkin AC: Behavior-defined conditions.
-    * [ ] Visual Proof: Linked Figma designs with specific assets.
-    * [ ] Technical Specs: Defined API endpoints or data fields.
+    * User Story: "As a [User], I want [Action], so that [Value]."
+    * Gherkin AC: Behavior-defined conditions.
+    * Visual Proof: Linked Figma designs with specific assets.
+    * Technical Specs: Defined API endpoints or data fields.
 
 #### **Gherkin Standards & Examples**
 
@@ -115,7 +115,7 @@ To prevent logic gaps, squads must document three distinct perspectives:
 
 ## **4.8 Exit Criteria (The Gate)**
 
-* [ ] Prototype validated with ≥ 5 users with an 80% task completion rate.
-* [ ] PRD finalized with Gherkin AC and meets the Definition of Ready (DoR).
-* [ ] 6-Tier Tactical Metric Framework defined for the feature.
-* [ ] All 3 Flows (User, Business, System) documented and signed off by the Tech Lead.
+* Prototype validated with ≥ 5 users with an 80% task completion rate.
+* PRD finalized with Gherkin AC and meets the Definition of Ready (DoR).
+* 6-Tier Tactical Metric Framework defined for the feature.
+* All 3 Flows (User, Business, System) documented and signed off by the Tech Lead.

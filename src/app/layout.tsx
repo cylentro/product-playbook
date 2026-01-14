@@ -8,15 +8,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "PM-AI Learning Nexus",
-  description: "A motion-driven educational platform for Product Managers to master the Product Development Lifecycle and AI integration.",
-  keywords: ["product management", "PDLC", "AI", "learning", "education"],
-  authors: [{ name: "PM-AI Learning Nexus" }],
+  title: "The Product Playbook",
+  description: "Master the Product Operating Model with Anteraja. A premium, motion-driven learning experience for Product Managers.",
+  keywords: ["product management", "PDLC", "Anteraja", "learning", "playbook"],
+  authors: [{ name: "Anteraja" }],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "PM-AI Nexus",
+    title: "Product Playbook",
   },
   formatDetection: {
     telephone: false,
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "PM-AI Learning Nexus",
-    description: "Master Product Management through Motion-Driven Learning",
-    siteName: "PM-AI Learning Nexus",
+    title: "The Product Playbook",
+    description: "Master the Product Operating Model with Anteraja.",
+    siteName: "The Product Playbook",
   },
 };
 
@@ -48,10 +48,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/icons/icon-192.png" />
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-      </head>
       <body
         className={`${inter.variable} font-sans antialiased`}
       >

@@ -77,7 +77,7 @@ The final alignment where the squad commits to the "Sprint Backlog."
 
 ## **5.8 Exit Criteria (The Gate)**
 
-* [ ] Sprint Goal is clearly defined and understood by the entire squad.
-* [ ] All user stories in the sprint meet the Definition of Ready (DoR).
-* [ ] The squad has formally committed to the sprint backlog based on their verified capacity.
-* [ ] All high-complexity stories have been decomposed into manageable tasks.
+* Sprint Goal is clearly defined and understood by the entire squad.
+* All user stories in the sprint meet the Definition of Ready (DoR).
+* The squad has formally committed to the sprint backlog based on their verified capacity.
+* All high-complexity stories have been decomposed into manageable tasks.

@@ -83,7 +83,7 @@ Final verification after the code has been deployed to the live environment.
 
 ## **6.8 Exit Criteria (The Gate)**
 
-* [ ] All Gherkin Acceptance Criteria passed by QA (Per-feature and Full-cycle).
-* [ ] UAT completed and signed off with attached video evidence.
-* [ ] Zero P0 or P1 bugs remaining in the release candidate.
-* [ ] Successful Production Smoke Test in a closed environment.
+* All Gherkin Acceptance Criteria passed by QA (Per-feature and Full-cycle).
+* UAT completed and signed off with attached video evidence.
+* Zero P0 or P1 bugs remaining in the release candidate.
+* Successful Production Smoke Test in a closed environment.

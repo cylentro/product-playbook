@@ -12,10 +12,11 @@ import { PresentationEngine, LearningEngine, QuizEngine } from '@/components/mod
 import { ChevronLeft, ChevronRight, Clock, Home, List, Check } from 'lucide-react';
 import type { LessonContent } from '@/lib/types';
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
 import {
     Command,
     CommandEmpty,
@@ -26,6 +27,7 @@ import {
 } from "@/components/ui/command";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import { X } from 'lucide-react';
 
 interface LessonViewProps {
     lesson: LessonContent;
@@ -43,7 +45,16 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
 
     // Sync mode from URL search params on mount
     useEffect(() => {
-        const urlMode = searchParams.get('mode') as any;
+        let urlMode = searchParams.get('mode') as any;
+        
+        // Force learning mode on mobile
+        if (typeof window !== 'undefined' && window.innerWidth < 640) {
+            if (urlMode === 'presentation') {
+                urlMode = 'learning';
+                router.replace(`${window.location.pathname}?mode=learning`, { scroll: false });
+            }
+        }
+
         if (urlMode && ['presentation', 'learning', 'quiz'].includes(urlMode)) {
             setMode(urlMode);
             
@@ -52,41 +63,63 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                 setPresentationFullscreen(true);
             }
         }
-    }, [searchParams, setMode, setPresentationFullscreen]);
+    }, [searchParams, setMode, setPresentationFullscreen, router]);
 
     return (
         <div className="min-h-screen bg-background">
             {/* Header - Hidden in presentation mode when presentationFullscreen is true */}
             {(mode !== 'presentation' || !presentationFullscreen) && (
-                <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
-                    <div className="flex h-16 items-center justify-between px-4 md:px-6">
-                        <div className="flex items-center gap-2">
-                            <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl hover:bg-primary/10" asChild>
+                <header className="fixed top-0 left-0 right-0 z-[500] border-b border-border/40 bg-background/80 backdrop-blur-xl">
+                    <div className="flex h-16 items-center justify-between px-3 md:px-6">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                            <Button variant="ghost" size="icon" className="h-9 w-9 md:h-10 md:w-10 rounded-xl hover:bg-primary/10 shrink-0" asChild>
                                 <Link href={lesson.moduleSlug === 'standalone' ? '/' : `/module/${lesson.moduleSlug}`} aria-label="Go back">
                                     <ChevronLeft className="h-5 w-5" />
                                 </Link>
                             </Button>
                             
-                            <div className="h-8 w-px bg-border/40 mx-1" />
+                            <div className="h-8 w-px bg-border/40 mx-0.5 md:mx-1 shrink-0" />
                             
-                            <Popover open={open} onOpenChange={setOpen}>
-                                <PopoverTrigger asChild>
-                                    <button className="flex flex-col items-start px-3 py-1.5 rounded-xl hover:bg-primary/5 transition-all text-left group">
-                                        <div className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 leading-none mb-1 group-hover:text-muted-foreground/80">{moduleTitle}</div>
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-bold truncate max-w-[200px] md:max-w-[400px] text-foreground leading-tight group-hover:text-primary transition-colors">
-                                                {lesson.title}
-                                            </span>
-                                            <List className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors" />
+                            
+                            <button 
+                                onClick={() => setOpen(true)}
+                                className="flex flex-col items-start px-2 md:px-3 py-1.5 rounded-xl hover:bg-primary/5 transition-all text-left group min-w-0"
+                            >
+                                <div className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 leading-none mb-1 group-hover:text-muted-foreground/80 truncate w-full">
+                                    {moduleTitle}
+                                </div>
+                                <div className="flex items-center gap-1.5 w-full">
+                                    <span className="font-bold truncate text-sm md:text-base text-foreground leading-tight group-hover:text-primary transition-colors">
+                                        {lesson.title}
+                                    </span>
+                                    <List className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0" />
+                                </div>
+                            </button>
+
+
+                            <Dialog open={open} onOpenChange={setOpen}>
+                                <DialogContent className="p-0 max-w-full h-full sm:max-w-[500px] sm:h-auto sm:max-h-[80vh] gap-0 [&>button]:hidden">
+                                    <DialogHeader className="px-6 py-4 border-b border-border/40 text-left">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex-1">
+                                                <DialogTitle className="text-lg font-bold text-left">Chapters</DialogTitle>
+                                                <p className="text-xs text-muted-foreground mt-1">{moduleTitle}</p>
+                                            </div>
+                                            <Button 
+                                                variant="ghost" 
+                                                size="icon" 
+                                                className="h-8 w-8 rounded-full shrink-0 -mt-1"
+                                                onClick={() => setOpen(false)}
+                                            >
+                                                <X className="h-4 w-4" />
+                                            </Button>
                                         </div>
-                                    </button>
-                                </PopoverTrigger>
-                                <PopoverContent className="p-0 w-[350px]" align="start">
-                                    <Command>
-                                        <CommandInput placeholder="Search chapters..." />
-                                        <CommandList>
+                                    </DialogHeader>
+                                    <Command className="rounded-none border-none">
+                                        <CommandInput placeholder="Search chapters..." className="border-none" />
+                                        <CommandList className="max-h-none">
                                             <CommandEmpty>No chapter found.</CommandEmpty>
-                                            <CommandGroup heading="Chapters">
+                                            <CommandGroup>
                                                 {allLessons.map((l, i) => (
                                                     <CommandItem
                                                         key={l.slug}
@@ -96,31 +129,31 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                                                             setOpen(false);
                                                         }}
                                                         className={cn(
-                                                            "gap-2 cursor-pointer py-3",
+                                                            "gap-3 cursor-pointer py-4 px-6",
                                                             l.slug === lesson.slug && "bg-accent text-accent-foreground"
                                                         )}
                                                     >
                                                         <div className={cn(
-                                                            "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold border shrink-0",
+                                                            "w-8 h-8 flex items-center justify-center rounded-lg font-mono text-xs font-bold border shrink-0",
                                                             l.slug === lesson.slug 
                                                                 ? "bg-primary text-white border-primary" 
                                                                 : "bg-muted text-muted-foreground border-border"
                                                         )}>
                                                             {i + 1}
                                                         </div>
-                                                        <span className="truncate flex-1 font-medium">{l.title}</span>
-                                                        {l.slug === lesson.slug && <Check className="w-4 h-4 text-primary ml-auto" />}
+                                                        <span className="flex-1 font-medium text-base">{l.title}</span>
+                                                        {l.slug === lesson.slug && <Check className="w-5 h-5 text-primary ml-auto" />}
                                                     </CommandItem>
                                                 ))}
                                             </CommandGroup>
                                         </CommandList>
                                     </Command>
-                                </PopoverContent>
-                            </Popover>
+                                </DialogContent>
+                            </Dialog>
                         </div>
 
-                        <div className="flex items-center gap-4">
-                            <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2 md:gap-4 shrink-0">
+                            <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
                                 <Clock className="h-4 w-4" />
                                 {lesson.estimatedTime} min
                             </div>

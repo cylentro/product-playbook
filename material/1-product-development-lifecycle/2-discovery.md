@@ -205,13 +205,13 @@ The tangible artifacts produced during Discovery:
 ## 2.12 Exit Criteria (The Gate)
 
 :::present
-- [ ] Problem is defined (Data-backed).
-- [ ] Personas and pain points validated.
-- [ ] Market and Technical risks documented.
-- [ ] **Final Sign-off**: PM and Stakeholders agree on the path.
+- Problem is defined (Data-backed).
+- Personas and pain points validated.
+- Market and Technical risks documented.
+- **Final Sign-off**: PM and Stakeholders agree on the path.
 :::
 
-* [ ] Problem is clearly defined and data-backed (Qual + Quant).
-* [ ] Target personas and their pain points have been validated.
-* [ ] Market viability and technical risks are documented.
-* [ ] **Final Sign-off**: PM and Stakeholders agree the problem is worth solving.
+* Problem is clearly defined and data-backed (Qual + Quant).
+* Target personas and their pain points have been validated.
+* Market viability and technical risks are documented.
+* **Final Sign-off**: PM and Stakeholders agree the problem is worth solving.

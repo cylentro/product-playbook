@@ -30,7 +30,7 @@ export function AppShell({
             {/* Header */}
             <header
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/40 bg-background/80 backdrop-blur-xl transition-transform duration-300",
+                    "fixed top-0 left-0 right-0 z-[500] h-16 border-b border-border/40 bg-background/80 backdrop-blur-xl transition-transform duration-300",
                     presentationFullscreen && "-translate-y-full"
                 )}
             >
@@ -65,7 +65,7 @@ export function AppShell({
                                 PM
                             </motion.div>
                             <span className="hidden sm:block font-semibold text-lg">
-                                {title || 'PM-AI Learning Nexus'}
+                                {title || 'PM-AI Learning'}
                             </span>
                         </Link>
                     </div>

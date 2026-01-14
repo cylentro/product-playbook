@@ -1,6 +1,6 @@
 {
-    "name": "PM-AI Learning Nexus",
-    "short_name": "PM-AI Nexus",
+    "name": "PM-AI Learning",
+    "short_name": "PM-AI",
     "description": "A motion-driven educational platform for Product Managers to master the Product Development Lifecycle and AI integration.",
     "start_url": "/",
     "display": "standalone",

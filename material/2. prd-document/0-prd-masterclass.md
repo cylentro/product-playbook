@@ -28,7 +28,7 @@ Why not just send a Slack message or a Jira ticket?
 ---
 
 ## 3. The Anatomy of a Winning PRD
-While templates vary, every elite PRD follows this logical flow:
+While templates vary, every PRD follows this logical flow:
 
 ```mermaid
 graph TD
