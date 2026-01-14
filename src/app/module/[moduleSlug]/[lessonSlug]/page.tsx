@@ -1,3 +1,4 @@
+import React from 'react';
 import { notFound } from 'next/navigation';
 import { getAllModules, getLessonContent } from '@/lib/markdown';
 import { LessonView } from './LessonView';
@@ -42,12 +43,14 @@ export default async function LessonPage({ params }: LessonPageProps) {
         : null;
 
     return (
-        <LessonView
-            lesson={lessonContent}
-            moduleTitle={currentModule?.title ?? ''}
-            allLessons={currentModule?.lessons.map(l => ({ slug: l.slug, title: l.title, moduleSlug })) ?? []}
-            prevLesson={prevLesson ? { slug: prevLesson.slug, title: prevLesson.title, moduleSlug } : null}
-            nextLesson={nextLesson ? { slug: nextLesson.slug, title: nextLesson.title, moduleSlug } : null}
-        />
+        <React.Suspense fallback={<div className="min-h-screen bg-background animate-pulse" />}>
+            <LessonView
+                lesson={lessonContent}
+                moduleTitle={currentModule?.title ?? ''}
+                allLessons={currentModule?.lessons.map(l => ({ slug: l.slug, title: l.title, moduleSlug })) ?? []}
+                prevLesson={prevLesson ? { slug: prevLesson.slug, title: prevLesson.title, moduleSlug } : null}
+                nextLesson={nextLesson ? { slug: nextLesson.slug, title: nextLesson.title, moduleSlug } : null}
+            />
+        </React.Suspense>
     );
 }

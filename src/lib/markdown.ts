@@ -16,22 +16,26 @@ import type {
 // Get content directory - works in both dev and production
 // The app is in /app and content is now also in /app/material
 function getContentDirectory(): string {
-    // Try relative from process.cwd() first (works in dev)
-    const cwdPath = path.join(process.cwd(), 'material');
-    if (fs.existsSync(cwdPath)) {
-        return cwdPath;
+    // Primary: look for 'material' folder at the project root
+    // Next.js sets process.cwd() to the project root during build
+    const projectRootMaterial = path.join(process.cwd(), 'material');
+    if (fs.existsSync(projectRootMaterial)) {
+        return projectRootMaterial;
     }
 
-    // Fallback: resolve from the lib file location
-    // dirname points to /app/src/lib, so go up 2 levels to app root
-    const dirname = path.dirname(new URL(import.meta.url).pathname);
-    const libPath = path.join(dirname, '..', '..', 'material');
-    if (fs.existsSync(libPath)) {
-        return libPath;
+    // Secondary: try resolving relative to the current module file (useful for some dev setups)
+    try {
+        const currentFileDir = path.dirname(new URL(import.meta.url).pathname);
+        const relativeMaterial = path.resolve(currentFileDir, '..', '..', 'material');
+        if (fs.existsSync(relativeMaterial)) {
+            return relativeMaterial;
+        }
+    } catch (e) {
+        // Silently fail if pathname resolution doesn't work (e.g. non-file URL)
     }
 
-    // Last fallback: hardcoded absolute path (for debugging)
-    return '/Users/christianhadianto/Documents/TechSmith/The Modern PM Playbook/app/material';
+    // Fallback: standard relative path from root
+    return path.resolve('material');
 }
 
 const contentDirectory = getContentDirectory();
