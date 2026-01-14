@@ -41,7 +41,7 @@ export default async function HomePage() {
           <div className="max-w-4xl">
             <Badge variant="outline" className="mb-8 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] font-black border-primary/30 bg-primary/5 text-primary-foreground/80">
               <Sparkles className="h-3 w-3 mr-2 text-primary" />
-              The Elite Product Operating Model
+              The Product Operating Model
             </Badge>
 
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
@@ -175,8 +175,8 @@ export default async function HomePage() {
             <span className="font-black tracking-tighter text-lg uppercase">Product Playbook</span>
           </div>
           <div className="flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-muted-foreground/40">
-            <span>By Cylentro</span>
-            <span>© 2024</span>
+            <span>By Christian Hadianto</span>
+            <span>© 2026</span>
             <div className="w-2 h-2 rounded-full bg-emerald-500" />
             <span className="text-emerald-500/60">Systems Nominal</span>
           </div>

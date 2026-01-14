@@ -23,6 +23,7 @@ import {
 import type { Slide } from '@/lib/types';
 import { PDLCOverview } from './PDLCOverview';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 interface PresentationEngineProps {
     slides: Slide[];
@@ -186,10 +187,11 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                                         variant="ghost" 
                                         size="icon" 
                                         className="h-9 w-9 rounded-xl hover:bg-primary/10 shrink-0" 
-                                        onClick={() => router.back()}
-                                        aria-label="Go back"
+                                        asChild
                                     >
-                                        <ChevronLeft className="h-5 w-5" />
+                                        <Link href={allLessons?.[0]?.moduleSlug ? `/module/${allLessons[0].moduleSlug}` : '/'} aria-label="Go back">
+                                            <ChevronLeft className="h-5 w-5" />
+                                        </Link>
                                     </Button>
                                 </motion.div>
                                 
