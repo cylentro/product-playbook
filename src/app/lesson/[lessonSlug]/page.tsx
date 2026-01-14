@@ -21,10 +21,13 @@ export default async function StandaloneLessonPage({ params }: StandaloneLessonP
         notFound();
     }
 
+    const lessons = await getStandaloneLessons();
+
     return (
         <LessonView
             lesson={lessonContent}
             moduleTitle="Special Guide"
+            allLessons={lessons.map(l => ({ slug: l.slug, title: l.title, moduleSlug: 'standalone' }))}
             prevLesson={null}
             nextLesson={null}
         />
