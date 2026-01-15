@@ -42,6 +42,7 @@ export const viewport: Viewport = {
 };
 
 import { SmoothScroll } from "@/components/modules";
+import { ServiceWorkerRegistration } from "@/components/pwa";
 
 export default function RootLayout({
   children,
@@ -53,6 +54,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased`}
       >
+        <ServiceWorkerRegistration />
         <SmoothScroll>
           {children}
         </SmoothScroll>
@@ -60,3 +62,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -58,28 +58,43 @@ All course material is stored in clean, manageable Markdown files in the `/app/m
 ## 🚦 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+- Node.js 18+
 - npm / yarn / pnpm
 
 ### Installation
 
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/cylentro/product-playbook.git
-   cd product-playbook
-   ```
+1.  **Clone the repo**
+    ```bash
+    git clone https://github.com/cylentro/product-playbook.git
+    cd product-playbook
+    ```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+3.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) with your browser to explore the playbook.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to explore the playbook.
+### Production Build & PWA
+
+1.  **Build the application**
+    ```bash
+    npm run build
+    ```
+
+2.  **Start the production server**
+    ```bash
+    npm run start
+    ```
+    The application will be available at [http://localhost:3000](http://localhost:3000).
+
+3.  **Install as PWA**
+    On supported browsers (e.g., Chrome, Edge on desktop; Chrome on Android), you can install the application as a Progressive Web App (PWA) directly from the browser's address bar or menu. This will add an icon to your home screen/desktop and allow it to run in a standalone window.
 
 ---
 
@@ -97,4 +112,3 @@ This project follows **"The Vibe Architect"** standards:
 1. **The 60fps Rule**: Every transition must be fluid. No jank allowed.
 2. **Premium Depth**: Use of glassmorphism, subtle blurs, and Z-axis depth.
 3. **Mobile-First PWA**: A website that feels like a native app on iOS/Android.
-

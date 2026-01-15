@@ -252,39 +252,47 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                         <LearningEngine content={lesson.content} title={lesson.title} />
 
                         {/* Navigation Footer */}
-                        <div className="max-w-4xl mx-auto px-4 py-8">
+                        <div className="max-w-4xl mx-auto px-4 pt-0 pb-8">
                             <Separator className="mb-8" />
-                            <div className="flex items-center justify-between">
-                                {prevLesson ? (
-                                    <Button variant="outline" className="gap-2" asChild>
-                                        <Link href={getLessonLink(prevLesson)}>
-                                            <ChevronLeft className="h-4 w-4" />
-                                            <span className="hidden sm:inline">{prevLesson.title}</span>
-                                            <span className="sm:hidden">Previous</span>
-                                        </Link>
-                                    </Button>
-                                ) : (
-                                    <Button variant="outline" className="gap-2" asChild>
-                                        <Link href={lesson.moduleSlug === 'standalone' ? '/' : `/module/${lesson.moduleSlug}`}>
-                                            <Home className="h-4 w-4" />
-                                            {lesson.moduleSlug === 'standalone' ? 'Expert Guides' : 'Module Overview'}
-                                        </Link>
-                                    </Button>
-                                )}
+                            <div className="flex items-center gap-4 w-full">
+                                <div className="flex-1">
+                                    {prevLesson ? (
+                                        <Button variant="outline" className="w-full h-14 gap-2 rounded-2xl text-base" asChild>
+                                            <Link href={getLessonLink(prevLesson)}>
+                                                <ChevronLeft className="h-5 w-5" />
+                                                <span className="hidden sm:inline">{prevLesson.title}</span>
+                                                <span className="sm:hidden">Previous</span>
+                                            </Link>
+                                        </Button>
+                                    ) : (
+                                        <Button variant="outline" className="w-full h-14 gap-2 rounded-2xl text-base" asChild>
+                                            <Link href={lesson.moduleSlug === 'standalone' ? '/' : `/module/${lesson.moduleSlug}`}>
+                                                <Home className="h-5 w-5" />
+                                                <span className="truncate">
+                                                    {lesson.moduleSlug === 'standalone' ? 'Expert Guides' : 'Overview'}
+                                                </span>
+                                            </Link>
+                                        </Button>
+                                    )}
+                                </div>
 
-                                {nextLesson ? (
-                                    <Button className="gap-2" asChild>
-                                        <Link href={getLessonLink(nextLesson)}>
-                                            <span className="hidden sm:inline">{nextLesson.title}</span>
-                                            <span className="sm:hidden">Next</span>
-                                            <ChevronRight className="h-4 w-4" />
-                                        </Link>
-                                    </Button>
-                                ) : (
-                                    <Badge variant="outline" className="px-4 py-2">
-                                        Module Complete
-                                    </Badge>
-                                )}
+                                <div className="flex-1 text-right">
+                                    {nextLesson ? (
+                                        <Button className="w-full h-14 gap-2 rounded-2xl text-base bg-primary hover:bg-primary/90" asChild>
+                                            <Link href={getLessonLink(nextLesson)}>
+                                                <span className="hidden sm:inline">{nextLesson.title}</span>
+                                                <span className="sm:hidden">Next</span>
+                                                <ChevronRight className="h-5 w-5" />
+                                            </Link>
+                                        </Button>
+                                    ) : (
+                                        <div className="w-full h-14 flex items-center justify-center rounded-2xl border border-dashed border-border/60 bg-muted/30">
+                                            <Badge variant="outline" className="border-none bg-transparent text-muted-foreground uppercase tracking-widest text-[10px] font-bold">
+                                                Module Complete
+                                            </Badge>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </>

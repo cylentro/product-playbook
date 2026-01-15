@@ -18,7 +18,8 @@ description: "Overview of the Product Operating Model and PDLC Phases."
 
 This playbook serves as the official operational manual for the Product Development Lifecycle (PDLC). Far from a static theoretical framework, this is a living, working document designed to standardize the rigor with which we identify, design, build, and scale our products. By establishing a shared language and set of expectations, we ensure that every team member, from junior associates to middle management, operates with the same level of precision and strategic alignment, reducing friction during handovers and decision-making.
 
-The Goal: To transition the team away from a "feature-factory" mindset—where success is often misidentified as the mere volume of code or features shipped (outputs)—to a disciplined, outcome-driven mindset. We prioritize the achievement of "user value" and "business impact" (outcomes) as our primary metrics of success. This shift ensures that our collective energy is not wasted on building the "wrong things" quickly, but is instead focused on solving validated pain points and moving the needle for our business.
+### The Goal
+To transition the team away from a "feature-factory" mindset—where success is often misidentified as the mere volume of code or features shipped (outputs)—to a disciplined, outcome-driven mindset. We prioritize the achievement of "user value" and "business impact" (outcomes) as our primary metrics of success. This shift ensures that our collective energy is not wasted on building the "wrong things" quickly, but is instead focused on solving validated pain points and moving the needle for our business.
 
 ## The 9 Phases of PDLC
 
