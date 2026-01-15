@@ -1,6 +1,6 @@
 {
     "name": "Product Playbook",
-    "short_name": "Product Playbook",
+    "short_name": "ProductOS",
     "description": "A motion-driven educational platform for Product Managers to master the Product Development Lifecycle and AI integration.",
     "start_url": "/",
     "display": "standalone",
