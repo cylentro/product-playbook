@@ -38,12 +38,12 @@ In our team, we are moving away from being a "Feature Factory" (where success is
 A great PRD justifies its existence through 3 validation lenses:
 
 * **The Pain (Desirability)**: What specific user frustration was validated?
-* **The Value (Viability)**: How does this move the needle for our B2B (Biza) or Retail (AMA) pillars?
+* **The Value (Viability)**: How does this move the needle for company values?
 * **The Success (Measurability)**: What specific metrics prove the solution worked?
 ::::
 
 * **The Pain (Desirability)**: What specific user frustration or business gap was validated during Discovery?
-* **The Value (Viability)**: How does this build move the needle for our B2B (Biza) or Retail (AMA) pillars?
+* **The Value (Viability)**: How does this build move the needle for our company values?
 * **The Success (Measurability)**: What specific metrics will prove that this solution resolved the problem?
 
 ## Anatomy of Our PRD Format: Section-by-Section Deep Dive
@@ -105,7 +105,7 @@ Anchor the squad in the objective before a single line of code is written.
 
 This section anchors the squad in the strategic objective before a single line of code is written.
 
-* **Problem Statement**: Focus on the "Proof of Pain." Use data from support logs or research. Example: "High-volume B2B users in Biza have a 15% error rate due to manual data entry for insurance."
+* **Problem Statement**: Focus on the "Proof of Pain." Use data from support logs or research. Example: "High-volume B2B users in business portal have a 15% error rate due to manual data entry for insurance."
 * **User Persona**: Use the Jobs to be Done (JTBD) framework. Describe their "Pain Hotspots" and what they are "hiring" this feature to do.
 * **Hypothesis**: This is your testable assumption. Format: If we [Build X], then [Result Y], which will [Benefit Z]. If you can't state this clearly, the feature is not ready for development.
 * **Goals**: Divide into Primary (the bullseye) and Secondary (additional value like "reduced CS load").
@@ -245,7 +245,7 @@ Identify blockers early.
 #### Potential Risks
 
 * **Technical Risks**: (e.g., Third-party API instability).
-* **Operational Risks**: (e.g., Customer Service team needs training for the new Biza portal).
+* **Operational Risks**: (e.g., Customer Service team needs training for the new business portal).
 
 #### Mitigation
 

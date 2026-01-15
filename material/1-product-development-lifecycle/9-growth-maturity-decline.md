@@ -24,7 +24,7 @@ Prerequisites for graduating from "New Feature" to "Core Offering."
 
 Before transitioning a product into the Growth & Maturity phase, it must satisfy the following criteria to ensure resources are not wasted on unproven or unstable solutions:
 
-* **Successful Validation**: The "Outcome Validation" period (Day 30–90) from Module 8 has been completed. This means the feature has survived at least one full business cycle (e.g., a full quarter for Anteraja Pro) with positive performance against success gates.
+* **Successful Validation**: The "Outcome Validation" period (Day 30–90) from Module 8 has been completed. This means the feature has survived at least one full business cycle (e.g., a full quarter for VIP) with positive performance against success gates.
 * **Product-Market Fit (PMF) Signal**: Sustained organic usage or retention rates that justify continued investment. We look for a "leveling off" of the retention curve, indicating a core group of users who find recurring value.
 * **Technical Stability**: The feature is no longer in "Hyper-care." This implies that the code is not only bug-free (P0/P1) but also structurally sound, without "hacky" workarounds that would prevent the system from scaling to 10x the current load.
 
@@ -119,9 +119,9 @@ Choosing the final trajectory for the product.
 
 Every product eventually hits a maturity plateau. The PM must facilitate a high-level decision on which of the three paths to take:
 
-1. **Scale (Growth)**: Expanding the successful solution to new segments or regions (e.g., taking a successful AMA Insurance UI and adapting it for the Biza B2B web portal).
-1. **Optimize (Maturity)**: Focus on Operational Excellence and "milking" the feature. This involves reducing API third-party costs, automating manual support processes, and simplifying the codebase to minimize maintenance overhead.
-1. **Phase-out (Decline/Sunset)**: If a feature no longer contributes to the North Star or has become a "Maintenance Burden" (high cost, low value), the team must have the courage to initiate a sunset.
+1. **Scale (Growth)**: Expanding the successful solution to new segments or regions (e.g., taking a successful mobile Order Management UI and adapting it for the web portal).
+2. **Optimize (Maturity)**: Focus on Operational Excellence and "milking" the feature. This involves reducing API third-party costs, automating manual support processes, and simplifying the codebase to minimize maintenance overhead.
+3. **Phase-out (Decline/Sunset)**: If a feature no longer contributes to the North Star or has become a "Maintenance Burden" (high cost, low value), the team must have the courage to initiate a sunset.
 
 ### Step 4: Decline & Sunset Management
 
@@ -143,7 +143,7 @@ If a product is no longer viable, it must be decommissioned gracefully to protec
 
 * **Sunsetting Analysis**: Providing a data-backed case showing that the "Cost of Carry" (developer time, server costs, support burden) significantly outweighs the value delivered to the business.
 * **Communication & Transparency Plan**: Providing users and internal stakeholders (Sales, Ops, Finance) with a clear, empathetic notice period (typically 30–90 days) explaining the "Why" and the "What next."
-* **Migration Path**: Ensuring users aren't left stranded. This involves providing an alternative solution, such as migrating legacy subscription users to the new Anteraja Pro tier or offering a data export tool for Biza B2B clients.
+* **Migration Path**: Ensuring users aren't left stranded. This involves providing an alternative solution, such as migrating legacy subscription users to the new VIP tier or offering a data export tool for B2B clients.
 
 ## Rituals & Syncs
 
@@ -160,7 +160,7 @@ Standardizing strategic assessments.
 ::::
 
 * **Quarterly Business Review (QBR)**: A strategic assessment of the long-term ROI. Does this feature still deserve a dedicated squad, or should it move to "Maintenance Mode"?
-* **Growth Sprints**: High-velocity, 1-week cycles focused exclusively on moving a single "Tactical Metric" (e.g., "Decrease the time it takes to upload a Biza CSV by 20%").
+* **Growth Sprints**: High-velocity, 1-week cycles focused exclusively on moving a single "Tactical Metric" (e.g., "Decrease the time it takes to upload a CSV by 20%").
 * **Post-Mortem (Sunset/Failure)**: If a feature is decommissioned, a formal session is held to document the "Lessons Learned." This ensures the organization doesn't repeat the same mistakes in the next Discovery cycle.
 
 ## Tools & Templates

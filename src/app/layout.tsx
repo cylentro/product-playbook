@@ -9,9 +9,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "The Product Playbook",
-  description: "Master the Product Operating Model with Anteraja. A premium, motion-driven learning experience for Product Managers.",
-  keywords: ["product management", "PDLC", "Anteraja", "learning", "playbook"],
-  authors: [{ name: "Anteraja" }],
+  description: "Master the Product Operating Model. A premium, motion-driven learning experience for Product Managers.",
+  keywords: ["product management", "PDLC", "learning", "playbook"],
+  authors: [{ name: "Christian Hadianto" }],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     title: "The Product Playbook",
-    description: "Master the Product Operating Model with Anteraja.",
+    description: "Master the Product Operating Model.",
     siteName: "The Product Playbook",
   },
 };

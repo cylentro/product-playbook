@@ -94,7 +94,7 @@ Focus: Adoption. Using a multi-channel approach to verify if the design is effec
 
 | **Monitoring Method**         | **Purpose & Application**                                                        |
 | ----------------------------- | -------------------------------------------------------------------------------- |
-| **Customer Behavioral Data**  | Tracking funnel drop-offs (e.g., where Biza users stop in the bulk-upload flow). |
+| **Customer Behavioral Data**  | Tracking funnel drop-offs (e.g., where users stop in a certain flow). |
 | **Metrics & KPI Analysis**    | Checking if Leading Indicators (CTR) are moving.                                 |
 | **CSAT & NPS Surveys**        | Triggering in-app surveys after a task is completed.                             |
 | **In-depth Interviews (IDI)** | 1-on-1 sessions with early adopters to understand the "Why."                     |
@@ -111,13 +111,13 @@ Extending the watch to match the business reality.
 * **Retention Logic**: Capturing the *second* and *third* interaction to prove value.
 
 > [!IMPORTANT]
-> **Example:** You cannot judge **Anteraja Pro** at Day 30. You must wait for the **Full Quarter** to see who actually ships 60 items.
+> **Example:** You cannot judge **VIP** at Day 30. You must wait for the **Full Quarter** to see who actually ships 60 items.
 ::::
 
-**Focus**: Maturity. For Anteraja products, we must extend monitoring to match the business cycle.
+**Focus**: Maturity. For VIPducts, we must extend monitoring to match the business cycle.
 
-* **Quarterly Cycle Check (Anteraja Pro)**: Since the rule is "60 orders in 1 quarter," you cannot validate success at Day 30. You must monitor Month 2 and Month 3 to see if "Leads" actually convert to "Pro Status."
-* **B2B Retention (Biza)**: B2B users may only ship in bulk once a month. Day 30 only captures the first interaction; Day 60-90 captures the Retention Rate.
+* **Quarterly Cycle Check (VIP)**: Since the rule is "60 orders in 1 quarter," you cannot validate success at Day 30. You must monitor Month 2 and Month 3 to see if "Leads" actually convert to "Pro Status."
+* **B2B Retention**: B2B users may only ship in bulk once a month. Day 30 only captures the first interaction; Day 60-90 captures the Retention Rate.
 * **Seasonal Normalization**: Logistics performance varies (e.g., Harbolnas vs. normal days). Monitoring must span at least one peak cycle to ensure the solution holds up under stress.
 
 ## Rituals & Syncs
@@ -200,5 +200,5 @@ Final checklist before moving to Growth & Maturity (Module 9).
 
 * **System stability is confirmed** (Error rate < threshold).
 * **Multi-channel feedback has been synthesized** into a backlog.
-* **For Anteraja Pro/B2B**: One full business cycle (Quarter/Month) has been monitored.
+* **For VIP/B2B**: One full business cycle (Quarter/Month) has been monitored.
 * **Recommendation (Scale, Pivot, or Rollback) signed off** based on Long-term data.

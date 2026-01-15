@@ -247,8 +247,8 @@ Translate pain into testable assumptions:
 
 | **Type** | **Example** | **Why it's Good/Bad** |
 | :--- | :--- | :--- |
-| **Bad** | "We should build a new dashboard for Biza users because they like data." | Too vague. No target metric, no clear reason, and assumes the solution (dashboard) is the answer without a 'why'. |
-| **Good** | "We believe that adding a 'Quick-Claim' button to the shipment history for Anteraja Pro users will reduce the 'File a Claim' drop-off rate by 15% because high-volume users value speed and find the current 5-step form too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
+| **Bad** | "We should build a new dashboard for business users because they like data." | Too vague. No target metric, no clear reason, and assumes the solution (dashboard) is the answer without a 'why'. |
+| **Good** | "We believe that adding a 'Quick-Claim' button to the shipment history for VIP users will reduce the 'File a Claim' drop-off rate by 15% because high-volume users value speed and find the current 5-step form too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
 | **Bad** | "We will improve Shipping Insurance sales by making the UI look modern." | 'Modern' is subjective. There is no measurable hypothesis or evidence-based reasoning. |
 | **Good** | "We believe that defaulting the 'Basic Insurance' toggle to 'ON' during the checkout for retail users will increase insurance TPV by 10% because Discovery showed users aren't avoiding insurance, they are simply overlooking it." | Testable. It identifies a specific friction point (overlooking) and predicts a business outcome. |
 ::::
@@ -260,8 +260,8 @@ Translate prioritized pain points into testable assumptions.
 
 | **Type** | **Example** | **Why it's Good/Bad** |
 | :--- | :--- | :--- |
-| **Bad** | "We should build a new dashboard for Biza users because they like data." | Too vague. No target metric, no clear reason, and assumes the solution (dashboard) is the answer without a 'why'. |
-| **Good** | "We believe that adding a 'Quick-Claim' button to the shipment history for Anteraja Pro users will reduce the 'File a Claim' drop-off rate by 15% because high-volume users value speed and find the current 5-step form too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
+| **Bad** | "We should build a new dashboard for business users because they like data." | Too vague. No target metric, no clear reason, and assumes the solution (dashboard) is the answer without a 'why'. |
+| **Good** | "We believe that adding a 'Quick-Claim' button to the shipment history for VIP users will reduce the 'File a Claim' drop-off rate by 15% because high-volume users value speed and find the current 5-step form too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
 | **Bad** | "We will improve Shipping Insurance sales by making the UI look modern." | 'Modern' is subjective. There is no measurable hypothesis or evidence-based reasoning. |
 | **Good** | "We believe that defaulting the 'Basic Insurance' toggle to 'ON' during the checkout for retail users will increase insurance TPV by 10% because Discovery showed users aren't avoiding insurance, they are simply overlooking it." | Testable. It identifies a specific friction point (overlooking) and predicts a business outcome. |
 

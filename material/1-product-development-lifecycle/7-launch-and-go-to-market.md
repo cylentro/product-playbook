@@ -67,7 +67,7 @@ The "How to Win" in the market.
 For PMs unfamiliar with GTM, this step is about translating the technical build into a marketable solution. This is where we define how we will acquire, retain, and support users.
 
 * **Define GTM Strategy (The "How to Win"):**
-  * **Target Market Segmentation**: Identify exactly who the feature is for (e.g., Anteraja Pro power users vs. new Biza B2B clients).
+  * **Target Market Segmentation**: Identify exactly who the feature is for
   * **Value Proposition Development**: Transitioning from "Features" (what it does) to "Outcomes" (how it helps).
   * **Commercial & Financial Mechanism**: * Pricing: Finalizing subscription fees or insurance premiums.
     * **Settlement Readiness**: (Critical for PMs) Ensuring Finance/Accounting have the reports and logic needed for billing, insurance vendor payouts, or tax invoicing.
@@ -114,7 +114,7 @@ Turning on the engine and monitoring the results.
 * **PR & Support**: CMS updates and Troubleshooting live.
 
 > [!NOTE]
-> A **Soft Launch** (limited segment) is often safer for complex features like Biza Bulk Uploads or Insurance.
+> A **Soft Launch** (limited segment) is often safer for complex features like Bulk Uploads or Insurance.
 ::::
 
 The tactical rollout of the code and the activation of the marketing engine.

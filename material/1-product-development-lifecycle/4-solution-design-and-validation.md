@@ -85,9 +85,9 @@ Gherkin provides a shared language for PMs, Designers, and Engineers to agree on
 
 | **Product**      | **User Story**                                                                                                                      | **Acceptance Criteria (Gherkin)**                                                                                                                                                                  |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Anteraja Pro** | As a seller, I want a progress bar for my quarterly shipments so that I know exactly how many more I need to hit the 60-order tier. | Scenario: View loyalty dashboard Given logged in and 'Retail' status When views 'Anteraja Pro' section Then show progress bar ($x/60$ orders) And show days remaining in quarter.                  |
+| **SME** | As a seller, I want a progress bar for my quarterly shipments so that I know exactly how many more I need to hit the 60-order tier. | Scenario: View loyalty dashboard Given logged in and 'Retail' status When views 'VIP' section Then show progress bar ($x/60$ orders) And show days remaining in quarter.                  |
 | **Insurance**    | As a user, I want auto-calculation based on item value so I can decide whether to add protection before checkout.                   | Scenario: Auto-calculation Given on 'Order Detail' screen When enters 'Item Value' of $Rp1,000,000$ Then show premium as $0.2\% \times Value$ And update 'Total Payment' in real-time.             |
-| **Biza (B2B)**   | As a B2B client, I want to bulk upload shipments via CSV so I can save time on manual data entry for multiple orders.               | Scenario: Successful bulk upload validation Given on 'Bulk Upload' page When uploads valid CSV (e.g., 50 entries) Then validate addresses and weights And show 'Success' summary for 50 shipments. |
+| **Business Portal**   | As a B2B client, I want to bulk upload shipments via CSV so I can save time on manual data entry for multiple orders.               | Scenario: Successful bulk upload validation Given on 'Bulk Upload' page When uploads valid CSV (e.g., 50 entries) Then validate addresses and weights And show 'Success' summary for 50 shipments. |
 
 ::::present
 ### Step 1: Verification Logic
@@ -192,7 +192,7 @@ To prevent logic gaps, squads must document three distinct perspectives:
 
 * **User Flow (UX)**: The visual journey through screens. Includes "Happy Paths" and "Circular Paths" (where users go back or cancel).
 * **Business Flow (Logic)**: The "Brain" of the feature. If/Then rules, status triggers, and calculation logic (e.g., if segment is B2B, then show custom rates).
-* **Application/System Flow (Tech)**: The "Handshake." Mapping API calls between AMA, the Gateway, and external Insurance Vendors.
+* **Application/System Flow (Tech)**: The "Handshake." Mapping API calls between customer app, the Gateway, and external Insurance Vendors.
 
 ::::present
 ### Step 4: Wireframing & Validation

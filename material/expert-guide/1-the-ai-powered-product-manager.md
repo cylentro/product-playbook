@@ -197,7 +197,7 @@ PMs can use AI to bridge the gap between "Business Questions" and "Database Answ
 ### B. Competitive Benchmarking (Market Intelligence)
 
 * Use Case: Paste competitor release notes or product descriptions.
-* Prompt Logic: "Compare our current Anteraja Pro tier logic with this competitor's loyalty program. Identify 3 'Feature Gaps' and 2 'Value Levers' where we can differentiate."
+* Prompt Logic: "Compare our current VIP tier logic with this competitor's loyalty program. Identify 3 'Feature Gaps' and 2 'Value Levers' where we can differentiate."
 
 ### C. Insight Mining (Research Synthesis)
 

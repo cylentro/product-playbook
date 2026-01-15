@@ -92,7 +92,7 @@ Exposing the "Invisible" work before it hits the sprint.
 :::
 
 > [!IMPORTANT]
-> **Example:** "What happens if the Insurance API returns a partial success during a bulk Biza upload?"
+> **Example:** "What happens if the Insurance API returns a partial success during a bulk upload?"
 ::::
 
 ### Step 2: Sprint Grooming / Pre-grooming
@@ -115,7 +115,7 @@ The ritual where the backlog is refined into "Ready" units of work.
 * **User Story Prioritization**: The PM ranks stories based on user value and business impact (RICE/WSJF logic).
 * **Story Weighting (The "How Big" Check)**: * The squad uses a relative estimation technique (e.g., Planning Poker, Fibonacci, or T-shirt sizing).
   * **Focus**: Estimate based on Complexity, Effort, and Uncertainty.
-  * **Example**: A Biza bulk upload feature (CSV validation + multi-vendor routing) might be weighted as a "13" (Large) due to its integration complexity.
+  * **Example**: A Business Portal bulk upload feature (CSV validation + multi-vendor routing) might be weighted as a "13" (Large) due to its integration complexity.
 
 ::::present
 ### Step 2: Story Weighting
@@ -130,7 +130,7 @@ Measuring complexity, not just calendar days.
 
 | **Example Task** | **Weight** | **Logic** |
 | :--- | :--- | :--- |
-| **Biza CSV Upload** | **13** | Multi-vendor logic + high complexity. |
+| **Business Portal CSV Upload** | **13** | Multi-vendor logic + high complexity. |
 | **Claim Button UI** | **2** | Simple CSS + known endpoint. |
 ::::
 
@@ -150,7 +150,7 @@ The final alignment on the "Sprint Backlog."
 
 The final alignment where the squad commits to the "Sprint Backlog."
 
-* **Sprint Goal Definition**: A one-sentence summary of what the squad aims to achieve (e.g., "Enable real-time insurance premium calculation for AMA Retail orders").
+* **Sprint Goal Definition**: A one-sentence summary of what the squad aims to achieve (e.g., "Enable real-time insurance premium calculation for Customer orders").
 * **Finalizing Stories**: Ensuring every story pulled into the sprint meets the Definition of Ready (DoR).
 * **Capacity-Based Prioritization:**
   * The squad reviews their available capacity (account for holidays, meetings, etc.).
@@ -165,7 +165,7 @@ Defining the "Why" behind the sprint scope.
 :::col
 #### The Sprint Goal
 * One-sentence mission.
-* *Example:* "Enable real-time premium calculation for AMA."
+* *Example:* "Enable real-time premium calculation for ."
 :::col
 #### Capacity Check
 * Account for holidays/meetings.
