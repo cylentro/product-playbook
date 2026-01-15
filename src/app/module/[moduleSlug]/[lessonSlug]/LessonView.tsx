@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ModeSwitch } from '@/components/layout/ModeSwitch';
 import { PresentationEngine, LearningEngine, QuizEngine } from '@/components/modules';
-import { ChevronLeft, ChevronRight, Clock, Home, List, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clock, Home, List, Check, Copy } from 'lucide-react';
 import type { LessonContent } from '@/lib/types';
 import {
     Dialog,
@@ -32,7 +32,7 @@ import { X } from 'lucide-react';
 interface LessonViewProps {
     lesson: LessonContent;
     moduleTitle: string;
-    allLessons: { slug: string; title: string; moduleSlug: string }[];
+    allLessons: { slug: string; title: string; moduleSlug: string; isSubchapter?: boolean }[];
     prevLesson: { slug: string; title: string; moduleSlug: string } | null;
     nextLesson: { slug: string; title: string; moduleSlug: string } | null;
 }
@@ -42,28 +42,55 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
     const router = useRouter();
     const searchParams = useSearchParams();
     const [open, setOpen] = useState(false);
+    const [copied, setCopied] = useState(false);
 
-    // Sync mode from URL search params on mount
+    const getLessonLink = (l: { slug: string; moduleSlug: string }, withMode = true) => {
+        const path = l.moduleSlug === 'standalone' ? `/lesson/${l.slug}` : `/module/${l.moduleSlug}/${l.slug}`;
+        return withMode ? `${path}?mode=${mode}` : path;
+    };
+
+    // Sync and validate mode on lesson change or URL change
     useEffect(() => {
-        let urlMode = searchParams.get('mode') as any;
+        const urlMode = searchParams.get('mode') as any;
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
         
-        // Force learning mode on mobile
-        if (typeof window !== 'undefined' && window.innerWidth < 640) {
-            if (urlMode === 'presentation') {
-                urlMode = 'learning';
-                router.replace(`${window.location.pathname}?mode=learning`, { scroll: false });
-            }
+        let targetMode = (urlMode || mode) as any;
+
+        // 1. Force learning mode on mobile if they try presentation
+        if (isMobile && targetMode === 'presentation') {
+            targetMode = 'learning';
         }
 
-        if (urlMode && ['presentation', 'learning', 'quiz'].includes(urlMode)) {
-            setMode(urlMode);
-            
-            // Auto-immersive for presentation mode
-            if (urlMode === 'presentation') {
-                setPresentationFullscreen(true);
-            }
+        // 2. Validate if mode is supported by current lesson
+        if (targetMode === 'presentation' && lesson.slides.length === 0) {
+            targetMode = 'learning';
+        } else if (targetMode === 'quiz' && !lesson.hasQuiz) {
+            targetMode = 'learning';
         }
-    }, [searchParams, setMode, setPresentationFullscreen, router]);
+
+        // 3. Apply state change to store if different
+        if (targetMode !== mode) {
+            setMode(targetMode);
+        }
+
+        // 4. Sync URL if it was missing or wrong
+        if (urlMode !== targetMode) {
+            router.replace(`${window.location.pathname}?mode=${targetMode}`, { scroll: false });
+        }
+
+        // 5. Handle immersive presentation UI state
+        if (targetMode === 'presentation') {
+            setPresentationFullscreen(true);
+        } else {
+            setPresentationFullscreen(false);
+        }
+    }, [searchParams, lesson.slug, lesson.slides.length, lesson.hasQuiz, mode, setMode, setPresentationFullscreen, router]);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(lesson.rawContent);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
 
     return (
         <div className="min-h-screen bg-background">
@@ -98,8 +125,8 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
 
 
                             <Dialog open={open} onOpenChange={setOpen}>
-                                <DialogContent className="p-0 max-w-full h-full sm:max-w-[500px] sm:h-auto sm:max-h-[80vh] gap-0 [&>button]:hidden">
-                                    <DialogHeader className="px-6 py-4 border-b border-border/40 text-left">
+                                <DialogContent className="p-0 sm:max-w-[500px] sm:h-auto sm:max-h-[80vh] gap-0 [&>button]:hidden flex flex-col items-stretch justify-start">
+                                    <DialogHeader className="px-6 py-3 md:py-4 border-b border-border/40 text-left shrink-0">
                                         <div className="flex items-start justify-between">
                                             <div className="flex-1">
                                                 <DialogTitle className="text-lg font-bold text-left">Chapters</DialogTitle>
@@ -117,34 +144,52 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                                     </DialogHeader>
                                     <Command className="rounded-none border-none">
                                         <CommandInput placeholder="Search chapters..." className="border-none" />
-                                        <CommandList className="max-h-none">
+                                        <CommandList className="max-h-[60vh] overflow-y-auto">
                                             <CommandEmpty>No chapter found.</CommandEmpty>
-                                            <CommandGroup>
-                                                {allLessons.map((l, i) => (
-                                                    <CommandItem
-                                                        key={l.slug}
-                                                        value={l.title}
-                                                        onSelect={() => {
-                                                            router.push(`/module/${l.moduleSlug}/${l.slug}?mode=${mode}`);
-                                                            setOpen(false);
-                                                        }}
-                                                        className={cn(
-                                                            "gap-3 cursor-pointer py-4 px-6",
-                                                            l.slug === lesson.slug && "bg-accent text-accent-foreground"
-                                                        )}
-                                                    >
-                                                        <div className={cn(
-                                                            "w-8 h-8 flex items-center justify-center rounded-lg font-mono text-xs font-bold border shrink-0",
-                                                            l.slug === lesson.slug 
-                                                                ? "bg-primary text-white border-primary" 
-                                                                : "bg-muted text-muted-foreground border-border"
-                                                        )}>
-                                                            {i + 1}
-                                                        </div>
-                                                        <span className="flex-1 font-medium text-base">{l.title}</span>
-                                                        {l.slug === lesson.slug && <Check className="w-5 h-5 text-primary ml-auto" />}
-                                                    </CommandItem>
-                                                ))}
+                                            <CommandGroup className="pb-8">
+                                                {(() => {
+                                                    let topLevelIndex = 0;
+                                                    return allLessons.map((l, i) => {
+                                                        if (!l.isSubchapter) {
+                                                            topLevelIndex++;
+                                                        }
+
+                                                        return (
+                                                            <CommandItem
+                                                                key={l.slug}
+                                                                value={l.title}
+                                                                onSelect={() => {
+                                                                    router.push(getLessonLink(l));
+                                                                    setOpen(false);
+                                                                }}
+                                                                className={cn(
+                                                                    "gap-3 cursor-pointer py-3 px-6",
+                                                                    l.slug === lesson.slug && "bg-accent/70 text-accent-foreground",
+                                                                    l.isSubchapter && "ml-12 py-2"
+                                                                )}
+                                                            >
+                                                                <div className={cn(
+                                                                    "w-8 h-8 flex items-center justify-center rounded-lg font-mono text-xs font-bold shrink-0",
+                                                                    l.slug === lesson.slug 
+                                                                        ? "bg-primary text-white" 
+                                                                        : "bg-muted text-muted-foreground",
+                                                                    l.isSubchapter && "w-6 h-6 border-none bg-transparent"
+                                                                )}>
+                                                                    {l.isSubchapter ? (
+                                                                        <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
+                                                                    ) : (
+                                                                        topLevelIndex
+                                                                    )}
+                                                                </div>
+                                                                <span className={cn(
+                                                                    "flex-1 font-medium",
+                                                                    l.isSubchapter ? "text-sm" : "text-base"
+                                                                )}>{l.title}</span>
+                                                                {l.slug === lesson.slug && <Check className="w-4 h-4 text-primary ml-auto" />}
+                                                            </CommandItem>
+                                                        );
+                                                    });
+                                                })()}
                                             </CommandGroup>
                                         </CommandList>
                                     </Command>
@@ -153,11 +198,37 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                         </div>
 
                         <div className="flex items-center gap-2 md:gap-4 shrink-0">
+                            {lesson.slug === '1.A-prd-template' && (
+                                <Button 
+                                    variant="outline" 
+                                    size="sm" 
+                                    onClick={handleCopy}
+                                    className={cn(
+                                        "gap-2 rounded-xl transition-all duration-300",
+                                        copied ? "border-primary bg-primary/5 text-primary" : "hover:border-primary/40"
+                                    )}
+                                >
+                                    {copied ? (
+                                        <>
+                                            <Check className="h-4 w-4" />
+                                            <span>Copied!</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="h-4 w-4" />
+                                            <span className="hidden sm:inline">Copy Markdown</span>
+                                        </>
+                                    )}
+                                </Button>
+                            )}
                             <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
                                 <Clock className="h-4 w-4" />
                                 {lesson.estimatedTime} min
                             </div>
-                            <ModeSwitch />
+                            <ModeSwitch 
+                                showPresent={lesson.slides.length > 0} 
+                                showQuiz={lesson.hasQuiz} 
+                            />
                         </div>
                     </div>
                 </header>
@@ -171,8 +242,8 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                         title={lesson.title}
                         moduleTitle={moduleTitle}
                         allLessons={allLessons}
-                        nextLessonPath={nextLesson ? `/module/${nextLesson.moduleSlug}/${nextLesson.slug}` : undefined}
-                        prevLessonPath={prevLesson ? `/module/${prevLesson.moduleSlug}/${prevLesson.slug}` : undefined}
+                        nextLessonPath={nextLesson ? getLessonLink(nextLesson, false) : undefined}
+                        prevLessonPath={prevLesson ? getLessonLink(prevLesson, false) : undefined}
                     />
                 )}
 
@@ -186,7 +257,7 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                             <div className="flex items-center justify-between">
                                 {prevLesson ? (
                                     <Button variant="outline" className="gap-2" asChild>
-                                        <Link href={`/module/${prevLesson.moduleSlug}/${prevLesson.slug}?mode=${mode}`}>
+                                        <Link href={getLessonLink(prevLesson)}>
                                             <ChevronLeft className="h-4 w-4" />
                                             <span className="hidden sm:inline">{prevLesson.title}</span>
                                             <span className="sm:hidden">Previous</span>
@@ -196,14 +267,14 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                                     <Button variant="outline" className="gap-2" asChild>
                                         <Link href={lesson.moduleSlug === 'standalone' ? '/' : `/module/${lesson.moduleSlug}`}>
                                             <Home className="h-4 w-4" />
-                                            Module Overview
+                                            {lesson.moduleSlug === 'standalone' ? 'Expert Guides' : 'Module Overview'}
                                         </Link>
                                     </Button>
                                 )}
 
                                 {nextLesson ? (
                                     <Button className="gap-2" asChild>
-                                        <Link href={`/module/${nextLesson.moduleSlug}/${nextLesson.slug}?mode=${mode}`}>
+                                        <Link href={getLessonLink(nextLesson)}>
                                             <span className="hidden sm:inline">{nextLesson.title}</span>
                                             <span className="sm:hidden">Next</span>
                                             <ChevronRight className="h-4 w-4" />

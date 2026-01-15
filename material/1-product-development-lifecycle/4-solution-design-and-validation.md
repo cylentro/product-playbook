@@ -1,24 +1,30 @@
-# Module 4: Solution Design & Validation
+---
+title: "Solution Design & Validation"
+order: 4
+estimatedTime: 15
+quiz: true
+description: "Prototyping and testing solutions with users before development."
+---
 
-## **4.1 Entrance Criteria**
+# Solution Design & Validation Phase
+
+## Entrance Criteria
 
 Before initiating the Solution Design & Validation phase, the following must be present:
 
-* Prioritized Solution Hypothesis: A winning concept from Module 3 (Ideation) that has passed formal prioritization (RICE, WSJF, or Value vs. Effort).
-* Validated Problem Anchor: The confirmed Needs Statement and "Job to be Done" from Discovery.
-* Technical Feasibility Green-light: Preliminary confirmation from Engineering that the proposed concept can be built within the existing architecture.
-* High-level Resource Allocation: Confirmation that Design and PM resources are allocated for prototyping and testing.
+* **Prioritized Solution Hypothesis**: A winning concept from Module 3 (Ideation) that has passed formal prioritization (RICE, WSJF, or Value vs. Effort).
+* **Validated Problem Anchor**: The confirmed Needs Statement and "Job to be Done" from Discovery.
+* **Technical Feasibility Green-light**: Preliminary confirmation from Engineering that the proposed concept can be built within the existing architecture.
+* **High-level Resource Allocation**: Confirmation that Design and PM resources are allocated for prototyping and testing.
 
-## **4.2 Lead Roles & Squad**
+## Lead Roles & Squad
 
-* Primary Driver: Product Designer (UI/UX).
-* Support Squad: PM, Tech Lead, UX Writer, QA Lead.
+* **Primary Driver**: Product Designer (UI/UX).
+* **Support Squad**: PM, Tech Lead, UX Writer, QA Lead.
 
-## **4.3 Key Activities**
+## Key Activities
 
 ### **Step 1: Define MVP / Iteration Scope & Backlog Development**
-
-This step bridges the gap between a high-level idea and a technical plan. We use "Vertical Slicing" to ensure every item in the backlog provides a functional piece of value rather than just a technical layer.
 
 ::::present
 ### Step 1: Strategic Slicing & Hypothesis
@@ -32,9 +38,12 @@ We use **Vertical Slicing** to ensure every item in the backlog provides a funct
 > Don't build layers; build slices. A slice is a full user journey, however small.
 ::::
 
+Define the smallest version of the product that delivers value (MVP) or the scope of the next iteration, and decompose it into actionable development units.
+
+* **MVP Boundary (The Walking Skeleton)**: Identify the minimum path a user must take to achieve the core value.
 * **Continuous Product Iteration Protocol:**
-  * Hypothesis Alignment: Every user story must be traceable back to the problem validated in Discovery.
-  * Build-Measure-Learn: We use current "Friction Data" (e.g., users dropping off at the insurance payment screen) to define the boundaries of the iteration.
+  * **Hypothesis Alignment**: Every user story must be traceable back to the problem validated in Discovery.
+  * **Build-Measure-Learn**: Use current "Friction Data" (e.g., users dropping off at the insurance payment screen) to define the boundaries of the iteration.
 
 ::::present
 ### Step 1: Backlog Operational Rigor
@@ -49,12 +58,13 @@ Managing the "Safety Gate" between Product and Engineering.
 ::::
 
 * **Backlog Development (Operational Rigor):**
-  * INVEST Stories: Stories must be Independent (can be developed in any order), Negotiable (open to discussion), Valuable (to the user), Estimable (by devs), Small (fits in a sprint), and Testable.
-  * Definition of Ready (DoR): The "Safety Gate" for Engineering. A story is only "Ready" if it contains:
-    * User Story: "As a [User], I want [Action], so that [Value]."
-    * Gherkin AC: Behavior-defined conditions.
-    * Visual Proof: Linked Figma designs with specific assets.
-    * Technical Specs: Defined API endpoints or data fields.
+  * **INVEST Stories**: Stories must be Independent (can be developed in any order), Negotiable (open to discussion), Valuable (to the user), Estimable (by devs), Small (fits in a sprint), and Testable.
+  * **Vertical Slicing**: Break features into functional slices (e.g., "User can toggle insurance") rather than technical layers (e.g., "Frontend work").
+  * **Definition of Ready (DoR)**: The "Safety Gate" for Engineering. A story is only "Ready" if it contains:
+    * **User Story**: "As a [User], I want [Action], so that [Value]."
+    * **Gherkin AC**: Behavior-defined conditions.
+    * **Visual Proof**: Linked Figma designs with specific assets.
+    * **Technical Specs**: Defined API endpoints or data fields.
 
 ::::present
 ### Step 1: Requirements to AC Mapping
@@ -111,15 +121,19 @@ Differentiating the business rules (PM) from the technical paths (QA).
 ### Step 1: Insurance Aggregator Example
 Walking through the logic of a live shipping insurance feature.
 
+:::cols
+:::col
 - **PM AC**: 
   - **GIVEN** value > **Rp1M**, 
   - **WHEN** toggle ON, 
-  - **THEN** calculate **0.2\%** premium.
+  - **THEN** calculate **0.2%** premium.
+:::col
 - **QA Test Scenarios**:
   - **?[Boundary](Testing the exact limits of a rule—e.g., checking if Rp1,000,000 behaves differently than Rp1,000,001.)**: Exactly **Rp1,000,000**.
   - **?[Negative](Ensuring the system gracefully handles invalid or problematic inputs.)**: Non-numeric input.
   - **?[Edge](Handling rare, complex, or extreme 'break-it' scenarios like network timeouts.)**: API timeout handling.
-
+:::
+:::
 > [!NOTE]
 > High-quality AC covers the "What", whereas QA covers the "How it breaks".
 ::::
@@ -142,39 +156,43 @@ Walking through the logic of a live shipping insurance feature.
 ### Step 2: Implementation Metrics
 Measuring the efficiency of the design through the **Tactical (Micro)** layer.
 
-1. **North Star (Local)**: Core task completion.
-2. **Key Metrics**: Feature conversion success.
-3. **Leading Indicators**: Interaction predictors.
-4. **Trade-off Metrics**: Friction vs. Speed balance.
+* **North Star Metric (Local)**: The core task completion of the feature.
+* **Key Metrics (Local Outcome)**: The conversion success of the feature.
+* **Supporting Metrics (The UI Levers)**: Engagement with design elements.
+* **Trade-off Metrics (The Strategic Balance)**: Balancing friction vs. speed.
+* **Health / Guardrail Metrics (Stability)**: Technical safety nets.
 ::::
 
 ### **Step 2: Define Tactical Implementation Metrics (Micro Success)**
 
-We translate the 6-tier framework into the Tactical (Micro) layer. This measures the efficiency of the design itself.
+We translate the 5-tier framework into the Tactical (Micro) layer. This measures the efficiency of the design itself.
 
-1. North Star Metric (Local): The core task completion of the feature.
-1. Key Metrics (Local Outcome): The conversion success of the feature.
-1. Supporting Metrics (The UI Levers): Engagement with design elements.
-1. Leading Indicators (The Predictors): Interaction signals predicting Macro results.
-1. Trade-off Metrics (The Strategic Balance): Balancing friction vs. speed.
-1. Health / Guardrail Metrics (Stability): Technical safety nets.
+* **North Star Metric (Local)**: The core task completion of the feature.
+* **Key Metrics (Local Outcome)**: The conversion success of the feature.
+* **Supporting Metrics (The UI Levers)**: Engagement with design elements.
+* **Trade-off Metrics (The Strategic Balance)**: Balancing friction vs. speed.
+* **Health / Guardrail Metrics (Stability)**: Technical safety nets.
+
+Type of metrics:
+* **Lagging Indicators (The Results)**: Actual Macro results.
+* **Leading Indicators (The Predictors)**: Interaction signals predicting Macro results.
 
 ::::present
 ### Step 3: Flow Design (The 3-Layer Logic)
 Mapping the visual journey, business logic, and technical handshake.
 
-1. **User Flow (UX)**: Visual journey (Happy vs. Circular paths).
-2. **Business Flow (Logic)**: If/Then rules and triggers.
-3. **System Flow (Tech)**: API mappings between Gateway & Vendors.
+* **User Flow (UX)**: Visual journey (Happy vs. Circular paths).
+* **Business Flow (Logic)**: If/Then rules and triggers.
+* **System Flow (Tech)**: API mappings between Gateway & Vendors.
 ::::
 
 ### **Step 3: Flow Design (The Three-Layer Logic)**
 
 To prevent logic gaps, squads must document three distinct perspectives:
 
-1. User Flow (UX): The visual journey through screens. Includes "Happy Paths" and "Circular Paths" (where users go back or cancel).
-1. Business Flow (Logic): The "Brain" of the feature. If/Then rules, status triggers, and calculation logic (e.g., if segment is B2B, then show custom rates).
-1. Application/System Flow (Tech): The "Handshake." Mapping API calls between AMA, the Gateway, and external Insurance Vendors.
+* **User Flow (UX)**: The visual journey through screens. Includes "Happy Paths" and "Circular Paths" (where users go back or cancel).
+* **Business Flow (Logic)**: The "Brain" of the feature. If/Then rules, status triggers, and calculation logic (e.g., if segment is B2B, then show custom rates).
+* **Application/System Flow (Tech)**: The "Handshake." Mapping API calls between AMA, the Gateway, and external Insurance Vendors.
 
 ::::present
 ### Step 4: Wireframing & Validation
@@ -189,8 +207,8 @@ Using grayscale to validate hierarchy and accessibility.
 
 ### **Step 4: Wireframing & Lo-fi Validation**
 
-* Grayscale Design: Focus on hierarchy and Information Architecture (IA) without being distracted by colors or fonts.
-* 5-User Rule: Testing with 5 users typically uncovers 80% of usability flaws. If 5 users fail to find the "Checkout" button, the layout is broken.
+* **Grayscale Design**: Focus on hierarchy and Information Architecture (IA) without being distracted by colors or fonts.
+* **5-User Rule**: Testing with 5 users typically uncovers 80% of usability flaws. If 5 users fail to find the "Checkout" button, the layout is broken.
 
 ::::present
 ### Step 5: High-fidelity Prototyping
@@ -202,8 +220,8 @@ Moving from "Lorem Ipsum" to production-ready micro-copy.
 
 ### **Step 5: High-fidelity Prototyping**
 
-* UX Copywriting: Use real micro-copy. Vague text like "Error" is forbidden; use "Insurance provider is offline, please try again."
-* Interactive Logic: Clickable prototypes must simulate system behavior (e.g., a toggle must actually change the price) for accurate validation.
+* **UX Copywriting**: Use real micro-copy. Vague text like "Error" is forbidden; use "Insurance provider is offline, please try again."
+* **Interactive Logic**: Clickable prototypes must simulate system behavior (e.g., a toggle must actually change the price) for accurate validation.
 
 ::::present
 ### Step 6: Final Validation
@@ -216,36 +234,36 @@ The "Cognitive Walkthrough" session with PM, Design, and Dev.
 
 ### **Step 6: Hi-fi Validation & Final Iteration**
 
-* Cognitive Walkthrough: A session where the squad (PM, Designer, Dev) walks through the prototype. At each step, ask: "Will the user know what the system just did? Do they know what the next correct action is?"
+* **Cognitive Walkthrough**: A session where the squad (PM, Designer, Dev) walks through the prototype. At each step, ask: "Will the user know what the system just did? Do they know what the next correct action is?"
 
-## **4.4 Rituals & Syncs**
+## Rituals & Syncs
 
-* Design Review Workshop: Weekly sync to catch technical feasibility blockers early.
-* UT Debrief: Conducted within 24 hours of testing to prioritize "Design Fixes."
-* Backlog Refinement: Grooming stories until they meet the Definition of Ready (DoR).
+* **Design Review Workshop**: Weekly sync to catch technical feasibility blockers early.
+* **UT Debrief**: Conducted within 24 hours of testing to prioritize "Design Fixes."
+* **Backlog Refinement**: Grooming stories until they meet the Definition of Ready (DoR).
 
-## **4.5 Tools & Templates**
+## Tools & Templates
 
-* Design & Flow: Figma, Miro.
-* Documentation: Notion/Confluence (PRD), Google Sheets (Localization table).
-* Validation: Maze, Lookback, or internal interview guides.
+* **Design & Flow**: Figma, Miro.
+* **Documentation**: Notion/Confluence (PRD), Google Sheets (Localization table).
+* **Validation**: Maze, Lookback, or internal interview guides.
 
-## **4.6 Deliverables**
+## Deliverables
 
-* Finalized PRD: Documented User Stories, Gherkin AC, and Business Rules.
-* UX Blueprint: Approved User, Business, and System flows.
-* Interactive Prototype: The clickable "Source of Truth" for engineering.
-* Research Artifacts: Summarized UT reports and IDI insights.
+* **Finalized PRD**: Documented User Stories, Gherkin AC, and Business Rules.
+* **UX Blueprint**: Approved User, Business, and System flows.
+* **Interactive Prototype**: The clickable "Source of Truth" for engineering.
+* **Research Artifacts**: Summarized UT reports and IDI insights.
 
-## **4.7 Common Pitfalls (Anti-patterns)**
+## Common Pitfalls (Anti-patterns)
 
-* Happy Path Bias: Only designing for perfect scenarios, leaving developers to "guess" how to handle errors.
-* Designing in a Vacuum: UI that looks great but is technically impossible to build.
-* Copy-as-Afterthought: Using "Lorem Ipsum" ruins the validity of usability testing.
+* **Happy Path Bias**: Only designing for perfect scenarios, leaving developers to "guess" how to handle errors.
+* **Designing in a Vacuum**: UI that looks great but is technically impossible to build.
+* **Copy-as-Afterthought**: Using "Lorem Ipsum" ruins the validity of usability testing.
 
-## **4.8 Exit Criteria (The Gate)**
+## Exit Criteria (The Gate)
 
-* Prototype validated with ≥ 5 users with an 80% task completion rate.
-* PRD finalized with Gherkin AC and meets the Definition of Ready (DoR).
-* 6-Tier Tactical Metric Framework defined for the feature.
-* All 3 Flows (User, Business, System) documented and signed off by the Tech Lead.
+* **Prototype validated** with ≥ 5 users with an 80% task completion rate.
+* **PRD finalized** with Gherkin AC and meets the Definition of Ready (DoR).
+* **5-Tier Tactical Metric Framework** defined for the feature.
+* **All 3 Flows** (User, Business, System) documented and signed off by the Tech Lead.

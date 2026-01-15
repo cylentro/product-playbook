@@ -49,7 +49,8 @@ export async function getAllModules(): Promise<ModuleMeta[]> {
     const modules: ModuleMeta[] = [];
 
     for (const entry of entries) {
-        if (entry.isDirectory() && !entry.name.startsWith('.')) {
+        // Only include numbered directories as modules, skip 'expert-guide'
+        if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'expert-guide') {
             const modulePath = path.join(contentDirectory, entry.name);
             const lessons = await getModuleLessons(entry.name);
 
@@ -83,32 +84,25 @@ export async function getAllModules(): Promise<ModuleMeta[]> {
         }
     }
 
-    // Also check for standalone files in content root (like ai-for-pm.md)
-    for (const entry of entries) {
-        if (entry.isFile() && entry.name.endsWith('.md') && !entry.name.startsWith('.')) {
-            const slug = entry.name.replace('.md', '');
-            const filePath = path.join(contentDirectory, '..', entry.name);
-
-            if (fs.existsSync(filePath)) {
-                continue; // Handle root-level files differently
-            }
-        }
-    }
-
     return modules.sort((a, b) => a.order - b.order);
 }
 
 /**
- * Get standalone lessons (files in the root of material directory like ai-for-pm.md)
+ * Get standalone lessons (files in the expert-guide directory)
  */
 export async function getStandaloneLessons(): Promise<LessonMeta[]> {
-    const entries = fs.readdirSync(contentDirectory, { withFileTypes: true });
+    const expertGuideDir = path.join(contentDirectory, 'expert-guide');
 
+    if (!fs.existsSync(expertGuideDir)) {
+        return [];
+    }
+
+    const entries = fs.readdirSync(expertGuideDir, { withFileTypes: true });
     const lessons: LessonMeta[] = [];
 
     for (const entry of entries) {
         if (entry.isFile() && entry.name.endsWith('.md') && !entry.name.startsWith('.')) {
-            const filePath = path.join(contentDirectory, entry.name);
+            const filePath = path.join(expertGuideDir, entry.name);
             const fileContents = fs.readFileSync(filePath, 'utf8');
             const { data } = matter(fileContents);
             const frontmatter = data as LessonFrontmatter;
@@ -150,7 +144,26 @@ export async function getModuleLessons(moduleSlug: string): Promise<LessonMeta[]
 
         // Extract order from filename (e.g., "1-introduction.md" -> 1)
         const orderMatch = file.match(/^(\d+)/);
-        const order = frontmatter.order ?? (orderMatch ? parseInt(orderMatch[1], 10) : 99);
+        let order = frontmatter.order ?? (orderMatch ? parseInt(orderMatch[1], 10) : 99);
+        let isSubchapter = false;
+        let parentOrder: number | undefined;
+
+        // Check for sub-chapters like 4.A or 4.1
+        const subMatch = file.match(/^(\d+)\.([A-Z0-9]+)/i);
+        if (subMatch) {
+            isSubchapter = true;
+            parentOrder = parseInt(subMatch[1], 10);
+            const subPart = subMatch[2].toUpperCase();
+
+            // If it's a letter (A, B, C), convert to 0.01, 0.02...
+            if (/^[A-Z]$/.test(subPart)) {
+                const letterOrder = subPart.charCodeAt(0) - 64; // A=1, B=2
+                order = parentOrder + (letterOrder / 100);
+            } else if (/^\d+$/.test(subPart)) {
+                // If it's a number (4.1, 4.2), convert to 4.01, 4.02...
+                order = parentOrder + (parseInt(subPart, 10) / 100);
+            }
+        }
 
         const slug = file.replace('.md', '');
 
@@ -160,6 +173,8 @@ export async function getModuleLessons(moduleSlug: string): Promise<LessonMeta[]
             order,
             hasQuiz: frontmatter.quiz ?? false,
             estimatedTime: frontmatter.estimatedTime ?? estimateReadingTime(fileContents),
+            isSubchapter,
+            parentOrder,
         });
     }
 
@@ -183,7 +198,7 @@ export async function getLessonContent(
     const { data, content } = matter(fileContents);
     const frontmatter = data as LessonFrontmatter;
     // Extract slides early to handle custom blocks
-    const slides = parseSlides(content);
+    const slides = frontmatter.present !== false ? parseSlides(content) : [];
 
     // Prepare learn content by stripping presentation-only blocks
     const learnMarkdown = content
@@ -205,13 +220,13 @@ export async function getLessonContent(
     const order = frontmatter.order ?? (orderMatch ? parseInt(orderMatch[1], 10) : 99);
 
     // Generate quiz questions from content
-    const quiz = generateQuizFromContent(content, lessonSlug);
+    const quiz = frontmatter.quiz !== false ? generateQuizFromContent(content, lessonSlug) : [];
 
     return {
         slug: lessonSlug,
         title: frontmatter.title || formatTitle(lessonSlug),
         order,
-        hasQuiz: frontmatter.quiz ?? quiz.length > 0,
+        hasQuiz: (frontmatter.quiz ?? quiz.length > 0) && frontmatter.quiz !== false,
         estimatedTime: frontmatter.estimatedTime ?? estimateReadingTime(fileContents),
         content: contentHtml,
         rawContent: content,
@@ -222,12 +237,12 @@ export async function getLessonContent(
 }
 
 /**
- * Get standalone lesson content (for root-level files like ai-for-pm.md)
+ * Get standalone lesson content (for files in expert-guide directory)
  */
 export async function getStandaloneLessonContent(
     lessonSlug: string
 ): Promise<LessonContent | null> {
-    const filePath = path.join(contentDirectory, `${lessonSlug}.md`);
+    const filePath = path.join(contentDirectory, 'expert-guide', `${lessonSlug}.md`);
 
     if (!fs.existsSync(filePath)) {
         return null;
@@ -249,14 +264,14 @@ export async function getStandaloneLessonContent(
         .process(learnMarkdown);
 
     const contentHtml = processedContent.toString();
-    const slides = parseSlides(content);
-    const quiz = generateQuizFromContent(content, lessonSlug);
+    const slides = frontmatter.present !== false ? parseSlides(content) : [];
+    const quiz = frontmatter.quiz !== false ? generateQuizFromContent(content, lessonSlug) : [];
 
     return {
         slug: lessonSlug,
         title: frontmatter.title || formatTitle(lessonSlug),
         order: frontmatter.order ?? 99,
-        hasQuiz: frontmatter.quiz ?? quiz.length > 0,
+        hasQuiz: (frontmatter.quiz ?? quiz.length > 0) && frontmatter.quiz !== false,
         estimatedTime: frontmatter.estimatedTime ?? estimateReadingTime(fileContents),
         content: contentHtml,
         rawContent: content,
@@ -416,7 +431,7 @@ function estimateReadingTime(content: string): number {
  */
 function formatTitle(slug: string): string {
     return slug
-        .replace(/^\d+-?\.?\s*/, '')
+        .replace(/^\d+(\.[A-Z0-9]+)?-?\.?\s*/i, '')
         .replace(/-/g, ' ')
         .replace(/\b\w/g, l => l.toUpperCase());
 }

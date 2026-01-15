@@ -47,7 +47,12 @@ export default async function LessonPage({ params }: LessonPageProps) {
             <LessonView
                 lesson={lessonContent}
                 moduleTitle={currentModule?.title ?? ''}
-                allLessons={currentModule?.lessons.map(l => ({ slug: l.slug, title: l.title, moduleSlug })) ?? []}
+                allLessons={currentModule?.lessons.map(l => ({ 
+                    slug: l.slug, 
+                    title: l.title, 
+                    moduleSlug, 
+                    isSubchapter: l.isSubchapter 
+                })) ?? []}
                 prevLesson={prevLesson ? { slug: prevLesson.slug, title: prevLesson.title, moduleSlug } : null}
                 nextLesson={nextLesson ? { slug: nextLesson.slug, title: nextLesson.title, moduleSlug } : null}
             />

@@ -29,7 +29,7 @@ interface PresentationEngineProps {
     slides: Slide[];
     title: string;
     moduleTitle?: string;
-    allLessons?: { slug: string; title: string; moduleSlug: string }[];
+    allLessons?: { slug: string; title: string; moduleSlug: string; isSubchapter?: boolean }[];
     nextLessonPath?: string;
     prevLessonPath?: string;
 }
@@ -48,6 +48,22 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
         presentationFullscreen,
         togglePresentationFullscreen
     } = useAppStore();
+
+    const [chapterValue, setChapterValue] = useState("");
+    const [slideValue, setSlideValue] = useState("");
+
+    useEffect(() => {
+        if (chaptersOpen) {
+            const current = allLessons.find(l => l.slug === searchParams.get('lessonSlug') || l.title === title);
+            if (current) setChapterValue(current.title);
+        }
+    }, [chaptersOpen, allLessons, searchParams, title]);
+
+    useEffect(() => {
+        if (open) {
+            setSlideValue(`${currentSlide + 1} ${slides[currentSlide]?.title}`);
+        }
+    }, [open, currentSlide, slides]);
 
     const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -131,7 +147,7 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
 
     const progress = slides.length > 0 ? ((currentSlide + 1) / slides.length) * 100 : 0;
     const currentSlideData = slides[currentSlide];
-    const isTitleSlide = currentSlideData && (currentSlideData.content.trim().startsWith('# ') || (currentSlideData.content.trim().length < 50 && currentSlide === 0));
+    const isTitleSlide = currentSlide === 0;
 
     return (
         <div
@@ -189,7 +205,10 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                                         className="h-9 w-9 rounded-xl hover:bg-primary/10 shrink-0" 
                                         asChild
                                     >
-                                        <Link href={allLessons?.[0]?.moduleSlug ? `/module/${allLessons[0].moduleSlug}` : '/'} aria-label="Go back">
+                                        <Link 
+                                            href={allLessons?.[0]?.moduleSlug === 'standalone' ? '/' : (allLessons?.[0]?.moduleSlug ? `/module/${allLessons[0].moduleSlug}` : '/')} 
+                                            aria-label="Go back"
+                                        >
                                             <ChevronLeft className="h-5 w-5" />
                                         </Link>
                                     </Button>
@@ -223,39 +242,56 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                                                 </button>
                                             </PopoverTrigger>
                                             <PopoverContent className="p-0 w-[calc(100vw-2rem)] sm:w-[350px]" align="center" sideOffset={8}>
-                                <Command>
+                                <Command value={chapterValue} onValueChange={setChapterValue}>
                                     <CommandInput placeholder="Search chapters..." />
                                     <CommandList>
                                         <CommandEmpty>No chapter found.</CommandEmpty>
-                                        <CommandGroup heading="Chapters">
-                                            {allLessons.map((l, i) => {
-                                                const isCurrent = l.title === title;
-                                                return (
-                                                    <CommandItem
-                                                        key={l.slug}
-                                                        value={l.title}
-                                                        onSelect={() => {
-                                                            router.push(`/module/${l.moduleSlug}/${l.slug}?mode=presentation`);
-                                                            setChaptersOpen(false);
-                                                        }}
-                                                        className={cn(
-                                                            "gap-2 cursor-pointer py-3",
-                                                            isCurrent && "bg-accent text-accent-foreground"
-                                                        )}
-                                                    >
-                                                        <div className={cn(
-                                                            "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold border shrink-0",
-                                                            isCurrent 
-                                                                ? "bg-primary text-white border-primary" 
-                                                                : "bg-muted text-muted-foreground border-border"
-                                                        )}>
-                                                            {i + 1}
-                                                        </div>
-                                                        <span className="truncate flex-1 font-medium">{l.title}</span>
-                                                        {isCurrent && <Check className="w-4 h-4 text-primary ml-auto" />}
-                                                    </CommandItem>
-                                                );
-                                            })}
+                                        <CommandGroup heading="Chapters" className="pb-4">
+                                            {(() => {
+                                                let topLevelIndex = 0;
+                                                return allLessons.map((l, i) => {
+                                                    const isCurrent = l.slug === searchParams.get('lessonSlug') || l.title === title;
+                                                    if (!l.isSubchapter) {
+                                                        topLevelIndex++;
+                                                    }
+
+                                                    return (
+                                                        <CommandItem
+                                                            key={l.slug}
+                                                            value={l.title}
+                                                            onSelect={() => {
+                                                                const path = l.moduleSlug === 'standalone' ? `/lesson/${l.slug}` : `/module/${l.moduleSlug}/${l.slug}`;
+                                                                router.push(`${path}?mode=presentation`);
+                                                                setChaptersOpen(false);
+                                                            }}
+                                                            className={cn(
+                                                                "gap-2 cursor-pointer py-2.5 px-4 mx-1 rounded-lg",
+                                                                isCurrent && "bg-accent/70 text-accent-foreground",
+                                                                l.isSubchapter && "ml-8"
+                                                            )}
+                                                        >
+                                                            <div className={cn(
+                                                                "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold shrink-0",
+                                                                isCurrent 
+                                                                    ? "bg-primary text-white" 
+                                                                    : "bg-muted text-muted-foreground",
+                                                                l.isSubchapter && "bg-transparent border-none w-4 h-6"
+                                                            )}>
+                                                                {l.isSubchapter ? (
+                                                                    <div className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                                                                ) : (
+                                                                    topLevelIndex
+                                                                )}
+                                                            </div>
+                                                            <span className={cn(
+                                                                "truncate flex-1 font-medium",
+                                                                l.isSubchapter ? "text-xs" : "text-sm"
+                                                            )}>{l.title}</span>
+                                                            {isCurrent && <Check className="w-3.5 h-3.5 text-primary ml-auto" />}
+                                                        </CommandItem>
+                                                    );
+                                                });
+                                            })()}
                                         </CommandGroup>
                                     </CommandList>
                                 </Command>
@@ -334,38 +370,43 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                 </button>
             </PopoverTrigger>
             <PopoverContent className="p-0 w-[calc(100vw-2rem)] sm:w-[300px]" align="center" sideOffset={8}>
-                <Command>
+                <Command value={slideValue} onValueChange={setSlideValue}>
                     <CommandInput placeholder="Search slides..." />
                     <CommandList>
                         <CommandEmpty>No slide found.</CommandEmpty>
-                        <CommandGroup heading="Slides">
-                            {slides.map((s, i) => (
-                                <CommandItem
-                                    key={i}
-                                    value={`${i + 1} ${s.title}`}
-                                    onSelect={() => {
-                                        setCurrentSlide(i);
-                                        setOpen(false);
-                                        // Update URL with slide number
-                                        const params = new URLSearchParams(window.location.search);
-                                        params.set('slide', String(i + 1)); // 1-indexed for URL
-                                        router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
-                                    }}
-                                    className={cn(
-                                        "gap-2 cursor-pointer",
-                                        i === currentSlide && "bg-accent text-accent-foreground"
-                                    )}
-                                >
-                                    <span className={cn(
-                                        "w-5 h-5 flex items-center justify-center rounded-md text-[10px] font-mono font-bold border",
-                                        i === currentSlide ? "bg-primary text-primary-foreground border-primary" : "bg-muted text-muted-foreground border-border"
-                                    )}>
-                                        {i + 1}
-                                    </span>
-                                    <span className="truncate flex-1">{s.title}</span>
-                                    {i === currentSlide && <Zap className="w-3 h-3 text-primary ml-auto" />}
-                                </CommandItem>
-                            ))}
+                        <CommandGroup heading="Slides" className="pb-4">
+                            {slides.map((s, i) => {
+                                const isCurrent = i === currentSlide;
+                                return (
+                                    <CommandItem
+                                        key={i}
+                                        value={`${i + 1} ${s.title}`}
+                                        onSelect={() => {
+                                            setCurrentSlide(i);
+                                            setOpen(false);
+                                            // Update URL with slide number
+                                            const params = new URLSearchParams(window.location.search);
+                                            params.set('slide', String(i + 1)); // 1-indexed for URL
+                                            router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
+                                        }}
+                                        className={cn(
+                                            "gap-2 cursor-pointer py-2.5 px-4 mx-1 rounded-lg",
+                                            isCurrent && "bg-accent/70 text-accent-foreground"
+                                        )}
+                                    >
+                                        <div className={cn(
+                                            "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold shrink-0",
+                                            isCurrent
+                                                ? "bg-primary text-white"
+                                                : "bg-muted text-muted-foreground"
+                                        )}>
+                                            {i + 1}
+                                        </div>
+                                        <span className="truncate flex-1 font-medium text-sm">{s.title}</span>
+                                        {isCurrent && <Check className="w-3.5 h-3.5 text-primary ml-auto" />}
+                                    </CommandItem>
+                                );
+                            })}
                         </CommandGroup>
                     </CommandList>
                 </Command>
@@ -416,8 +457,8 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
 }
 
 function SlideContent({ slide, index }: { slide: Slide; index: number }) {
-    // Detect if this is a Title Slide (H1 in markdown or just short content)
-    const isTitleSlide = slide.content.trim().startsWith('# ') || (slide.content.trim().length < 50 && index === 0);
+    // Detect if this is a Title Slide (Always true for the first slide)
+    const isTitleSlide = index === 0;
     const hasMap = slide.content.includes('[PDLC_MAP]');
     const cleanContent = slide.content.replace(/^#\s+.+\n?/, '').replace('[PDLC_MAP]', '');
 
@@ -432,9 +473,9 @@ function SlideContent({ slide, index }: { slide: Slide; index: number }) {
             >
                 {/* Immersive full-screen background effect for title */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-primary/10 via-background to-primary/5 blur-3xl opacity-50" />
-                    <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-primary/20 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2 animate-pulse" />
-                    <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-br from-primary/20 via-background to-primary/10 blur-[100px] opacity-60" />
+                    <div className="absolute top-[-20%] right-[-20%] w-[80%] h-[80%] bg-primary/30 rounded-full blur-[180px] animate-pulse" />
+                    <div className="absolute bottom-[-20%] left-[-20%] w-[80%] h-[80%] bg-blue-500/20 rounded-full blur-[180px]" />
                 </div>
 
                 <div className="relative z-10 max-w-6xl px-8 flex flex-col items-center">
@@ -464,8 +505,8 @@ function SlideContent({ slide, index }: { slide: Slide; index: number }) {
                         transition={{ delay: 1, duration: 1 }}
                         className="flex flex-col items-center gap-6"
                     >
-                        <p className="text-2xl md:text-3xl text-muted-foreground max-w-3xl font-medium leading-relaxed tracking-tight">
-                            PM Playbook: Mastering the Art of Product Engineering
+                        <p className="text-3xl md:text-4xl text-muted-foreground max-w-4xl font-medium leading-relaxed tracking-tight">
+                            {cleanContent || "PM Playbook: Mastering the Art of Product Engineering"}
                         </p>
                         <div className="h-px w-24 bg-primary/30" />
                     </motion.div>
@@ -521,7 +562,8 @@ function EnhancedMarkdown({ content }: { content: string }) {
     const sections: React.ReactNode[] = [];
 
     let inCols = false;
-    let colBuffer: React.ReactNode[][] = []; // Start empty
+    let inCol = false;
+    let colBuffer: React.ReactNode[][] = []; 
 
     let currentList: { text: string; indent: number }[] = [];
     let currentTable: string[][] = [];
@@ -532,17 +574,21 @@ function EnhancedMarkdown({ content }: { content: string }) {
 
     const flushCols = (key: number) => {
         if (inCols) {
-            sections.push(
-                <div key={`cols-${key}`} className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4 ml-7">
-                    {colBuffer.map((colNodes, i) => (
-                        <div key={i} className="space-y-4">
-                            {colNodes}
-                        </div>
-                    ))}
-                </div>
-            );
+            // Only push if we have actual content in columns
+            if (colBuffer.some(nodes => nodes.length > 0)) {
+                sections.push(
+                    <div key={`cols-${key}`} className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4 ml-7">
+                        {colBuffer.map((colNodes, i) => (
+                            <div key={i} className="space-y-4">
+                                {colNodes}
+                            </div>
+                        ))}
+                    </div>
+                );
+            }
             inCols = false;
-            colBuffer = [[]];
+            inCol = false;
+            colBuffer = [];
         }
     };
 
@@ -574,12 +620,12 @@ function EnhancedMarkdown({ content }: { content: string }) {
                                 hidden: { opacity: 0, x: -10 },
                                 visible: { opacity: 1, x: 0 }
                             }}
-                            className={`flex items-start gap-3 text-lg md:text-xl text-muted-foreground group ${item.indent > 0 ? 'ml-10 opacity-80' : ''}`}
+                            className={`flex items-start gap-3 text-xl md:text-2xl text-muted-foreground group ${item.indent > 0 ? 'ml-10 opacity-80' : ''}`}
                         >
                             <span className={`flex-shrink-0 w-5 h-5 rounded-full ${item.indent > 0 ? 'bg-primary/5' : 'bg-primary/10'} flex items-center justify-center text-primary mt-1.5 group-hover:scale-110 transition-transform`}>
                                 <ChevronRight className={item.indent > 0 ? 'w-3 h-3' : 'w-4 h-4'} />
                             </span>
-                            <span dangerouslySetInnerHTML={{ __html: formatInline(item.text) }} />
+                            <span><FormattedText text={item.text} /></span>
                         </motion.li>
                     ))}
                 </motion.ul>
@@ -600,7 +646,7 @@ function EnhancedMarkdown({ content }: { content: string }) {
                                 <tr className="border-b border-border/40 bg-muted/30">
                                     {currentTable[0].map((cell, i) => (
                                         <th key={i} className="px-3 py-2 font-semibold text-foreground text-xs uppercase tracking-wider">
-                                            {cell}
+                                            <div><FormattedText text={cell} /></div>
                                         </th>
                                     ))}
                                 </tr>
@@ -609,8 +655,8 @@ function EnhancedMarkdown({ content }: { content: string }) {
                                 {currentTable.slice(1).map((row, i) => (
                                     <tr key={i} className="hover:bg-primary/5 transition-colors group/row">
                                         {row.map((cell, j) => (
-                                            <td key={j} className="px-3 py-2 text-sm text-muted-foreground group-hover/row:text-foreground transition-colors">
-                                                <div dangerouslySetInnerHTML={{ __html: formatInline(cell) }} />
+                                            <td key={j} className="px-3 py-2 text-lg text-muted-foreground group-hover/row:text-foreground transition-colors">
+                                                <div><FormattedText text={cell} /></div>
                                             </td>
                                         ))}
                                     </tr>
@@ -645,10 +691,10 @@ function EnhancedMarkdown({ content }: { content: string }) {
                         key={`alert-${key}`}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className={cn("p-6 rounded-2xl border flex gap-4 mb-6 shadow-sm", style.color)}
+                        className={cn("p-6 rounded-xl border border-l-8 flex gap-4 mb-6 shadow-sm", style.color)}
                     >
                         <div className="flex-shrink-0 mt-1">{style.icon}</div>
-                        <div className="text-lg font-medium" dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
+                        <div className="text-xl font-medium"><FormattedText text={text} /></div>
                     </motion.div>
                 );
             } else {
@@ -660,7 +706,7 @@ function EnhancedMarkdown({ content }: { content: string }) {
                         className="p-6 rounded-2xl bg-primary/5 border border-primary/20 flex gap-4 mb-6 shadow-sm"
                     >
                         <Lightbulb className="w-6 h-6 text-primary flex-shrink-0" />
-                        <div className="text-lg italic text-muted-foreground" dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
+                        <div className="text-xl italic text-muted-foreground"><FormattedText text={text} /></div>
                     </motion.div>
                 );
             }
@@ -671,6 +717,15 @@ function EnhancedMarkdown({ content }: { content: string }) {
 
     lines.forEach((line, index) => {
         const trimmed = line.trim();
+
+        // Auto-flush columns if we hit unrelated content
+        if (inCols && !inCol && trimmed !== '' && trimmed !== ':::col' && 
+            trimmed !== ':::' && trimmed !== ':::cols' && !trimmed.match(/^::::?present$/)) {
+            flushList(index);
+            flushTable(index);
+            flushQuote(index);
+            flushCols(index);
+        }
 
         // Handle columns
         if (trimmed === ':::cols') {
@@ -686,14 +741,24 @@ function EnhancedMarkdown({ content }: { content: string }) {
             flushList(index);
             flushTable(index);
             flushQuote(index);
-            if (inCols) {
+            if (!inCols) {
+                inCols = true;
+                colBuffer = [[]];
+            } else if (!inCol) {
                 colBuffer.push([]);
             }
+            inCol = true;
             return;
         }
 
         if (trimmed === ':::') {
-            if (inCols) {
+            if (inCol) {
+                flushList(index);
+                flushTable(index);
+                flushQuote(index);
+                inCol = false;
+                // We don't flush row here, allowing next :::col to group
+            } else if (inCols) {
                 flushList(index);
                 flushTable(index);
                 flushQuote(index);
@@ -845,7 +910,7 @@ function EnhancedMarkdown({ content }: { content: string }) {
             const text = trimmed.replace(/^#+\s+/, '');
             
             // Map header level to size
-            const sizeClass = level === 3 ? "text-2xl font-bold" : "text-xl font-bold";
+            const sizeClass = level === 3 ? "text-3xl font-bold" : "text-2xl font-bold";
             const borderClass = level === 3 ? "border-l-4 border-primary pl-4" : "border-l-2 border-primary/50 pl-3";
             
             const headerNode = (
@@ -854,8 +919,9 @@ function EnhancedMarkdown({ content }: { content: string }) {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     className={`${sizeClass} text-foreground mt-4 mb-4 ${borderClass}`}
-                    dangerouslySetInnerHTML={{ __html: formatInline(text) }}
-                />
+                >
+                    <FormattedText text={text} />
+                </motion.div>
             );
             addToCurrentSection(headerNode);
         }
@@ -873,9 +939,10 @@ function EnhancedMarkdown({ content }: { content: string }) {
                     key={index}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-xl leading-relaxed text-muted-foreground mb-6"
-                    dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
-                />
+                    className="text-2xl leading-relaxed text-muted-foreground mb-6"
+                >
+                    <FormattedText text={trimmed} />
+                </motion.p>
             );
             addToCurrentSection(pNode);
         }
@@ -890,11 +957,123 @@ function EnhancedMarkdown({ content }: { content: string }) {
     return <div className="space-y-4">{sections}</div>;
 }
 
-function formatInline(text: string): string {
-    return text
-        .replace(/\*\*(.*?)\*\*/g, '<b class="text-foreground font-bold">$1</b>')
-        .replace(/\*(.*?)\*/g, '<i class="italic">$1</i>')
-        .replace(/`(.*?)`/g, '<code class="px-1.5 py-0.5 rounded bg-primary/10 text-primary text-sm font-mono">$1</code>')
-        .replace(/\?\[(.*?)\]\((.*?)\)/g, '<span class="group relative inline-block underline decoration-dotted underline-offset-4 decoration-primary/30 cursor-help">$1<span class="absolute bottom-full left-0 -translate-x-4 mb-3 w-80 p-5 bg-card border border-primary/10 text-foreground text-sm rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] font-normal leading-relaxed text-left pointer-events-none after:content-[\'\'] after:absolute after:w-3 after:h-3 after:bg-card after:border-r after:border-b after:border-primary/10 after:rotate-45 after:-bottom-1.5 after:left-6">$2</span></span>');
+function FormattedText({ text }: { text: string | undefined | null }) {
+    if (!text) return null;
+    
+    // Use a combined regex for all tokens to find the first match of any type
+    // Hierarchy: Tooltip > Bold > Italic > Code > BR
+    const regex = /(!!.*?!!)|(\?\[.*?\]\(.*?\))|(\*\*.*?\*\*)|(\*.*?\*)|(`.*?`)|(<br\s*\/?>)/gi;
+    const parts: React.ReactNode[] = [];
+    let lastIndex = 0;
+    
+    // We need to iterate through matches manually to preserve text between nodes
+    const matches = Array.from(text.matchAll(regex));
+    
+    if (matches.length === 0) return <span>{normalizeText(text)}</span>;
+
+    matches.forEach((match, i) => {
+        // Text before the match
+        if (match.index > lastIndex) {
+            parts.push(<span key={`text-${i}`}>{normalizeText(text.slice(lastIndex, match.index))}</span>);
+        }
+
+        const fullMatch = match[0];
+        
+        // Identify which token matched and process recursively if needed
+        if (fullMatch.startsWith('!!') && fullMatch.endsWith('!!')) {
+            parts.push(
+                <span 
+                    key={`placeholder-${i}`} 
+                    className="italic text-muted-foreground/60 underline decoration-dotted underline-offset-4 decoration-muted-foreground/30 inline-block mx-0.5"
+                >
+                    <FormattedText text={fullMatch.slice(2, -2)} />
+                </span>
+            );
+        }
+        else if (fullMatch.match(/^\?\[(.*?)\]\((.*?)\)$/i)) {
+            const tooltipMatch = fullMatch.match(/^\?\[(.*?)\]\((.*?)\)$/i);
+            if (tooltipMatch) {
+                const [_, label, content] = tooltipMatch;
+                parts.push(<InteractiveTooltip key={`tooltip-${i}`} label={label} content={content} />);
+            }
+        } 
+        else if (fullMatch.startsWith('**') && fullMatch.endsWith('**')) {
+            parts.push(<b key={`bold-${i}`} className="text-foreground font-bold"><FormattedText text={fullMatch.slice(2, -2)} /></b>);
+        }
+        else if (fullMatch.startsWith('*') && fullMatch.endsWith('*')) {
+            parts.push(<i key={`italic-${i}`} className="italic"><FormattedText text={fullMatch.slice(1, -1)} /></i>);
+        }
+        else if (fullMatch.startsWith('`') && fullMatch.endsWith('`')) {
+            parts.push(<code key={`code-${i}`} className="px-1.5 py-0.5 rounded bg-primary/10 text-primary text-sm font-mono mx-0.5">{fullMatch.slice(1, -1)}</code>);
+        }
+        else if (fullMatch.toLowerCase().startsWith('<br')) {
+            parts.push(<br key={`br-${i}`} />);
+        }
+
+        lastIndex = match.index + fullMatch.length;
+    });
+
+    // Remainder text
+    if (lastIndex < text.length) {
+        parts.push(<span key="text-last">{normalizeText(text.slice(lastIndex))}</span>);
+    }
+
+    return <>{parts}</>;
 }
+
+// Helper function to normalize text for consistent typography
+function normalizeText(text: string): string {
+    return text
+        // Normalize acronyms to uppercase
+        .replace(/\bprd\b/gi, 'PRD')
+        .replace(/\bgtm\b/gi, 'GTM')
+        .replace(/\bai\b/gi, 'AI')
+        // Normalize 'and' to lowercase
+        .replace(/\bAnd\b/g, 'and')
+        .replace(/\bAND\b/g, 'and');
+}
+
+function InteractiveTooltip({ label, content }: { label: string, content: string }) {
+    const [open, setOpen] = useState(false);
+    const isTouch = useRef(false);
+
+    useEffect(() => {
+        isTouch.current = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    }, []);
+
+    const handleMouseEnter = () => {
+        if (!isTouch.current) setOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        if (!isTouch.current) setOpen(false);
+    };
+
+    return (
+        <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+                <span 
+                    className="underline decoration-dotted underline-offset-4 decoration-primary/30 cursor-help hover:text-primary transition-colors inline-block mx-1"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <FormattedText text={label} />
+                </span>
+            </PopoverTrigger>
+            <PopoverContent 
+                className="w-80 p-5 rounded-2xl border-border bg-card shadow-2xl z-[200] animate-in fade-in zoom-in-95 duration-200 pointer-events-none sm:pointer-events-auto" 
+                side="top" 
+                align="center"
+                sideOffset={10}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <div className="text-sm leading-relaxed text-foreground font-normal">
+                    <FormattedText text={content} />
+                </div>
+            </PopoverContent>
+        </Popover>
+    );
+}
+
 

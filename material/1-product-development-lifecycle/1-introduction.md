@@ -1,6 +1,14 @@
-# Module 1: Introduction
+---
+title: "The Product operating Model"
+order: 1
+estimatedTime: 5
+quiz: true
+description: "Overview of the Product Operating Model and PDLC Phases."
+---
 
-## 1.1 The Product Operating Model
+# Introduction
+
+## The Product Operating Model
 
 :::present
 - **Official Operational Manual** for PDLC (not just theory).
@@ -12,12 +20,13 @@ This playbook serves as the official operational manual for the Product Developm
 
 The Goal: To transition the team away from a "feature-factory" mindset—where success is often misidentified as the mere volume of code or features shipped (outputs)—to a disciplined, outcome-driven mindset. We prioritize the achievement of "user value" and "business impact" (outcomes) as our primary metrics of success. This shift ensures that our collective energy is not wasted on building the "wrong things" quickly, but is instead focused on solving validated pain points and moving the needle for our business.
 
-## 1.2 The 9 Phases of PDLC
+## The 9 Phases of PDLC
 
 :::present
 - **9 Distinct Phases** of the lifecycle.
 - **Goal**: Rigor, Quality, and Strategic Alignment.
-- [PDLC_MAP]
+
+[PDLC_MAP]
 :::
 
 Our lifecycle is divided into nine distinct phases to ensure rigor, quality, and strategic alignment.
@@ -34,7 +43,7 @@ Our lifecycle is divided into nine distinct phases to ensure rigor, quality, and
 8. Growth & Maturity: Optimizing the product for scale, market share, and profitability.
 9. Decline & Sunset: Managing the strategic phase-out or pivot of features/products.
 
-## 1.3 Strategic Alignment (The "Big Three")
+## Strategic Alignment (The "Big Three")
 
 :::present
 - **Desirability**: Do users want it? (Product/UX)
@@ -44,13 +53,13 @@ Our lifecycle is divided into nine distinct phases to ensure rigor, quality, and
 
 For the PDLC to function, three core pillars must be in constant synchronization. If one is missing, the product fails.
 
-| Pillar       | Focus                                                         | Accountability      |
+| **Pillar**       | **Focus**                                                         | **Accountability**      |
 | ------------ | ------------------------------------------------------------- | ------------------- |
-| Desirability | Do users actually want/need this?                             | Product & UX Design |
-| Viability    | Does this support our business goals and B2B/Retail strategy? | Product Management  |
-| Feasibility  | Can we build and maintain this with our current tech stack?   | Engineering         |
+| **Desirability** | Do users actually want/need this?                             | Product & UX Design |
+| **Viability**    | Does this support our business goals and B2B/Retail strategy? | Product Management  |
+| **Feasibility**  | Can we build and maintain this with our current tech stack?   | Engineering         |
 
-## 1.4 Operational RACI (Who Does What?)
+## Operational RACI (Who Does What?)
 
 :::present
 - **R**esponsible: Does the work.
@@ -61,37 +70,50 @@ For the PDLC to function, three core pillars must be in constant synchronization
 
 To prevent friction and ensure accountability, the following roles are defined across the PDLC.
 
-* R (Responsible): The person who performs the work.
-* A (Accountable): The person who "owns" the outcome and must sign off (only one 'A' per task).
-* C (Consulted): Those whose opinions are sought (two-way communication).
-* I (Informed): Those kept up-to-date on progress (one-way communication).
+* **R (Responsible)**: The person who performs the work.
+* **A (Accountable)**: The person who "owns" the outcome and must sign off (only one 'A' per task).
+* **C (Consulted)**: Those whose opinions are sought (two-way communication).
+* **I (Informed)**: Those kept up-to-date on progress (one-way communication).
 
-## 1.4.1 PDLC RACI Matrix
+### PDLC RACI Matrix
 
-:::present
-| Phase                   | Product Manager | UX / UI Design | Engineering | Marketing/GTM |
+::::present
+| **Phase**                   | **Product Manager** | **UX / UI Design** | **Engineering** | **Marketing/GTM** |
 | ----------------------- | --------------- | -------------- | ----------- | ------------- |
-| Discovery               | A/R             | C              | I           | C             |
-| Ideation                | A/R             | R              | C           | I             |
-| Design/Validation       | C               | A/R            | I           | I             |
-| Planning                | A/R             | C              | R           | I             |
-| Development and Testing | C               | I              | A/R         | I             |
-| Launch & GTM            | C               | I              | I           | A/R           |
-| Post-Launch             | A               | I              | R           | C             |
-| Growth/Maturity         | A/R             | C              | C           | R             |
-| Decline/Sunset          | A/R             | I              | C           | I             |
+| **Discovery**               | A/R             | C              | I           | C             |
+| **Ideation**                | A/R             | R              | C           | I             |
+| **Design/Validation**       | C               | A/R            | I           | I             |
+| **Planning**                | A/R             | C              | R           | I             |
+| **Development and Testing** | C               | I              | A/R         | I             |
+| **Launch & GTM**            | C               | I              | I           | A/R           |
+| **Post-Launch**             | A               | I              | R           | C             |
+| **Growth/Maturity**         | A/R             | C              | C           | R             |
+| **Decline/Sunset**          | A/R             | I              | C           | I             |
 :::
 
 ### PDLC Matrix
 
-| Phase                   | Product Manager | UX / UI Design | Engineering | Marketing/GTM |
+| **Phase**                   | **Product Manager** | **UX / UI Design** | **Engineering** | **Marketing/GTM** |
 | ----------------------- | --------------- | -------------- | ----------- | ------------- |
-| Discovery               | A/R             | C              | I           | C             |
-| Ideation                | A/R             | R              | C           | I             |
-| Design/Validation       | C               | A/R            | I           | I             |
-| Planning                | A/R             | C              | R           | I             |
-| Development and Testing | C               | I              | A/R         | I             |
-| Launch & GTM            | C               | I              | I           | A/R           |
-| Post-Launch             | A               | I              | R           | C             |
-| Growth/Maturity         | A/R             | C              | C           | R             |
-| Decline/Sunset          | A/R             | I              | C           | I             |
+| **Discovery**               | A/R             | C              | I           | C             |
+| **Ideation**                | A/R             | R              | C           | I             |
+| **Design/Validation**       | C               | A/R            | I           | I             |
+| **Planning**                | A/R             | C              | R           | I             |
+| **Development and Testing** | C               | I              | A/R         | I             |
+| **Launch & GTM**            | C               | I              | I           | A/R           |
+| **Post-Launch**             | A               | I              | R           | C             |
+| **Growth/Maturity**         | A/R             | C              | C           | R             |
+| **Decline/Sunset**          | A/R             | I              | C           | I             |
+
+### How to Use This Playbook
+
+To ensure consistent execution, every module in this Canvas is structured with the following eight sections. This consistency allows team members to quickly find the information they need regardless of where they are in the lifecycle.
+
+* **Entrance Criteria**: Mandatory prerequisites that must be satisfied before a phase officially begins. This prevents "process drift" and ensures the team has the necessary data to proceed.
+* **Lead Roles & Squad**: Identifies the primary "Driver" for the phase and the supporting cross-functional members (the "Squad") required for day-to-day execution.
+* **Key Activities**: A step-by-step breakdown of operational tasks, providing actionable "how-to" instructions for both junior and senior staff.
+* **Rituals & Syncs**: Definitions of specific meetings or workshops, including the frequency, required attendees, and expected agendas for each interaction.
+* **Tools & Templates**: A curated list of software and standardized documents (e.g., PRD templates) to ensure all artifacts are consistent across the organization.
+* **Deliverables**: Tangible artifacts produced and archived to serve as a historical record and ensure stakeholder transparency.
+* **Common Pitfalls (Anti-patterns)**: Real-world "red flags" and frequent mistakes designed to help middle management proactively coach their teams.
+* **Exit Criteria (The Gate)**: The definitive checklist that must be completed to "pass the gate" and receive sign-off from the Accountable party.

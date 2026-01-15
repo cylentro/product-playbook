@@ -2,3 +2,7 @@ export { PresentationEngine } from './PresentationEngine';
 export { LearningEngine } from './LearningEngine';
 export { QuizEngine } from './QuizEngine';
 export { PDLCOverview } from './PDLCOverview';
+export { MermaidDiagram } from './MermaidDiagram';
+export { InteractiveHero } from './InteractiveHero';
+export { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
+export { SmoothScroll } from './SmoothScroll';

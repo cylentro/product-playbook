@@ -29,10 +29,21 @@ const modes: { id: LearningMode; label: string; icon: React.ReactNode; descripti
     },
 ];
 
-export function ModeSwitch() {
+interface ModeSwitchProps {
+    showPresent?: boolean;
+    showQuiz?: boolean;
+}
+
+export function ModeSwitch({ showPresent = true, showQuiz = true }: ModeSwitchProps) {
     const { mode, setMode, setPresentationFullscreen } = useAppStore();
     const router = useRouter();
     const pathname = usePathname();
+
+    const filteredModes = modes.filter(m => {
+        if (m.id === 'presentation') return showPresent;
+        if (m.id === 'quiz') return showQuiz;
+        return true;
+    });
 
     const handleModeChange = (newMode: LearningMode) => {
         setMode(newMode);
@@ -50,7 +61,7 @@ export function ModeSwitch() {
 
     return (
         <div className="relative flex items-center gap-1 rounded-full bg-muted/50 p-1 backdrop-blur-sm">
-            {modes.map((m) => (
+            {filteredModes.map((m) => (
                 <button
                     key={m.id}
                     onClick={() => handleModeChange(m.id)}

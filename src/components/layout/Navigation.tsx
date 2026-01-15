@@ -95,14 +95,18 @@ function ModuleItem({ module, pathname }: { module: ModuleMeta; pathname: string
                                 key={lesson.slug}
                                 href={`/module/${module.slug}/${lesson.slug}`}
                                 className={cn(
-                                    'block rounded-md px-2 py-1.5 text-sm transition-colors',
+                                    'group flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors',
                                     'hover:bg-accent/50',
                                     lessonActive
                                         ? 'bg-accent/70 text-accent-foreground font-medium'
-                                        : 'text-muted-foreground'
+                                        : 'text-muted-foreground',
+                                    lesson.isSubchapter && "ml-4 text-xs py-1"
                                 )}
                             >
-                                {lesson.title}
+                                {lesson.isSubchapter && (
+                                    <div className="h-1 w-1 rounded-full bg-muted-foreground/30 group-hover:bg-primary transition-colors" />
+                                )}
+                                <span className="truncate">{lesson.title}</span>
                             </Link>
                         );
                     })}

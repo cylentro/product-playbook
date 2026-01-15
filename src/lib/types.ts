@@ -17,6 +17,8 @@ export interface LessonMeta {
   order: number;
   hasQuiz: boolean;
   estimatedTime: number; // in minutes
+  parentOrder?: number;
+  isSubchapter?: boolean;
 }
 
 export interface LessonContent extends LessonMeta {
@@ -63,6 +65,7 @@ export interface LessonFrontmatter {
   title: string;
   order?: number;
   quiz?: boolean;
+  present?: boolean;
   estimatedTime?: number;
   description?: string;
 }

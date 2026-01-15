@@ -41,6 +41,8 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+import { SmoothScroll } from "@/components/modules";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,7 +53,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased`}
       >
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
