@@ -67,7 +67,7 @@ A poor prompt results in hallucinated logic that requires heavy manual editing. 
 * Consequence: Generic logic that fails to account for business constraints or regional regulatory warnings.
 * ✅ Good Prompt (CASTR): * [C] We are building a multi-vendor financial aggregator for a retail app.
 * [A] Act as a Senior QA Lead specializing in fintech.
-* [S] Include logic for auto-calculating service fees. Constraint: Must account for vendor API timeouts and mandatory regulatory warnings for transactions >$1000.
+* [S] Include logic for auto-calculating service fees. Constraint: Must account for vendor API timeouts and mandatory regulatory warnings for transactions >1000.
 * [T] Write Gherkin-style Acceptance Criteria for the opt-in toggle.
 * [R] Provide the result in a Markdown table.
 

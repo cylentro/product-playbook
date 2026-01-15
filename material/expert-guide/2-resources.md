@@ -166,7 +166,7 @@ As a team integrated into Google’s infrastructure, leveraging these specific t
  * Deep Research: Use for multi-step information gathering.
  * Gemini Gems: Custom prompts to standardize PRD writing or UX critiques.
  * Opal Integration: Enhanced agency for Gemini Gems.
-* [NotebookLM](https://notebooklm.com/): Your AI Research Assistant. Upload PDFs, PRDs, and logs to create a grounded knowledge base for your specific products (e.g., Biza or AMA).
+* [NotebookLM](https://notebooklm.com/): Your AI Research Assistant. Upload PDFs, PRDs, and logs to create a grounded knowledge base for your specific products.
 
 ::::present
 ### The Google AI Ecosystem (2/2)

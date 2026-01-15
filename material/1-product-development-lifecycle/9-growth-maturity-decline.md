@@ -101,7 +101,7 @@ Growth in this phase is rarely about building massive new modules; it is about t
 
 * **Data-Driven Iteration**: Utilizing A/B testing or multivariate testing to refine conversion funnels. This could involve tweaking the micro-copy on an insurance toggle or adjusting the "Pro Progress" visualization to maximize psychological "near-win" effects.
 * **Feedback-Led Enhancements**: Converting qualitative insights from interviews and Focus Group Discussions (FGDs) into "Fast-follow" UX improvements that remove friction for the "middle 60%" of users.
-* **Roadmap Alignment**: Ensuring the product's evolution doesn't drift. Every iteration must be weighed against the broader Anteraja strategy to prevent "Feature Creep," where the product becomes a "Swiss Army Knife" that is difficult to maintain and confusing to use.
+* **Roadmap Alignment**: Ensuring the product's evolution doesn't drift. Every iteration must be weighed against the broader strategy to prevent "Feature Creep," where the product becomes a "Swiss Army Knife" that is difficult to maintain and confusing to use.
 
 ### Step 3: Strategic Lifecycle Decision
 

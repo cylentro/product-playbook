@@ -114,7 +114,7 @@ Extending the watch to match the business reality.
 > **Example:** You cannot judge **VIP** at Day 30. You must wait for the **Full Quarter** to see who actually ships 60 items.
 ::::
 
-**Focus**: Maturity. For VIPducts, we must extend monitoring to match the business cycle.
+**Focus**: Maturity. For products, we must extend monitoring to match the business cycle.
 
 * **Quarterly Cycle Check (VIP)**: Since the rule is "60 orders in 1 quarter," you cannot validate success at Day 30. You must monitor Month 2 and Month 3 to see if "Leads" actually convert to "Pro Status."
 * **B2B Retention**: B2B users may only ship in bulk once a month. Day 30 only captures the first interaction; Day 60-90 captures the Retention Rate.

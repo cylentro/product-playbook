@@ -2,8 +2,6 @@
 
 An interactive platform designed for Product Managers to master the **Product Development Lifecycle (PDLC)**. This project transforms standard product documentation into a high-vibe, immersive learning experience.
 
-![PDLC Overview](public/manifest.json)
-
 ## ✨ Features
 
 ### 📽️ Immersive Presentation Mode
