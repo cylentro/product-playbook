@@ -118,46 +118,45 @@ Differentiating the business rules (PM) from the technical paths (QA).
 | **Format**        | Gherkin (Given/When/Then).           | Detailed steps (Action → Expected Result). |
 
 ::::present
-### Step 1: Insurance Aggregator Example
-Walking through the logic of a live shipping insurance feature.
+### Step 1: Marketplace Examples
+Walking through the logic of business rules vs. system edge cases.
 
-:::cols
 :::col
-- **PM AC**: 
-  - **GIVEN** value > **Rp1M**, 
-  - **WHEN** toggle ON, 
-  - **THEN** calculate **0.2%** premium.
+- **PM AC**:
+  - **GIVEN** spend > **Rp150k**,
+  - **WHEN** applied,
+  - **THEN** 10% discount (max Rp20k).
+:::
 :::col
 - **QA Test Scenarios**:
-  - **?[Boundary](Testing the exact limits of a rule—e.g., checking if Rp1,000,000 behaves differently than Rp1,000,001.)**: Exactly **Rp1,000,000**.
-  - **?[Negative](Ensuring the system gracefully handles invalid or problematic inputs.)**: Non-numeric input.
-  - **?[Edge](Handling rare, complex, or extreme 'break-it' scenarios like network timeouts.)**: API timeout handling.
-:::
+  - **?[Boundary](Testing the exact limits of a rule.)**: Exactly **Rp150,000**.
+  - **?[Negative](Ensuring the system gracefully handles invalid or problematic inputs.)**: Applying wrong seller's voucher.
+  - **?[Edge](Handling rare, complex, or extreme scenarios.)**: Cart total drops below threshold post-application.
 :::
 > [!NOTE]
 > High-quality AC covers the "What", whereas QA covers the "How it breaks".
 ::::
 
-#### **Example: Shipping Insurance Aggregator**
+#### **Example: Marketplace Seller Voucher**
 
-* PM's Acceptance Criteria: 
-  * **GIVEN** the item value is > **Rp1,000,000**, 
-  * **WHEN** the user toggles insurance ON
-  * **THEN** the system must calculate a premium of **0.2\%**.
-* QA's Test Scenarios: "
-  * **Boundary**: Exactly **Rp1,000,000** entered.
-    * Testing the exact limits of a rule
-  * **Negative**: Text entered in value field.
-    * Ensuring the system gracefully handles invalid or problematic inputs.
-  * **Edge**: Insurance API timeout handling.
-    * Handling rare, complex, or extreme 'break-it' scenarios like network timeouts.
+* PM's Acceptance Criteria:
+  * **GIVEN** a seller-specific voucher with a minimum spend of **Rp150,000**,
+  * **WHEN** the cart total from the specific seller reaches the threshold,
+  * **THEN** apply a **10% discount** capped at **Rp20,000**.
+* QA's Test Scenarios:
+  * **Boundary**: Cart total is exactly **Rp150,000**.
+    * Testing if the discount triggers exactly at the threshold.
+  * **Negative**: User applies a voucher from "Seller A" to a cart only containing items from "Seller B".
+    * Ensuring cross-seller voucher validation works.
+  * **Edge**: User modifies cart quantity after voucher application, bringing the total to **Rp149,900**.
+    * Handling real-time recalculation and auto-removal of invalid vouchers.
 
 ::::present
 ### Step 2: Implementation Metrics
 Measuring the efficiency of the design through the **Tactical (Micro)** layer.
 
-* **North Star Metric (Local)**: The core task completion of the feature.
-* **Key Metrics (Local Outcome)**: The conversion success of the feature.
+* **North Star Metric**: The core task completion of the feature.
+* **Key Metrics**: The conversion success of the feature.
 * **Supporting Metrics (The UI Levers)**: Engagement with design elements.
 * **Trade-off Metrics (The Strategic Balance)**: Balancing friction vs. speed.
 * **Health / Guardrail Metrics (Stability)**: Technical safety nets.
@@ -167,8 +166,8 @@ Measuring the efficiency of the design through the **Tactical (Micro)** layer.
 
 We translate the 5-tier framework into the Tactical (Micro) layer. This measures the efficiency of the design itself.
 
-* **North Star Metric (Local)**: The core task completion of the feature.
-* **Key Metrics (Local Outcome)**: The conversion success of the feature.
+* **North Star Metric**: The core task completion of the feature.
+* **Key Metrics**: The conversion success of the feature.
 * **Supporting Metrics (The UI Levers)**: Engagement with design elements.
 * **Trade-off Metrics (The Strategic Balance)**: Balancing friction vs. speed.
 * **Health / Guardrail Metrics (Stability)**: Technical safety nets.

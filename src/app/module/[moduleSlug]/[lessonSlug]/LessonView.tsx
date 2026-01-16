@@ -25,6 +25,12 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
@@ -43,6 +49,14 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
     const searchParams = useSearchParams();
     const [open, setOpen] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+        return () => window.removeEventListener('resize', checkDesktop);
+    }, []);
 
     const getLessonLink = (l: { slug: string; moduleSlug: string }, withMode = true) => {
         const path = l.moduleSlug === 'standalone' ? `/lesson/${l.slug}` : `/module/${l.moduleSlug}/${l.slug}`;
@@ -86,6 +100,48 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
         }
     }, [searchParams, lesson.slug, lesson.slides.length, lesson.hasQuiz, mode, setMode, setPresentationFullscreen, router]);
 
+    // Keyboard shortcuts for mode switching
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // Check for Cmd (Mac) or Ctrl (Windows/Linux)
+            const isModifierPressed = e.metaKey || e.ctrlKey;
+            
+            if (!isModifierPressed) return;
+
+            let newMode: 'presentation' | 'learning' | 'quiz' | null = null;
+
+            switch (e.key.toLowerCase()) {
+                case 'p':
+                    // Cmd/Ctrl + P for Presentation
+                    if (lesson.slides.length > 0 && isDesktop) {
+                        e.preventDefault();
+                        newMode = 'presentation';
+                    }
+                    break;
+                case 'l':
+                    // Cmd/Ctrl + L for Learning
+                    e.preventDefault();
+                    newMode = 'learning';
+                    break;
+                case 'o':
+                    // Cmd/Ctrl + O for Quiz
+                    if (lesson.hasQuiz) {
+                        e.preventDefault();
+                        newMode = 'quiz';
+                    }
+                    break;
+            }
+
+            if (newMode && newMode !== mode) {
+                setMode(newMode);
+                router.replace(`${window.location.pathname}?mode=${newMode}`, { scroll: false });
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [mode, setMode, router, lesson.slides.length, lesson.hasQuiz, isDesktop]);
+
     const handleCopy = () => {
         navigator.clipboard.writeText(lesson.rawContent);
         setCopied(true);
@@ -108,93 +164,161 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                             <div className="h-8 w-px bg-border/40 mx-0.5 md:mx-1 shrink-0" />
                             
                             
-                            <button 
-                                onClick={() => setOpen(true)}
-                                className="flex flex-col items-start px-2 md:px-3 py-1.5 rounded-xl hover:bg-primary/5 transition-all text-left group min-w-0"
-                            >
-                                <div className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 leading-none mb-1 group-hover:text-muted-foreground/80 truncate w-full">
-                                    {moduleTitle}
-                                </div>
-                                <div className="flex items-center gap-1.5 w-full">
-                                    <span className="font-bold truncate text-sm md:text-base text-foreground leading-tight group-hover:text-primary transition-colors">
-                                        {lesson.title}
-                                    </span>
-                                    <List className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0" />
-                                </div>
-                            </button>
-
-
-                            <Dialog open={open} onOpenChange={setOpen}>
-                                <DialogContent className="p-0 sm:max-w-[500px] sm:h-auto sm:max-h-[80vh] gap-0 [&>button]:hidden flex flex-col items-stretch justify-start">
-                                    <DialogHeader className="px-6 py-3 md:py-4 border-b border-border/40 text-left shrink-0">
-                                        <div className="flex items-start justify-between">
-                                            <div className="flex-1">
-                                                <DialogTitle className="text-lg font-bold text-left">Chapters</DialogTitle>
-                                                <p className="text-xs text-muted-foreground mt-1">{moduleTitle}</p>
+                            {isDesktop ? (
+                                <Popover open={open} onOpenChange={setOpen}>
+                                    <PopoverTrigger asChild>
+                                        <button 
+                                            className="flex flex-col items-start px-2 md:px-3 py-1.5 rounded-xl hover:bg-primary/5 transition-all text-left group min-w-0 outline-none"
+                                        >
+                                            <div className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 leading-none mb-1 group-hover:text-muted-foreground/80 truncate w-full">
+                                                {moduleTitle}
                                             </div>
-                                            <Button 
-                                                variant="ghost" 
-                                                size="icon" 
-                                                className="h-8 w-8 rounded-full shrink-0 -mt-1"
-                                                onClick={() => setOpen(false)}
-                                            >
-                                                <X className="h-4 w-4" />
-                                            </Button>
-                                        </div>
-                                    </DialogHeader>
-                                    <Command className="rounded-none border-none">
-                                        <CommandInput placeholder="Search chapters..." className="border-none" />
-                                        <CommandList className="max-h-[60vh] overflow-y-auto">
-                                            <CommandEmpty>No chapter found.</CommandEmpty>
-                                            <CommandGroup className="pb-8">
-                                                {(() => {
-                                                    let topLevelIndex = 0;
-                                                    return allLessons.map((l, i) => {
-                                                        if (!l.isSubchapter) {
-                                                            topLevelIndex++;
-                                                        }
-
-                                                        return (
-                                                            <CommandItem
-                                                                key={l.slug}
-                                                                value={l.title}
-                                                                onSelect={() => {
-                                                                    router.push(getLessonLink(l));
-                                                                    setOpen(false);
-                                                                }}
-                                                                className={cn(
-                                                                    "gap-3 cursor-pointer py-3 px-6",
-                                                                    l.slug === lesson.slug && "bg-accent/70 text-accent-foreground",
-                                                                    l.isSubchapter && "ml-12 py-2"
-                                                                )}
-                                                            >
-                                                                <div className={cn(
-                                                                    "w-8 h-8 flex items-center justify-center rounded-lg font-mono text-xs font-bold shrink-0",
-                                                                    l.slug === lesson.slug 
-                                                                        ? "bg-primary text-white" 
-                                                                        : "bg-muted text-muted-foreground",
-                                                                    l.isSubchapter && "w-6 h-6 border-none bg-transparent"
-                                                                )}>
-                                                                    {l.isSubchapter ? (
-                                                                        <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
-                                                                    ) : (
-                                                                        topLevelIndex
+                                            <div className="flex items-center gap-1.5 w-full">
+                                                <span className="font-bold truncate text-sm md:text-base text-foreground leading-tight group-hover:text-primary transition-colors">
+                                                    {lesson.title}
+                                                </span>
+                                                <List className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0" />
+                                            </div>
+                                        </button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="p-0 w-[400px]" align="start">
+                                        <Command className="rounded-xl border-none">
+                                            <CommandInput placeholder="Search chapters..." className="border-none" />
+                                            <CommandList className="max-h-[60vh] overflow-y-auto" data-lenis-prevent>
+                                                <CommandEmpty>No chapter found.</CommandEmpty>
+                                                <CommandGroup className="p-2">
+                                                    {(() => {
+                                                        let topLevelIndex = 0;
+                                                        return allLessons.map((l) => {
+                                                            if (!l.isSubchapter) topLevelIndex++;
+                                                            const isSelected = l.slug === lesson.slug;
+                                                            return (
+                                                                <CommandItem
+                                                                    key={l.slug}
+                                                                    value={l.title}
+                                                                    onSelect={() => {
+                                                                        router.push(getLessonLink(l));
+                                                                        setOpen(false);
+                                                                    }}
+                                                                    className={cn(
+                                                                        "gap-3 cursor-pointer py-2.5 px-4 rounded-lg mb-1",
+                                                                        isSelected && "bg-accent/70 text-accent-foreground",
+                                                                        l.isSubchapter && "ml-8"
                                                                     )}
-                                                                </div>
-                                                                <span className={cn(
-                                                                    "flex-1 font-medium",
-                                                                    l.isSubchapter ? "text-sm" : "text-base"
-                                                                )}>{l.title}</span>
-                                                                {l.slug === lesson.slug && <Check className="w-4 h-4 text-primary ml-auto" />}
-                                                            </CommandItem>
-                                                        );
-                                                    });
-                                                })()}
-                                            </CommandGroup>
-                                        </CommandList>
-                                    </Command>
-                                </DialogContent>
-                            </Dialog>
+                                                                >
+                                                                    <div className={cn(
+                                                                        "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold shrink-0",
+                                                                        isSelected 
+                                                                            ? "bg-primary text-white" 
+                                                                            : "bg-muted text-muted-foreground",
+                                                                        l.isSubchapter && "w-4 h-6 border-none bg-transparent"
+                                                                    )}>
+                                                                        {l.isSubchapter ? (
+                                                                            <div className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                                                                        ) : (
+                                                                            topLevelIndex
+                                                                        )}
+                                                                    </div>
+                                                                    <span className={cn(
+                                                                        "flex-1 font-medium truncate",
+                                                                        l.isSubchapter ? "text-xs" : "text-sm"
+                                                                    )}>{l.title}</span>
+                                                                    {isSelected && <Check className="w-4 h-4 text-primary ml-auto" />}
+                                                                </CommandItem>
+                                                            );
+                                                        });
+                                                    })()}
+                                                </CommandGroup>
+                                            </CommandList>
+                                        </Command>
+                                    </PopoverContent>
+                                </Popover>
+                            ) : (
+                                <>
+                                    <button 
+                                        onClick={() => setOpen(true)}
+                                        className="flex flex-col items-start px-2 md:px-3 py-1.5 rounded-xl hover:bg-primary/5 transition-all text-left group min-w-0"
+                                    >
+                                        <div className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 leading-none mb-1 group-hover:text-muted-foreground/80 truncate w-full">
+                                            {moduleTitle}
+                                        </div>
+                                        <div className="flex items-center gap-1.5 w-full">
+                                            <span className="font-bold truncate text-sm md:text-base text-foreground leading-tight group-hover:text-primary transition-colors">
+                                                {lesson.title}
+                                            </span>
+                                            <List className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0" />
+                                        </div>
+                                    </button>
+
+                                    <Dialog open={open} onOpenChange={setOpen}>
+                                        <DialogContent showCloseButton={false} className="p-0 w-screen h-screen max-w-none m-0 rounded-none border-none flex flex-col bg-background/95 backdrop-blur-xl gap-0">
+                                            <div className="flex items-center justify-between px-6 py-4 border-b border-border/40 shrink-0 bg-background/50">
+                                                <div className="flex flex-col">
+                                                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Chapters</span>
+                                                    <span className="text-sm font-bold text-foreground">{moduleTitle}</span>
+                                                </div>
+                                                <Button 
+                                                    variant="ghost" 
+                                                    size="icon" 
+                                                    className="h-8 w-8 rounded-xl"
+                                                    onClick={() => setOpen(false)}
+                                                >
+                                                    <X className="h-5 w-5" />
+                                                </Button>
+                                            </div>
+                                            <Command className="flex-1 rounded-none border-none bg-transparent overflow-hidden">
+                                                <CommandInput placeholder="Search chapters..." className="border-none text-base py-6 px-6" />
+                                                <CommandList className="flex-1 overflow-y-auto p-4 max-h-none" data-lenis-prevent>
+                                                    <CommandEmpty>No chapter found.</CommandEmpty>
+                                                    <CommandGroup>
+                                                        {(() => {
+                                                            let topLevelIndex = 0;
+                                                            return allLessons.map((l) => {
+                                                                if (!l.isSubchapter) topLevelIndex++;
+                                                                const isSelected = l.slug === lesson.slug;
+                                                                return (
+                                                                    <CommandItem
+                                                                        key={l.slug}
+                                                                        value={l.title}
+                                                                        onSelect={() => {
+                                                                            router.push(getLessonLink(l));
+                                                                            setOpen(false);
+                                                                        }}
+                                                                        className={cn(
+                                                                            "gap-4 cursor-pointer py-4 px-4 rounded-xl mb-2",
+                                                                            isSelected && "bg-accent/70 text-accent-foreground",
+                                                                            l.isSubchapter && "ml-8"
+                                                                        )}
+                                                                    >
+                                                                        <div className={cn(
+                                                                            "w-8 h-8 flex items-center justify-center rounded-lg font-mono text-xs font-bold shrink-0",
+                                                                            isSelected 
+                                                                                ? "bg-primary text-white" 
+                                                                                : "bg-muted text-muted-foreground",
+                                                                            l.isSubchapter && "w-6 h-6 border-none bg-transparent"
+                                                                        )}>
+                                                                            {l.isSubchapter ? (
+                                                                                <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40" />
+                                                                            ) : (
+                                                                                topLevelIndex
+                                                                            )}
+                                                                        </div>
+                                                                        <span className={cn(
+                                                                            "flex-1 font-medium text-base",
+                                                                            l.isSubchapter && "text-sm text-muted-foreground"
+                                                                        )}>{l.title}</span>
+                                                                        {isSelected && <Check className="w-5 h-5 text-primary ml-auto" />}
+                                                                    </CommandItem>
+                                                                );
+                                                            });
+                                                        })()}
+                                                    </CommandGroup>
+                                                </CommandList>
+                                            </Command>
+                                        </DialogContent>
+                                    </Dialog>
+                                </>
+                            )}
                         </div>
 
                         <div className="flex items-center gap-2 md:gap-4 shrink-0">

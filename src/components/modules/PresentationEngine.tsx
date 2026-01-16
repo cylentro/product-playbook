@@ -157,7 +157,7 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                 !presentationFullscreen && "top-16"
             )}
         >
-            {/* Click Areas for Navigation - Narrower at z-50 to stay on top but not block content */}
+            {/* Click Areas for Navigation - z-50 to be above content (z-40) but below navbar (z-500) */}
             <div
                 className="absolute inset-y-0 left-0 w-[6%] z-50 cursor-pointer group/nav"
                 onClick={(e) => { e.stopPropagation(); handlePrev(); }}
@@ -231,72 +231,72 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                                     >
                                         <Popover open={chaptersOpen} onOpenChange={setChaptersOpen}>
                                             <PopoverTrigger asChild>
-                                                <button className="flex flex-col items-start px-2 py-1 rounded-lg hover:bg-primary/5 transition-all text-left group">
-                                                    <div className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 leading-none mb-1 group-hover:text-muted-foreground/80">{moduleTitle}</div>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-bold tracking-tight text-foreground truncate max-w-[200px] md:max-w-md group-hover:text-primary transition-colors">
+                                                <button className="flex flex-col items-start px-2 md:px-3 py-1.5 rounded-xl hover:bg-primary/5 transition-all text-left group min-w-0 outline-none">
+                                                    <div className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60 leading-none mb-1 group-hover:text-muted-foreground/80 truncate w-full">{moduleTitle}</div>
+                                                    <div className="flex items-center gap-1.5 w-full">
+                                                        <span className="text-sm md:text-base font-bold tracking-tight text-foreground truncate max-w-[200px] md:max-w-md group-hover:text-primary transition-colors">
                                                             {title}
                                                         </span>
-                                                        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors" />
+                                                        <List className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0" />
                                                     </div>
                                                 </button>
                                             </PopoverTrigger>
-                                            <PopoverContent className="p-0 w-[calc(100vw-2rem)] sm:w-[350px]" align="center" sideOffset={8}>
-                                <Command value={chapterValue} onValueChange={setChapterValue}>
-                                    <CommandInput placeholder="Search chapters..." />
-                                    <CommandList>
-                                        <CommandEmpty>No chapter found.</CommandEmpty>
-                                        <CommandGroup heading="Chapters" className="pb-4">
-                                            {(() => {
-                                                let topLevelIndex = 0;
-                                                return allLessons.map((l, i) => {
-                                                    const isCurrent = l.slug === searchParams.get('lessonSlug') || l.title === title;
-                                                    if (!l.isSubchapter) {
-                                                        topLevelIndex++;
-                                                    }
+                                            <PopoverContent className="p-0 w-[400px]" align="start">
+                                                <Command value={chapterValue} onValueChange={setChapterValue} className="rounded-xl border-none">
+                                                    <CommandInput placeholder="Search chapters..." className="border-none" />
+                                                    <CommandList data-lenis-prevent className="max-h-[60vh] overflow-y-auto">
+                                                        <CommandEmpty>No chapter found.</CommandEmpty>
+                                                        <CommandGroup className="p-2">
+                                                            {(() => {
+                                                                let topLevelIndex = 0;
+                                                                return allLessons.map((l, i) => {
+                                                                    const isCurrent = l.slug === searchParams.get('lessonSlug') || l.title === title;
+                                                                    if (!l.isSubchapter) {
+                                                                        topLevelIndex++;
+                                                                    }
 
-                                                    return (
-                                                        <CommandItem
-                                                            key={l.slug}
-                                                            value={l.title}
-                                                            onSelect={() => {
-                                                                const path = l.moduleSlug === 'standalone' ? `/lesson/${l.slug}` : `/module/${l.moduleSlug}/${l.slug}`;
-                                                                router.push(`${path}?mode=presentation`);
-                                                                setChaptersOpen(false);
-                                                            }}
-                                                            className={cn(
-                                                                "gap-2 cursor-pointer py-2.5 px-4 mx-1 rounded-lg",
-                                                                isCurrent && "bg-accent/70 text-accent-foreground",
-                                                                l.isSubchapter && "ml-8"
-                                                            )}
-                                                        >
-                                                            <div className={cn(
-                                                                "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold shrink-0",
-                                                                isCurrent 
-                                                                    ? "bg-primary text-white" 
-                                                                    : "bg-muted text-muted-foreground",
-                                                                l.isSubchapter && "bg-transparent border-none w-4 h-6"
-                                                            )}>
-                                                                {l.isSubchapter ? (
-                                                                    <div className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                                                                ) : (
-                                                                    topLevelIndex
-                                                                )}
-                                                            </div>
-                                                            <span className={cn(
-                                                                "truncate flex-1 font-medium",
-                                                                l.isSubchapter ? "text-xs" : "text-sm"
-                                                            )}>{l.title}</span>
-                                                            {isCurrent && <Check className="w-3.5 h-3.5 text-primary ml-auto" />}
-                                                        </CommandItem>
-                                                    );
-                                                });
-                                            })()}
-                                        </CommandGroup>
-                                    </CommandList>
-                                </Command>
-                            </PopoverContent>
-                        </Popover>
+                                                                    return (
+                                                                        <CommandItem
+                                                                            key={l.slug}
+                                                                            value={l.title}
+                                                                            onSelect={() => {
+                                                                                const path = l.moduleSlug === 'standalone' ? `/lesson/${l.slug}` : `/module/${l.moduleSlug}/${l.slug}`;
+                                                                                router.push(`${path}?mode=presentation`);
+                                                                                setChaptersOpen(false);
+                                                                            }}
+                                                                            className={cn(
+                                                                                "gap-3 cursor-pointer py-2.5 px-4 rounded-lg mb-1",
+                                                                                isCurrent && "bg-accent/70 text-accent-foreground",
+                                                                                l.isSubchapter && "ml-8"
+                                                                            )}
+                                                                        >
+                                                                            <div className={cn(
+                                                                                "w-6 h-6 flex items-center justify-center rounded-md font-mono text-[10px] font-bold shrink-0",
+                                                                                isCurrent 
+                                                                                    ? "bg-primary text-white" 
+                                                                                    : "bg-muted text-muted-foreground",
+                                                                                l.isSubchapter && "w-4 h-6 border-none bg-transparent"
+                                                                            )}>
+                                                                                {l.isSubchapter ? (
+                                                                                    <div className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                                                                                ) : (
+                                                                                    topLevelIndex
+                                                                                )}
+                                                                            </div>
+                                                                            <span className={cn(
+                                                                                "truncate flex-1 font-medium",
+                                                                                l.isSubchapter ? "text-xs" : "text-sm"
+                                                                            )}>{l.title}</span>
+                                                                            {isCurrent && <Check className="w-3.5 h-3.5 text-primary ml-auto" />}
+                                                                        </CommandItem>
+                                                                    );
+                                                                });
+                                                            })()}
+                                                        </CommandGroup>
+                                                    </CommandList>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
                     </motion.div>
                 ) : (
                     <motion.div 
@@ -369,7 +369,7 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                     <List className="w-3 h-3 text-muted-foreground/60 group-hover:text-primary transition-colors" />
                 </button>
             </PopoverTrigger>
-            <PopoverContent className="p-0 w-[calc(100vw-2rem)] sm:w-[300px]" align="center" sideOffset={8}>
+            <PopoverContent className="p-0 w-[calc(100vw-2rem)] sm:w-[400px]" align="center" sideOffset={8}>
                 <Command value={slideValue} onValueChange={setSlideValue}>
                     <CommandInput placeholder="Search slides..." />
                     <CommandList>
@@ -532,7 +532,7 @@ function SlideContent({ slide, index }: { slide: Slide; index: number }) {
                 <div className="flex-1 overflow-visible px-2">
                     {hasMap ? (
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 h-full items-start">
-                            <div className="lg:col-span-4 overflow-y-auto no-scrollbar h-full pb-20">
+                            <div className="lg:col-span-4 overflow-y-auto no-scrollbar h-full pb-20" data-lenis-prevent>
                                 <EnhancedMarkdown content={cleanContent} />
                             </div>
                             <div className="lg:col-span-8 flex items-center justify-center bg-muted/20 rounded-[3rem] border border-border/40 relative overflow-visible h-full max-h-[70vh]">
@@ -543,7 +543,7 @@ function SlideContent({ slide, index }: { slide: Slide; index: number }) {
                             </div>
                         </div>
                     ) : (
-                        <div className="overflow-y-auto pr-4 no-scrollbar pb-20 h-full w-full">
+                        <div className="overflow-y-auto pr-4 no-scrollbar pb-20 h-full w-full" data-lenis-prevent>
                             <div className="w-full">
                                 <EnhancedMarkdown content={cleanContent} />
                             </div>

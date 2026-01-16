@@ -69,7 +69,8 @@ For PMs unfamiliar with GTM, this step is about translating the technical build 
 * **Define GTM Strategy (The "How to Win"):**
   * **Target Market Segmentation**: Identify exactly who the feature is for
   * **Value Proposition Development**: Transitioning from "Features" (what it does) to "Outcomes" (how it helps).
-  * **Commercial & Financial Mechanism**: * Pricing: Finalizing subscription fees or insurance premiums.
+  * **Commercial & Financial Mechanism**: 
+    * **Pricing**: Finalizing subscription fees or insurance premiums.
     * **Settlement Readiness**: (Critical for PMs) Ensuring Finance/Accounting have the reports and logic needed for billing, insurance vendor payouts, or tax invoicing.
   * **Distribution & Discovery**: Defining the touchpoints (In-app banners, Direct Sales, or Email).
 
@@ -212,28 +213,3 @@ Final checklist before moving to Post-Launch (Module 8).
 * **NPI deck has been presented** and shared with all internal departments.
 * **Financial settlement and reporting paths are verified** as ready.
 * **Marketing campaigns and support guides are active** and consistent.
-
----
-
-##  Check!
-
-**Question 1**: What is the "Billing Blackhole" anti-pattern?
-- A) When users pay too much for a feature.
-- B) Launching a paid feature before the financial/billing systems are ready to reconcile it.
-- C) A technical bug in the checkout UI.
-
-(Correct: B)
-
-**Question 2**: Why is the "NPI" (New Product Introduction) deck important?
-- A) It serves as the internal source of truth for all departments (Sales, CS, Ops).
-- B) It's a way to show off the designer's portfolio.
-- C) It's strictly for the CEO and no one else.
-
-(Correct: A)
-
-**Question 3**: What is the purpose of the "War Room" ritual?
-- A) To plan future competitive moves.
-- B) To monitor stability and respond to real-time issues on launch day.
-- C) To celebrate the launch before it happens.
-
-(Correct: B)

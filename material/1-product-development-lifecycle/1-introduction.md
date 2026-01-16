@@ -10,11 +10,11 @@ description: "Overview of the Product Operating Model and PDLC Phases."
 
 ## The Product Operating Model
 
-:::present
+::::present
 - **Official Operational Manual** for PDLC (not just theory).
 - **Goal**: Move from "Feature-Factory" (outputs) to "Outcome-Driven" (value).
 - **Core Focus**: User Value & Business Impact.
-:::
+::::
 
 This playbook serves as the official operational manual for the Product Development Lifecycle (PDLC). Far from a static theoretical framework, this is a living, working document designed to standardize the rigor with which we identify, design, build, and scale our products. By establishing a shared language and set of expectations, we ensure that every team member, from junior associates to middle management, operates with the same level of precision and strategic alignment, reducing friction during handovers and decision-making.
 
@@ -23,34 +23,34 @@ To transition the team away from a "feature-factory" mindset—where success is 
 
 ## The 9 Phases of PDLC
 
-:::present
+::::present
 - **9 Distinct Phases** of the lifecycle.
 - **Goal**: Rigor, Quality, and Strategic Alignment.
 
 [PDLC_MAP]
-:::
+::::
 
 Our lifecycle is divided into nine distinct phases to ensure rigor, quality, and strategic alignment.
 
 [PDLC_MAP]
 
-1. Discovery: Identifying the "Right Problem" through user research and market analysis.
-2. Ideation: Exploring potential solutions and prioritizing based on impact vs. effort.
-3. Solution Design & Validation: Creating UI/UX blueprints and testing prototypes with real users.
-4. Planning & Alignment: Bridging the gap between business requirements and technical feasibility.
-5. Product Development and testing: Agile execution, coding, and integrated quality assurance.
-6. Launch & GTM: Orchestrating market entry and internal organizational readiness.
-7. Post-Launch Hyper-care: Ensuring technical stability and monitoring early adoption (0-30 days).
-8. Growth & Maturity: Optimizing the product for scale, market share, and profitability.
-9. Decline & Sunset: Managing the strategic phase-out or pivot of features/products.
+1. **Discovery**: Identifying the "Right Problem" through user research and market analysis.
+2. **Ideation**: Exploring potential solutions and prioritizing based on impact vs. effort.
+3. **Solution Design & Validation**: Creating UI/UX blueprints and testing prototypes with real users.
+4. **Planning & Alignment**: Bridging the gap between business requirements and technical feasibility.
+5. **Product Development and testing**: Agile execution, coding, and integrated quality assurance.
+6. **Launch & GTM**: Orchestrating market entry and internal organizational readiness.
+7. **Post-Launch Hyper-care**: Ensuring technical stability and monitoring early adoption (0-30 days).
+8. **Growth & Maturity**: Optimizing the product for scale, market share, and profitability.
+9. **Decline & Sunset**: Managing the strategic phase-out or pivot of features/products.
 
 ## Strategic Alignment (The "Big Three")
 
-:::present
+::::present
 - **Desirability**: Do users want it? (Product/UX)
 - **Viability**: Does it support business goals? (Product Management)
 - **Feasibility**: Can we build it? (Engineering)
-:::
+::::
 
 For the PDLC to function, three core pillars must be in constant synchronization. If one is missing, the product fails.
 
@@ -62,12 +62,12 @@ For the PDLC to function, three core pillars must be in constant synchronization
 
 ## Operational RACI (Who Does What?)
 
-:::present
+::::present
 - **R**esponsible: Does the work.
 - **A**ccountable: Owns the outcome (Final sign-off).
 - **C**onsulted: Two-way input.
 - **I**nformed: One-way update.
-:::
+::::
 
 To prevent friction and ensure accountability, the following roles are defined across the PDLC.
 
@@ -90,7 +90,7 @@ To prevent friction and ensure accountability, the following roles are defined a
 | **Post-Launch**             | A               | I              | R           | C             |
 | **Growth/Maturity**         | A/R             | C              | C           | R             |
 | **Decline/Sunset**          | A/R             | I              | C           | I             |
-:::
+::::
 
 ### PDLC Matrix
 

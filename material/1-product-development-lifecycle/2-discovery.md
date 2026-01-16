@@ -10,12 +10,12 @@ description: "Identifying the right problem to solve through research and analys
 
 ## Entrance Criteria
 
-:::present
+::::present
 - **Strategic Objective**: Align on "What success looks like" (growth, churn, or efficiency).
 - **Stakeholder Buy-in**: Ensure Design and Data resources are locked—not just "aware."
 - **Baseline Metrics**: Establish current benchmarks to measure future impact.
 > [!TIP] **The Hypothesis First Rule:** Never go into Discovery blind. Write a "Problem Hypothesis" first: *We believe [User Segment] struggles with [Task] because of [Reason].*
-:::
+::::
 
 Before initiating the Discovery phase, the following must be present:
 
@@ -25,13 +25,13 @@ Before initiating the Discovery phase, the following must be present:
 
 ## Lead Roles & Squad
 
-:::present
+::::present
 - **Primary Driver**: **Product Manager** (The "What" and the "Why").
 - **Design Lead**: Translates pain points into potential journey maps.
 - **Engineering Lead**: Assesses feasibility early to prevent "Dreaming in a Vacuum."
 - **Data Analyst**: Provides the quantitative "Truth" behind user behavior.
 > [!TIP] **The SME Shortcut:** Invite Subject Matter Experts (Sales/Support) to your kick-off—they represent the "Front Line" and know the common complaints by heart.
-:::
+::::
 
 * **Primary Driver**: Product Manager (PM).
 * **Support Squad**: Product Designer / UX Researcher, Data Analyst, Engineering Lead, and Subject Matter Experts (SMEs).
@@ -41,7 +41,7 @@ Before initiating the Discovery phase, the following must be present:
 
 ## Discovery Flow
 
-:::present
+::::present
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#e0e7ff','primaryTextColor':'#1e293b','primaryBorderColor':'#6366f1','lineColor':'#6366f1','fontSize':'16px'}}}%%
 graph LR
@@ -53,7 +53,7 @@ graph LR
     F --> G("Technical<br/>Feasibility")
     G --> H["Validated<br/>Problem<br/>Statement"]
 ```
-:::
+::::
 
 Understanding the sequence of validation:
 
@@ -70,13 +70,13 @@ graph TD
 
 ## Internal Data & Problem Definition
 
-:::present
+::::present
 - **Data Aggregation**: Spot friction points where users "bounce" or hesitate.
 - **Voice of Customer (VoC)**: Mine Support tickets and reviews for raw recurring themes.
 - **Internal Brainstorming & Stakeholder Alignment**: Map institutional knowledge and business constraints.
 
 > [!TIP] **Find the "Gravity":** Use heatmaps to find where users click vs. where you *think* they should click. Data usually reveals a different reality than intuition.
-:::
+::::
 
 Gather and synthesize existing internal information to define the "Opportunity Gap."
 
@@ -89,7 +89,7 @@ Gather and synthesize existing internal information to define the "Opportunity G
 
 ## User Research Methodologies
 
-:::present
+::::present
 | **Methodology** | **Essence** | **Best Use Case** |
 | :--- | :--- | :--- |
 | **Interviews** | *The Why* | Deep motivation & emotional friction. |
@@ -98,7 +98,7 @@ Gather and synthesize existing internal information to define the "Opportunity G
 | **Focus Groups** | *The Group* | Seeing peer influence & conflicting needs. |
 
 > [!TIP] **Triangulate or Fail:** A singular data source is a risk. Only trust an insight if you see it in **both** the quantitative data (Analytics) and qualitative feedback (Interviews).
-:::
+::::
 
 Deep-dive into user behaviors to validate the "Why" behind the data.
 
@@ -123,12 +123,12 @@ Deep-dive into user behaviors to validate the "Why" behind the data.
 
 ## Running User Research
 
-:::present
+::::present
 * **Hypothesis Mapping**: Map what you *think* you know vs. what you need to prove.
 * **Unbiased Recruitment**: Don't just talk to "Happy Users"—find the churned ones.
 * **Affinity Mapping**: Group observations into "Pain Themes" to find the biggest lever.
 > [!WARNING] **The Echo Chamber:** Avoid leading questions like "How much do you like this?" Instead, use: *"Walk me through the last time you tried to..."*
-:::
+::::
 
 ### How to Run User Research
 
@@ -150,12 +150,12 @@ Deep-dive into user behaviors to validate the "Why" behind the data.
 
 ## Market & Competitor Research
 
-:::present
+::::present
 - **SWOT Analysis**: Map where competitors are slow, expensive, or complex.
 - **Market Sizing**: Is the "Opportunity Gap" big enough to justify the build?
 - **Regulatory Check**: Identify "Red Tape" early (GDPR, Compliance, Legal).
 > [!TIP] **The "Blue Ocean" Move:** Look for "Workarounds." If customers are using Excel to solve something your app should do, that is a massive opportunity for a native feature.
-:::
+::::
 
 Assess the external environment to identify benchmarks and market risks.
 
@@ -186,12 +186,12 @@ Assess the external environment to identify benchmarks and market risks.
 
 ## Technical Discovery (Feasibility)
 
-:::present
+::::present
 - **Architectural Fit**: Does this break our core data model?
 - **Integration Readiness**: Do we have the APIs needed, or do we build them?
 - **Risk Assessment**: Identify high-complexity "Rabbit Holes" before they start.
 > [!TIP] **The "Buy vs. Build" Gate:** If the feature is complex but not your "Core Value," check for 3rd party APIs during technical discovery to save months of dev.
-:::
+::::
 
 A preliminary check to identify high-level technical blockers.
 
@@ -203,12 +203,12 @@ A preliminary check to identify high-level technical blockers.
 
 ## Rituals & Syncs
 
-:::present
+::::present
 - **Kick-off**: Align on the "Problem Statement" (not the solution!).
 - **Research Debriefs**: Quick syncs to pivot research if the data surprises you.
 - **HMW Workshops**: "How Might We" sessions to bridge the gap from Research to Ideation.
 > [!TIP] **No-Slides Zone:** Keep Discovery syncs visual. Use FigJam or Miro boards with raw user quotes to keep the team connected to the real human.
-:::
+::::
 
 * **Discovery Kick-off**: Align squad on objectives and timelines.
 * **Research Debriefs**: Periodic syncs to share raw findings and adjust plans.
@@ -216,13 +216,13 @@ A preliminary check to identify high-level technical blockers.
 
 ## Deliverables & Validation
 
-:::present
+::::present
 - **Validated Problem Statement**: Data-backed anchor.
 - **User Personas**: Profiles of verified target audience.
 - **Market Report**: Competitive landscape and trends.
 - **Feasibility Memo**: Summary of technical blockers.
 > [!IMPORTANT] **Validation Rule:** A problem is only validated when backed by **two or more conflicting sources** (Qualitative + Quantitative).
-:::
+::::
 
 The tangible artifacts produced during Discovery:
 
@@ -242,12 +242,12 @@ The tangible artifacts produced during Discovery:
 
 ## Common Pitfalls
 
-:::present
+::::present
 - **Solutionizing**: Designing UI before the problem is truly understood.
 - **Conflicting Signals**: Ignoring data that makes your "favorite feature" look bad.
 - **Analysis Paralysis**: Researching for months without a "Decision Gate."
 > [!TIP] **The One-Sentence Test:** If you can't describe the user problem in one sentence without mentioning a feature, you're not done with Discovery.
-:::
+::::
 
 * **Solving Before Defining**: Proposing UI solutions before validation.
 * **Indicator Mismatch**: Using the wrong metric (e.g., NPS for a single button).
@@ -256,12 +256,12 @@ The tangible artifacts produced during Discovery:
 
 ## Exit Criteria (The Gate)
 
-:::present
+::::present
 - **Problem is clearly defined** and data-backed (Qual + Quant).
 - **Target personas and their pain points** have been validated.
 - **Market viability and technical risks** are documented.
 - **Final Sign-off**: PM and Stakeholders agree on the path.
-:::
+::::
 
 * **Problem is clearly defined** and data-backed (Qual + Quant).
 * **Target personas and their pain points** have been validated.

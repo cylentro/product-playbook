@@ -6,3 +6,5 @@ export { MermaidDiagram } from './MermaidDiagram';
 export { InteractiveHero } from './InteractiveHero';
 export { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 export { SmoothScroll } from './SmoothScroll';
+export { CommandPalette } from './CommandPalette';
+export { KeyboardShortcutsDialog } from './KeyboardShortcutsDialog';

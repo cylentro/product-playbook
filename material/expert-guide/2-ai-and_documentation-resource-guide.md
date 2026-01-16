@@ -1,11 +1,11 @@
 ---
-title: "PM AI & Documentation Resource Guide"
+title: "AI & Documentation Resource Guide"
 description: "A centralized hub for modern Product Management tools and techniques."
 present: true
 quiz: false
 ---
 
-# PM AI & Documentation Resource Guide
+# AI & Documentation Resource Guide
 ::::present
 A centralized hub for modern Product Management tools and techniques.
 ::::
@@ -191,6 +191,7 @@ Creative sandboxes and technical development tools.
 * [Stitch](https://stitch.withgoogle.com/): AI-powered UI/UX design assistant.
 * [Pomelli](https://labs.google.com/pomelli/about/): AI branding and identity generator.
 * [Mixboard](https://mixboard.google.com/projects): Concept and moodboard generation.
+* [Whisk](https://labs.google/fx/tools/whisk): Create animation and transition. [Example](https://www.youtube.com/watch?v=XP6TJRbOdGo).
 
 ### Sandbox & Development
 

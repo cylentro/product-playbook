@@ -41,7 +41,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-import { SmoothScroll } from "@/components/modules";
+import { SmoothScroll, CommandPalette, KeyboardShortcutsDialog } from "@/components/modules";
 import { ServiceWorkerRegistration } from "@/components/pwa";
 
 export default function RootLayout({
@@ -55,6 +55,8 @@ export default function RootLayout({
         className={`${inter.variable} font-sans antialiased`}
       >
         <ServiceWorkerRegistration />
+        <CommandPalette />
+        <KeyboardShortcutsDialog />
         <SmoothScroll>
           {children}
         </SmoothScroll>

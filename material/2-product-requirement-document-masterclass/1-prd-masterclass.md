@@ -46,6 +46,59 @@ A great PRD justifies its existence through 3 validation lenses:
 * **The Value (Viability)**: How does this build move the needle for our company values?
 * **The Success (Measurability)**: What specific metrics will prove that this solution resolved the problem?
 
+## The Case for a Centralized Document Repository
+
+::::present
+### Why Centralization Matters
+From a company perspective, a unified PRD repository is a strategic asset, not just a filing system.
+
+:::col
+#### Knowledge & Continuity
+* **Institutional Memory**: Decisions persist beyond employee tenure.
+* **Onboarding Velocity**: New hires ramp up 40% faster with access to historical context.
+:::
+:::col
+#### Governance & Visibility
+* **Audit Trail**: Full change history for compliance and post-mortems.
+* **Cross-Team Alignment**: One link, one truth, zero Slack threads.
+:::
+::::
+
+A centralized PRD repository is not just a convenience for Product Managers—it's a **strategic asset** that compounds in value over time. Here's why it matters from the company perspective:
+
+### 1. Institutional Knowledge & Continuity
+
+When a PM leaves, their Notion pages often become digital graveyards. A centralized, standardized repository ensures that **decisions outlive individuals**.
+
+* **Historical Context**: New team members can trace why a feature was built a certain way by reading the original Problem Statement, Hypothesis, and learnings.
+* **Onboarding Velocity**: Studies show engineers and PMs onboard 30-40% faster when they have access to well-structured historical documentation.
+
+### 2. Governance, Compliance, and Audit Trails
+
+For companies handling sensitive data (financial, health, logistics), regulators may ask: *"Why was this feature built this way?"*
+
+* **Version History**: The Versioning Table (Section 0) provides a clear audit trail of every logic change.
+* **Accountability**: RACI-style ownership (Accountable, Responsible, Consulted) is baked into the document.
+* **Post-Mortem Fuel**: When incidents occur, the PRD serves as the baseline for root-cause analysis.
+
+### 3. Cross-Functional Visibility and Alignment
+
+A scattered documentation landscape leads to "Slack archaeology"—endless searches for that one decision thread.
+
+* **Single Source of Truth**: One shareable link replaces 15 DMs asking "where's the latest spec?"
+* **Async-First Culture**: Stakeholders in different time zones can self-serve context without waiting for a sync.
+
+### 4. Strategic Planning and Portfolio Intelligence
+
+When PRDs are centralized and consistently structured, leadership gains a powerful lens into the product portfolio.
+
+* **Pattern Recognition**: Identify recurring user pain points across squads.
+* **Resource Allocation**: Spot over-invested areas vs. neglected opportunities.
+* **Roadmap Justification**: Build business cases using aggregated data from past launches (e.g., "Features with validated prototypes shipped 25% faster").
+
+> [!TIP]
+> **Start Small, Scale Fast.** You don't need a perfect system on day one. Start by migrating your last 3 PRDs, establish a naming convention, and socialize the "one link" rule. The habit compounds.
+
 ## Anatomy of Our PRD Format: Section-by-Section Deep Dive
 
 ::::present

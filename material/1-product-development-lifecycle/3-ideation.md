@@ -63,7 +63,7 @@ graph LR
 From a validated problem to a committed roadmap:
 
 ```mermaid
-graph LR
+graph TD
     A[Problem Motivation] --> B(Target Segments)
     B --> C(Needs Extraction)
     C --> D(Hypotheses)
@@ -437,21 +437,12 @@ A communication tool, not a Gantt chart:
 
 The roadmap is the strategic communication tool that balances high-confidence execution with low-confidence exploration.
 
-* **NOW (Committed & High Confidence)**:
-  * **Timeline**: The current sprint or the immediate next cycle (0–4 weeks).
-  * **Criteria**: Features in this bucket have passed Step 8 (Prioritization), Step 3 (Technical Discovery), and have a finalized PRD/Design.
-  * **Confidence**: 5/5 on the Evidence Meter. Engineering capacity is explicitly allocated.
-  * **Commitment**: Firm delivery dates or sprint commitments.
-* **NEXT (Validated & High Clarity)**:
-  * **Timeline**: The upcoming 1–3 months.
-  * **Criteria**: These are validated problems/solutions that are currently being refined or waiting for "Now" items to finish.
-  * **Confidence**: 3/5 to 4/5 on the Evidence Meter. The problem is validated, and the solution concept is tested, but technical debt or resource constraints prevent immediate execution.
-  * **Commitment**: Strategic intent to build; subject to adjustment based on "Now" outcomes.
-* **LATER (Discovery & Future Vision)**:
-  * **Timeline**: 3+ months and beyond.
-  * **Criteria**: These are high-level themes, ambitious hypotheses, or problems identified in Step 4 that require further Discovery (Module 2).
-  * **Confidence**: 1/5 to 2/5 on the Evidence Meter (Gut Feelings, Trends, or "Market Windows").
-  * **Commitment**: No firm commitment. These items act as a directional "North Star" for the product’s evolution.
+| | Now| Next | Later |
+| --- | --- | --- | --- |
+|**Timeline**|The current sprint or the immediate next cycle (0–4 weeks).|The upcoming 1–3 months.|The next 3 months or more.|
+|**Criteria**|Features in this bucket have passed Step 8 (Prioritization), Step 3 (Technical Discovery), and have a finalized PRD/Design.|These are validated problems/solutions that are currently being refined or waiting for "Now" items to finish.|These are high-level themes, ambitious hypotheses, or problems identified in Step 4 that require further Discovery (Module 2).|
+|**Confidence**|5/5 on the Evidence Meter. Engineering capacity is explicitly allocated.|3/5 to 4/5 on the Evidence Meter. The problem is validated, and the solution concept is tested, but technical debt or resource constraints prevent immediate execution.|1/5 to 2/5 on the Evidence Meter (Gut Feelings, Trends, or "Market Windows").|
+|**Commitment**|Firm delivery dates or sprint commitments.|Strategic intent to build; subject to adjustment based on "Now" outcomes.|No firm commitment. These items act as a directional "North Star" for the product’s evolution.|
 
 > [!IMPORTANT]
 > **NOW** items must have a finalized PRD and Design. **LATER** items are directional "North Stars" subject to change.

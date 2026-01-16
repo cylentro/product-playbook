@@ -189,15 +189,15 @@ a,
 }
 
 .prose h1 {
-  @apply text-3xl md:text-5xl font-bold tracking-tight mb-6 pb-4 border-b border-border/50 text-foreground;
+  @apply text-4xl md:text-6xl font-black tracking-tighter mb-8 pb-4 border-b border-border/50 text-foreground leading-[0.9];
 }
 
 .prose h2 {
-  @apply text-2xl md:text-3xl font-semibold mt-10 mb-5 scroll-mt-20 text-foreground;
+  @apply text-2xl md:text-4xl font-black mt-12 mb-6 scroll-mt-20 text-foreground tracking-tight;
 }
 
 .prose h3 {
-  @apply text-xl md:text-2xl font-semibold mt-7 mb-3 text-foreground/90;
+  @apply text-lg md:text-2xl font-bold mt-8 mb-4 text-foreground/90 tracking-tight;
 }
 
 .prose h4 {
