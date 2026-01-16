@@ -41,7 +41,7 @@ Comprehensive keyboard shortcuts and mouse controls for efficient navigation.
 - **Command Palette** (`⌘K` / `Ctrl+K`): Quick access to any module or lesson across the entire playbook.
 - **Module Page Navigation**: Use arrow keys or Vim-style `j`/`k` to navigate chapters, `Enter` to open, `Esc` to return home.
 - **Mode Switching**: Instantly switch between Learning, Presentation, and Quiz modes with keyboard shortcuts.
-- **Navigation Guide** (`?`): Interactive drawer with OS-aware shortcuts (Mac/Windows) organized by context, featuring both keyboard and mouse controls.
+- **Navigation Guide** (`?`): Interactive drawer with OS-aware shortcuts (Mac/Windows) organized by context, featuring both keyboard and mouse controls (including side-click navigation in Learning Mode).
 
 ### 🛠️ Developer-First Content
 All course material is stored in clean, manageable Markdown files in the `/app/material` directory, allowing for rapid content updates.

@@ -142,6 +142,47 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [mode, setMode, router, lesson.slides.length, lesson.hasQuiz, isDesktop]);
 
+    // Mouse navigation for Learning Mode
+    useEffect(() => {
+        if (mode !== 'learning') return;
+
+        const handleMouseClick = (e: MouseEvent) => {
+            // Don't trigger if user is selecting text (selection exists)
+            const selection = window.getSelection();
+            if (selection && selection.toString().length > 0) return;
+
+            // Ignore if clicking interactive elements
+            const target = e.target as HTMLElement;
+            if (
+                target.tagName === 'BUTTON' || 
+                target.tagName === 'A' || 
+                target.tagName === 'INPUT' || 
+                target.tagName === 'TEXTAREA' ||
+                target.closest('button') || 
+                target.closest('a') || 
+                target.closest('.interactive') ||
+                target.closest('.lucide') // Icons
+            ) {
+                return;
+            }
+
+            const width = window.innerWidth;
+            const x = e.clientX;
+
+            // Trigger points: Left 20% or Right 20%
+            if (x < width * 0.2) {
+                // Scroll Up
+                window.scrollBy({ top: -window.innerHeight * 0.8, behavior: 'smooth' });
+            } else if (x > width * 0.8) {
+                // Scroll Down
+                window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+            }
+        };
+
+        window.addEventListener('click', handleMouseClick);
+        return () => window.removeEventListener('click', handleMouseClick);
+    }, [mode]);
+
     const handleCopy = () => {
         navigator.clipboard.writeText(lesson.rawContent);
         setCopied(true);

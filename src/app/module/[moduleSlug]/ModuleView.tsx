@@ -115,7 +115,7 @@ export function ModuleView({ module, lessons, moduleSlug }: ModuleViewProps) {
                 <div className="space-y-1">
                     <div className="px-4 py-2 border-b border-border/40 mb-4 flex items-center justify-between">
                         <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/40">Chapters</span>
-                        <span className="text-[9px] font-mono text-muted-foreground/30">
+                        <span className="text-[9px] font-mono text-muted-foreground/30 hidden sm:inline">
                             Use ↑↓ or J/K to navigate • Enter to select • Esc to go back
                         </span>
                     </div>

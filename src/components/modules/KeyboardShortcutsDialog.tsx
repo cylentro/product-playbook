@@ -65,6 +65,13 @@ const KEYBOARD_SHORTCUTS: ShortcutGroup[] = [
 
 const MOUSE_SHORTCUTS: ShortcutGroup[] = [
     {
+        title: 'Learning Mode',
+        shortcuts: [
+            { keys: ['Click Left Edge'], description: 'Scroll up' },
+            { keys: ['Click Right Edge'], description: 'Scroll down' },
+        ],
+    },
+    {
         title: 'Presentation',
         shortcuts: [
             { keys: ['Click Left Edge'], description: 'Previous slide' },
