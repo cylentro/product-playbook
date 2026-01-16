@@ -4,6 +4,126 @@ order: 6
 estimatedTime: 12
 quiz: true
 description: "The execution phase: building and testing the solution."
+quizQuestions:
+  - id: "development-q1"
+    question: "What is the 'Definition of Done' (DoD)?"
+    options:
+      - "When code is written"
+      - "When a feature passes all ACs and testing on Staging"
+      - "When the PM approves"
+      - "When deployed to production"
+    correctIndex: 1
+    explanation: "A feature isn't 'Done' when code is written; it's 'Done' when it passes all Acceptance Criteria and testing on Staging, meeting the DoD standards."
+
+  - id: "development-q2"
+    question: "What is the '1-Hour Rule'?"
+    options:
+      - "Code reviews must be done within 1 hour"
+      - "If a developer is stuck for more than 1 hour, call a 15-minute sync with the PM"
+      - "Meetings can't exceed 1 hour"
+      - "Deployments must complete in 1 hour"
+    correctIndex: 1
+    explanation: "The 1-Hour Rule states that if a developer is stuck on a logic gap for more than 1 hour, they should call an immediate 15-minute sync with the PM to resolve it quickly."
+
+  - id: "development-q3"
+    question: "What is 'Regression Testing'?"
+    options:
+      - "Testing new features only"
+      - "Re-testing the entire system to ensure new changes haven't broken existing features"
+      - "Testing backwards compatibility"
+      - "Testing performance degradation"
+    correctIndex: 1
+    explanation: "Regression Testing re-tests the entire system to ensure new changes haven't introduced bugs or broken existing features anywhere in the application."
+
+  - id: "development-q4"
+    question: "What is the difference between Smoke Testing and Full-Cycle Testing?"
+    options:
+      - "Smoke is for production, Full-Cycle is for staging"
+      - "Smoke is a rapid verification of core paths; Full-Cycle is comprehensive end-to-end testing"
+      - "They are the same thing"
+      - "Smoke is automated, Full-Cycle is manual"
+    correctIndex: 1
+    explanation: "Smoke Testing is a rapid verification of critical paths (minutes) to ensure stability. Full-Cycle Testing is comprehensive end-to-end verification covering all edge cases (hours/days)."
+
+  - id: "development-q5"
+    question: "When should UAT (User Acceptance Testing) occur?"
+    options:
+      - "Before any development starts"
+      - "After features pass QA testing on Staging"
+      - "Only after production deployment"
+      - "During the ideation phase"
+    correctIndex: 1
+    explanation: "UAT occurs after features pass QA testing on Staging, allowing representative users to validate the solution aligns with business needs before production."
+
+  - id: "development-q6"
+    question: "What is a P0 bug?"
+    options:
+      - "A minor cosmetic issue"
+      - "A critical blocker that must be fixed before Go-live"
+      - "A feature request"
+      - "A performance optimization"
+    correctIndex: 1
+    explanation: "P0 (Priority 0) bugs are critical blockers that prevent core functionality and must be fixed before Go-live. No shortcuts—quality is not negotiable."
+
+  - id: "development-q7"
+    question: "What is 'Functional QA'?"
+    options:
+      - "Testing the entire system"
+      - "Testing individual features in isolation to ensure they meet specific ACs"
+      - "Testing performance"
+      - "Testing security"
+    correctIndex: 1
+    explanation: "Functional QA tests individual features in isolation to ensure they meet their specific Acceptance Criteria as defined in the PRD."
+
+  - id: "development-q8"
+    question: "Why is 'Video Evidence' important in UAT?"
+    options:
+      - "It's required by law"
+      - "A 30-second screen recording is worth 1,000 words when documenting bugs"
+      - "It makes reports look professional"
+      - "It's not important"
+    correctIndex: 1
+    explanation: "Video evidence (via Loom/Zoom) captures the exact steps and context of bugs, making it much clearer than written descriptions—'Video is Truth.'"
+
+  - id: "development-q9"
+    question: "What is 'Staging Drift'?"
+    options:
+      - "When staging server moves locations"
+      - "When staging data doesn't match production reality"
+      - "When deployments are delayed"
+      - "When code changes unexpectedly"
+    correctIndex: 1
+    explanation: "Staging Drift occurs when the staging environment's data, configuration, or state doesn't match production reality, leading to false test results."
+
+  - id: "development-q10"
+    question: "What is the purpose of 'Feature Flags'?"
+    options:
+      - "To mark completed features"
+      - "To test in production with controlled rollout before full release"
+      - "To track feature requests"
+      - "To prioritize features"
+    correctIndex: 1
+    explanation: "Feature Flags allow testing in production using test accounts or controlled rollout, enabling safe validation before full public release."
+
+  - id: "development-q11"
+    question: "What is 'Happy Path Bias'?"
+    options:
+      - "Only testing scenarios that work, not what breaks"
+      - "Testing with happy users"
+      - "Optimistic project planning"
+      - "Positive code reviews"
+    correctIndex: 0
+    explanation: "Happy Path Bias is when QA only tests positive scenarios (what works) instead of testing negative scenarios, edge cases, and error handling (what breaks)."
+
+  - id: "development-q12"
+    question: "What should happen if a Smoke Test fails after production deployment?"
+    options:
+      - "Continue and fix later"
+      - "Immediate rollback"
+      - "Notify users"
+      - "Schedule a meeting"
+    correctIndex: 1
+    explanation: "If a Smoke Test fails after production deployment, the release must be rolled back immediately to prevent user impact. Never 'Launch and Leave.'"
 ---
 
 # Product Development & Testing Phase

@@ -4,6 +4,126 @@ order: 7
 estimatedTime: 10
 quiz: true
 description: "Readying the organization and the market for the new release."
+quizQuestions:
+  - id: "launch-q1"
+    question: "Why should you never launch on a Friday?"
+    options:
+      - "It's bad luck"
+      - "To ensure the squad is available for at least 48 hours of post-launch monitoring"
+      - "Users don't use products on weekends"
+      - "Marketing campaigns don't work on Fridays"
+    correctIndex: 1
+    explanation: "Never launch on a Friday to ensure the squad is available for at least 48 hours of post-launch stability monitoring and quick issue resolution."
+
+  - id: "launch-q2"
+    question: "What is an NPI (New Product Introduction)?"
+    options:
+      - "A new pricing index"
+      - "The internal 'Source of Truth' deck explaining the problem, solution, and rollout"
+      - "A new product inventory system"
+      - "A marketing campaign"
+    correctIndex: 1
+    explanation: "NPI is the definitive internal deck that explains the problem, solution, roadmap, and success metrics to the entire company—the 'Source of Truth.'"
+
+  - id: "launch-q3"
+    question: "What is the difference between a Soft Launch and a Big Bang launch?"
+    options:
+      - "Soft Launch is quieter, Big Bang is louder"
+      - "Soft Launch targets a limited segment first; Big Bang releases to everyone at once"
+      - "Soft Launch is for mobile, Big Bang is for web"
+      - "They are the same thing"
+    correctIndex: 1
+    explanation: "Soft Launch releases to a limited segment first for validation and monitoring. Big Bang releases to everyone at once, which is riskier for complex features."
+
+  - id: "launch-q4"
+    question: "What is 'Settlement Readiness'?"
+    options:
+      - "Preparing the office for launch party"
+      - "Ensuring Finance can bill users and reconcile payments"
+      - "Settling disputes with competitors"
+      - "Finalizing legal agreements"
+    correctIndex: 1
+    explanation: "Settlement Readiness ensures Finance/Accounting have the reports and logic needed for billing, payouts, or tax invoicing. If users can pay but Finance can't reconcile, the product is a liability."
+
+  - id: "launch-q5"
+    question: "What is an LRR (Launch Readiness Review)?"
+    options:
+      - "A post-launch retrospective"
+      - "A mandatory 'Go/No-Go' meeting held 48 hours before launch"
+      - "A legal review"
+      - "A revenue report"
+    correctIndex: 1
+    explanation: "LRR is a mandatory 'Go/No-Go' meeting held 48 hours before launch with all key stakeholders to verify readiness and make the final decision."
+
+  - id: "launch-q6"
+    question: "What is the 'Support Gap'?"
+    options:
+      - "A gap in customer support hours"
+      - "Launching without CS guides, resulting in agents learning about features from users"
+      - "Missing support tickets"
+      - "A technical bug"
+    correctIndex: 1
+    explanation: "The Support Gap occurs when CS agents aren't trained on new features before launch, learning about them from confused users—fatal for trust."
+
+  - id: "launch-q7"
+    question: "What is 'Sales Enablement'?"
+    options:
+      - "Hiring more salespeople"
+      - "Creating demo environments, scripts, and training so Sales can effectively sell the product"
+      - "Enabling online sales"
+      - "Sales automation tools"
+    correctIndex: 1
+    explanation: "Sales Enablement provides the Sales team with demo environments, scripts, training, and materials so they can effectively demonstrate and sell the product."
+
+  - id: "launch-q8"
+    question: "What is a 'Value Proposition'?"
+    options:
+      - "The price of the product"
+      - "Translating 'Features' (what it does) into 'Outcomes' (how it helps users)"
+      - "A business proposal"
+      - "A marketing slogan"
+    correctIndex: 1
+    explanation: "Value Proposition translates technical features into user outcomes—not 'We built a CSV uploader' but 'Save 10 hours per week on manual data entry.'"
+
+  - id: "launch-q9"
+    question: "What is a 'Launch War Room'?"
+    options:
+      - "A physical room for launch parties"
+      - "High-frequency sync on launch day to monitor stability and initial feedback"
+      - "A conflict resolution meeting"
+      - "A competitive analysis session"
+    correctIndex: 1
+    explanation: "Launch War Room is a high-frequency sync on launch day where the team monitors stability, user feedback, and quickly addresses any issues in real-time."
+
+  - id: "launch-q10"
+    question: "What is the 'Billing Blackhole' pitfall?"
+    options:
+      - "Users not paying their bills"
+      - "Launching a paid feature before Finance can reconcile payments"
+      - "Missing billing addresses"
+      - "Incorrect pricing"
+    correctIndex: 1
+    explanation: "The Billing Blackhole happens when Marketing launches a paid feature (like Insurance) before Finance has the reports and systems to reconcile the payments."
+
+  - id: "launch-q11"
+    question: "Why is 'Demo with Realism' important for Sales?"
+    options:
+      - "It looks more professional"
+      - "Never give Sales a broken staging account—ensure the demo reflects the true user experience"
+      - "It's required by law"
+      - "It saves time"
+    correctIndex: 1
+    explanation: "Demo environments must be clean and reflect the true user experience. A broken staging account undermines Sales credibility and confuses prospects."
+
+  - id: "launch-q12"
+    question: "What should be defined as 'Success and Failure Gates' for launch?"
+    options:
+      - "Revenue targets only"
+      - "Quantifiable metrics for the first 30 days (e.g., adoption rate vs. support ticket spike)"
+      - "Number of users"
+      - "Marketing impressions"
+    correctIndex: 1
+    explanation: "Define quantifiable success/failure metrics for the first 30 days (e.g., 'Success = 20% adoption, Failure = 50+ P1 support tickets') to objectively measure launch performance."
 ---
 
 # Launch & Go-to Market Phase

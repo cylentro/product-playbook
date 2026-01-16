@@ -4,9 +4,129 @@ order: 8
 estimatedTime: 8
 quiz: true
 description: "Monitoring early performance and ensuring technical stability post-launch."
+quizQuestions:
+  - id: "hypercare-q1"
+    question: "What is the primary focus during the first 14 days of Hyper-care?"
+    options:
+      - "Marketing campaigns"
+      - "System stability and rapid bug fixing"
+      - "Feature expansion"
+      - "Revenue optimization"
+    correctIndex: 1
+    explanation: "The first 14 days of Hyper-care focus on system stability—tracking crashes, API failures, and resolving critical bugs before focusing on adoption metrics."
+
+  - id: "hypercare-q2"
+    question: "What is the '30-Day Mirage'?"
+    options:
+      - "A marketing illusion"
+      - "Assuming success at Day 30 when users haven't completed their first full business cycle"
+      - "A data visualization error"
+      - "A temporary spike in usage"
+    correctIndex: 1
+    explanation: "The 30-Day Mirage is the false assumption that initial success equals long-term success, ignoring retention cycles (e.g., VIP requires a full quarter to validate)."
+
+  - id: "hypercare-q3"
+    question: "What should happen if metrics instrumentation isn't reporting on Day 1?"
+    options:
+      - "Wait a few days"
+      - "Treat it as a P0 blocker and resolve immediately"
+      - "Continue with manual tracking"
+      - "Report it in the next sprint"
+    correctIndex: 1
+    explanation: "'Flying Blind is Fatal.' If metrics aren't reporting on Day 1, treat it as a P0 blocker—you cannot make data-driven decisions without instrumentation."
+
+  - id: "hypercare-q4"
+    question: "What is the purpose of a 'Daily Hyper-care Standup'?"
+    options:
+      - "Plan new features"
+      - "Morning triage for live bugs discovered by real users"
+      - "Review marketing performance"
+      - "Discuss long-term strategy"
+    correctIndex: 1
+    explanation: "Daily Hyper-care Standups (Days 0-14) are 15-minute syncs with Dev/CS to triage and fix live bugs discovered by real users in production."
+
+  - id: "hypercare-q5"
+    question: "What is an IDI (In-Depth Interview) used for in Hyper-care?"
+    options:
+      - "Hiring new team members"
+      - "1-on-1 sessions with early adopters to understand the 'Why' behind behaviors"
+      - "Internal design reviews"
+      - "Investor presentations"
+    correctIndex: 1
+    explanation: "IDI (In-Depth Interviews) are 1-on-1 sessions with early adopters to dig into 'Why' they use or skip a feature, providing qualitative insights beyond metrics."
+
+  - id: "hypercare-q6"
+    question: "Why can't you validate VIP success at Day 30?"
+    options:
+      - "Not enough users"
+      - "VIP requires 60 orders in 1 quarter, so you must monitor the full quarter"
+      - "Data isn't ready"
+      - "Marketing hasn't started"
+    correctIndex: 1
+    explanation: "VIP requires '60 orders in 1 quarter,' so Day 30 only captures initial adoption. You must monitor Month 2 and Month 3 to see if leads convert to Pro status."
+
+  - id: "hypercare-q7"
+    question: "What is 'Seasonal Normalization'?"
+    options:
+      - "Adjusting prices by season"
+      - "Monitoring through peak cycles (e.g., Black Friday) to ensure the solution holds under stress"
+      - "Normalizing data for reporting"
+      - "Seasonal marketing campaigns"
+    correctIndex: 1
+    explanation: "Seasonal Normalization means monitoring through at least one peak cycle (e.g., Harbolnas/Black Friday) to ensure the solution performs under high-stress conditions."
+
+  - id: "hypercare-q8"
+    question: "What is the difference between 'Usage' and 'Outcome'?"
+    options:
+      - "They are the same thing"
+      - "Usage can be driven by one-time promos; Outcome is driven by recurring behavior"
+      - "Usage is for B2C, Outcome is for B2B"
+      - "Usage is quantitative, Outcome is qualitative"
+    correctIndex: 1
+    explanation: "Usage ≠ Success. Usage can spike from one-time promos, but Outcome (business impact) is proven through recurring behavior and retention."
+
+  - id: "hypercare-q9"
+    question: "What is 'KPI Cherry-picking'?"
+    options:
+      - "Selecting the best metrics to track"
+      - "Ignoring negative signals (like support ticket spikes) because 'Usage is up'"
+      - "Choosing KPIs for dashboards"
+      - "Prioritizing metrics"
+    correctIndex: 1
+    explanation: "KPI Cherry-picking is ignoring negative signals (like support ticket spikes or low CSAT) just because usage metrics look good—a dangerous pitfall."
+
+  - id: "hypercare-q10"
+    question: "How quickly should a P0 bug that prevents transactions be fixed?"
+    options:
+      - "Within 24 hours"
+      - "Within 4 hours"
+      - "Next sprint"
+      - "Within 1 week"
+    correctIndex: 1
+    explanation: "If a P0 bug prevents users from completing transactions (e.g., broken Insurance Checkout), fix it within 4 hours to minimize revenue and trust impact."
+
+  - id: "hypercare-q11"
+    question: "What is an MBR (Monthly Business Review)?"
+    options:
+      - "A monthly budget review"
+      - "A strategic session to present Month 1 findings and decide on roadmap optimizations"
+      - "A marketing review"
+      - "A monthly retrospective"
+    correctIndex: 1
+    explanation: "MBR (Monthly Business Review) is a strategic session where the PM presents maturity data (Day 30/60/90) and decides on optimization backlog or pivots."
+
+  - id: "hypercare-q12"
+    question: "What are the three possible recommendations after Hyper-care?"
+    options:
+      - "Build, Test, Launch"
+      - "Scale, Pivot, or Rollback"
+      - "Grow, Maintain, or Sunset"
+      - "Expand, Optimize, or Pause"
+    correctIndex: 1
+    explanation: "After Hyper-care, based on data, the recommendation should be: Scale (invest more), Pivot (change approach), or Rollback (remove the feature)."
 ---
 
-# Module 8: Post-Launch Hyper-care & Monitoring
+# Module 8: Hyper-care & Stability
 
 ## Entrance Criteria
 

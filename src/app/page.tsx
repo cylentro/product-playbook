@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getAllModules, getStandaloneLessons } from '@/lib/markdown';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, FileText, Workflow, Brain, ChevronRight, ShieldCheck, Zap, Layout } from 'lucide-react';
-import { InteractiveHero, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/modules';
+import { InteractiveHero, ScrollReveal, StaggerContainer, StaggerItem, HomeKeyboardNav } from '@/components/modules';
 import DecryptedText from '@/components/ui/decrypted-text';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -18,9 +18,11 @@ export default async function HomePage() {
 
   return (
     <main 
+      id="home-main"
       data-lenis-prevent 
       className="h-screen w-full overflow-y-scroll md:snap-y md:snap-mandatory scroll-smooth bg-background text-foreground selection:bg-primary/10"
     >
+      <HomeKeyboardNav />
       
       {/* 1. HERO SECTION */}
       <div className="md:snap-start min-h-screen w-full shrink-0 flex flex-col">

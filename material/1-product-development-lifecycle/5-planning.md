@@ -4,6 +4,126 @@ order: 5
 estimatedTime: 10
 quiz: true
 description: "Aligning on scope, technical feasibility, and resource allocation."
+quizQuestions:
+  - id: "planning-q1"
+    question: "What is the primary goal of the Planning & Alignment phase?"
+    options:
+      - "Start coding immediately"
+      - "Bridge the gap between 'what we want to build' and 'what we commit to build'"
+      - "Design the user interface"
+      - "Launch the product"
+    correctIndex: 1
+    explanation: "Planning & Alignment bridges the gap between the desired solution and the committed scope within a specific timeframe, ensuring feasibility and resource alignment."
+
+  - id: "planning-q2"
+    question: "What is 'Relative Estimation'?"
+    options:
+      - "Estimating exact hours for each task"
+      - "Comparing tasks against each other rather than estimating exact time"
+      - "Estimating based on calendar days"
+      - "Guessing randomly"
+    correctIndex: 1
+    explanation: "Relative Estimation compares tasks against each other (e.g., 'Task A is twice as complex as Task B') rather than estimating exact hours, accounting for complexity and uncertainty."
+
+  - id: "planning-q3"
+    question: "What does the Fibonacci sequence (1, 2, 3, 5, 8, 13) represent in story weighting?"
+    options:
+      - "Number of days to complete"
+      - "Increasing uncertainty in larger tasks"
+      - "Number of developers needed"
+      - "Priority ranking"
+    correctIndex: 1
+    explanation: "The Fibonacci sequence reflects increasing uncertainty in larger tasks—the gaps widen as complexity grows, acknowledging that big tasks are harder to estimate accurately."
+
+  - id: "planning-q4"
+    question: "What is a 'Sprint Goal'?"
+    options:
+      - "A list of all features to build"
+      - "A one-sentence summary of what the sprint aims to achieve"
+      - "The number of story points to complete"
+      - "The deadline for the project"
+    correctIndex: 1
+    explanation: "A Sprint Goal is a one-sentence mission statement that defines the purpose of the sprint (e.g., 'Enable real-time insurance premium calculation')."
+
+  - id: "planning-q5"
+    question: "What is the 'Definition of Ready' (DoR)?"
+    options:
+      - "When the product is ready to launch"
+      - "Criteria that a story must meet before being pulled into a sprint"
+      - "When developers are ready to start work"
+      - "When testing is complete"
+    correctIndex: 1
+    explanation: "Definition of Ready (DoR) is the checklist of criteria a user story must meet before it can be pulled into a sprint (e.g., clear ACs, designs finalized, dependencies resolved)."
+
+  - id: "planning-q6"
+    question: "Why should you never fill 100% of sprint capacity?"
+    options:
+      - "Developers need breaks"
+      - "To reserve 10-20% buffer for bugs and unknowns"
+      - "Management requires it"
+      - "It's a waste of time"
+    correctIndex: 1
+    explanation: "Never fill 100% of capacity. Reserve 10-20% for bugs, unexpected issues, and burndown buffer to maintain sustainable pace and quality."
+
+  - id: "planning-q7"
+    question: "What is 'Grooming' (Backlog Refinement)?"
+    options:
+      - "Cleaning up code"
+      - "Refining the backlog into 'Ready' units of work"
+      - "Organizing team meetings"
+      - "Reviewing completed work"
+    correctIndex: 1
+    explanation: "Grooming (Backlog Refinement) is the continuous ritual of refining stories, adding details, and ensuring the backlog has 2 sprints worth of 'Ready' items."
+
+  - id: "planning-q8"
+    question: "What three factors should story weighting consider?"
+    options:
+      - "Time, Money, Resources"
+      - "Complexity, Effort, Uncertainty"
+      - "Priority, Value, Risk"
+      - "Speed, Quality, Cost"
+    correctIndex: 1
+    explanation: "Story weighting should consider: Complexity (Is it hard?), Effort (Does it take long?), and Uncertainty (Is it unknown?)."
+
+  - id: "planning-q9"
+    question: "What is a 'Shadow Backlog'?"
+    options:
+      - "A backup copy of the backlog"
+      - "Working on undocumented tasks not in the sprint"
+      - "A dark-themed project board"
+      - "Hidden technical debt"
+    correctIndex: 1
+    explanation: "A Shadow Backlog is when developers work on technical tasks that aren't documented as stories in the sprint, creating visibility gaps and planning issues."
+
+  - id: "planning-q10"
+    question: "Who makes the final commitment on sprint scope?"
+    options:
+      - "The Product Manager alone"
+      - "The Engineering squad based on their capacity"
+      - "The CEO"
+      - "The stakeholders"
+    correctIndex: 1
+    explanation: "Commitment is a squad decision. The PM proposes scope, but the Engineering squad commits to what is achievable based on their verified capacity."
+
+  - id: "planning-q11"
+    question: "What is 'Planning Poker'?"
+    options:
+      - "A gambling game"
+      - "A collaborative estimation technique using cards"
+      - "A card-based project management tool"
+      - "A risk assessment method"
+    correctIndex: 1
+    explanation: "Planning Poker is a collaborative estimation technique where team members use cards (Fibonacci numbers) to vote on story complexity, promoting discussion and consensus."
+
+  - id: "planning-q12"
+    question: "What is the main risk of 'Over-commitment'?"
+    options:
+      - "Finishing too early"
+      - "Pulling in more story points than the squad's velocity allows, leading to burnout and missed deadlines"
+      - "Having too much free time"
+      - "Completing too many features"
+    correctIndex: 1
+    explanation: "Over-commitment happens when pulling in more story points than historical velocity allows, leading to burnout, technical debt, and missed sprint goals."
 ---
 
 # Planning & Alignment Phase

@@ -4,8 +4,128 @@ order: 0
 estimatedTime: 15
 quiz: true
 description: "Master the art of writing Product Requirement Documents that engineers love and stakeholders admire."
+quizQuestions:
+  - id: "prd-q1"
+    question: "What is the primary purpose of a PRD (Product Requirement Document)?"
+    options:
+      - "To track project timelines"
+      - "To act as the 'Single Source of Truth' bridging strategic 'Why' and technical 'How'"
+      - "To document bugs"
+      - "To create marketing materials"
+    correctIndex: 1
+    explanation: "A PRD is the 'Single Source of Truth' that bridges the strategic 'Why' (business objective) and the technical 'How' (implementation), ensuring alignment across teams."
 
+  - id: "prd-q2"
+    question: "What are the 'Three Discovery Pillars' that justify a feature's existence?"
+    options:
+      - "Speed, Quality, Cost"
+      - "The Pain (Desirability), The Value (Viability), The Success (Measurability)"
+      - "Build, Test, Launch"
+      - "Research, Design, Develop"
+    correctIndex: 1
+    explanation: "The three pillars are: The Pain (validated user frustration), The Value (business impact), and The Success (measurable metrics proving it worked)."
+
+  - id: "prd-q3"
+    question: "What is the correct format for a Product Hypothesis?"
+    options:
+      - "We should build [Feature]"
+      - "If we [Build X], then [Result Y], which will [Benefit Z]"
+      - "Users want [Feature]"
+      - "[Feature] will solve [Problem]"
+    correctIndex: 1
+    explanation: "A testable hypothesis follows: 'If we [Build X], then [Result Y], which will [Benefit Z].' If you can't state this clearly, the feature isn't ready for development."
+
+  - id: "prd-q4"
+    question: "What is the purpose of the 'Out-of-Scope' section?"
+    options:
+      - "To list future features"
+      - "To explicitly state what we are NOT building, preventing scope creep and managing expectations"
+      - "To document rejected ideas"
+      - "To track technical debt"
+    correctIndex: 1
+    explanation: "'Out-of-Scope' explicitly states what we are NOT building, preventing 'Scope Creep' (the #1 killer of timelines) and managing stakeholder expectations early."
+
+  - id: "prd-q5"
+    question: "What are the 'Three Layers' of Flow Design?"
+    options:
+      - "Frontend, Backend, Database"
+      - "User Flow, Business Flow, System Flow"
+      - "Design, Development, Testing"
+      - "Mobile, Web, API"
+    correctIndex: 1
+    explanation: "The three layers are: User Flow (screen journey), Business Flow (logic/rules), and System Flow (API handshake between services)."
+
+  - id: "prd-q6"
+    question: "What is the 'Gherkin Format' for Acceptance Criteria?"
+    options:
+      - "Who, What, When"
+      - "Given, When, Then"
+      - "If, Then, Else"
+      - "Start, Middle, End"
+    correctIndex: 1
+    explanation: "Gherkin format uses 'Given [Context], When [Action], Then [Expected Result]' to create testable, unambiguous acceptance criteria."
+
+  - id: "prd-q7"
+    question: "What is the '5-User Rule' in prototyping?"
+    options:
+      - "Test with exactly 5 users"
+      - "Testing with 5 users uncovers 80% of usability flaws"
+      - "Each user gets 5 tasks"
+      - "5 iterations of testing"
+    correctIndex: 1
+    explanation: "The 5-User Rule states that testing with 5 users uncovers approximately 80% of usability flaws, making it an efficient validation method."
+
+  - id: "prd-q8"
+    question: "What is the 'North Star Metric' in the 5-Tier Framework?"
+    options:
+      - "Revenue target"
+      - "The core task completion of the feature (e.g., Monthly Orders via Search)"
+      - "User satisfaction score"
+      - "Number of features shipped"
+    correctIndex: 1
+    explanation: "The North Star Metric is the core task completion that proves the feature fulfills its purpose (e.g., 'Monthly Orders via Search' for a search feature)."
+
+  - id: "prd-q9"
+    question: "What is a 'Health/Guardrail Metric'?"
+    options:
+      - "User health tracking"
+      - "Technical safety nets to ensure no negative impact (e.g., Zero Search Result Rate)"
+      - "Team health indicators"
+      - "System uptime"
+    correctIndex: 1
+    explanation: "Health/Guardrail Metrics are technical safety nets that ensure no negative impact (e.g., 'Zero Search Result Rate' to catch indexing bugs)."
+
+  - id: "prd-q10"
+    question: "Why is a 'Versioning Table' mandatory in PRDs?"
+    options:
+      - "For legal compliance"
+      - "To track 'Logic Drift'—any change in requirements so Eng/QA stay aligned"
+      - "For project management"
+      - "For marketing purposes"
+    correctIndex: 1
+    explanation: "A PRD is a living document. The Versioning Table tracks 'Logic Drift'—any change in requirements must be logged so Engineering and QA stay aligned."
+
+  - id: "prd-q11"
+    question: "What is the 'PRD Gold Standard' clarity test?"
+    options:
+      - "Can it be read in 5 minutes?"
+      - "Could a new developer read this and start coding without a 1-hour meeting?"
+      - "Is it under 10 pages?"
+      - "Does it have pictures?"
+    correctIndex: 1
+    explanation: "The clarity test asks: 'Could a new developer read this and start coding without a 1-hour meeting?' If not, the PRD needs more detail or clearer structure."
+
+  - id: "prd-q12"
+    question: "What is the main benefit of a centralized PRD repository?"
+    options:
+      - "Easier to search"
+      - "Decisions outlive individuals, providing institutional memory and onboarding velocity"
+      - "Looks more professional"
+      - "Saves storage space"
+    correctIndex: 1
+    explanation: "A centralized PRD repository ensures decisions outlive individuals, provides institutional memory, enables 30-40% faster onboarding, and creates an audit trail for compliance."
 ---
+
 
 # PRD Masterclass
 

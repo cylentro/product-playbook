@@ -19,13 +19,26 @@ interface ModuleViewProps {
 export function ModuleView({ module, lessons, moduleSlug }: ModuleViewProps) {
     const router = useRouter();
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [preferredMode, setPreferredMode] = useState<'learning' | 'presentation' | 'quiz'>('learning');
     const totalTime = lessons.reduce((acc, l) => acc + l.estimatedTime, 0);
+
+    // Load preferred mode from localStorage on mount
+    useEffect(() => {
+        const storedMode = localStorage.getItem('lastLessonMode');
+        if (storedMode && (storedMode === 'learning' || storedMode === 'presentation')) {
+            setPreferredMode(storedMode as 'learning' | 'presentation');
+        }
+    }, []);
 
     // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             // Don't interfere with Command Palette
             if (e.metaKey || e.ctrlKey) return;
+
+            // Don't interfere if a modal, drawer or sheet is open
+            const isModalOpen = document.querySelector('[role="dialog"], [data-state="open"]');
+            if (isModalOpen) return;
 
             let newIndex = selectedIndex;
             let shouldScroll = false;
@@ -47,7 +60,7 @@ export function ModuleView({ module, lessons, moduleSlug }: ModuleViewProps) {
                     e.preventDefault();
                     const selectedLesson = lessons[selectedIndex];
                     if (selectedLesson) {
-                        router.push(`/module/${moduleSlug}/${selectedLesson.slug}?mode=learning`);
+                        router.push(`/module/${moduleSlug}/${selectedLesson.slug}?mode=${preferredMode}`);
                     }
                     return;
                 case 'Escape':
@@ -131,7 +144,7 @@ export function ModuleView({ module, lessons, moduleSlug }: ModuleViewProps) {
                             return (
                                 <Link
                                     key={lesson.slug}
-                                    href={`/module/${moduleSlug}/${lesson.slug}?mode=learning`}
+                                    href={`/module/${moduleSlug}/${lesson.slug}?mode=${preferredMode}`}
                                     data-lesson-index={index}
                                     className={cn(
                                         "block group relative transition-all duration-300",

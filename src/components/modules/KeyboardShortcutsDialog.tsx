@@ -34,6 +34,13 @@ const KEYBOARD_SHORTCUTS: ShortcutGroup[] = [
         ],
     },
     {
+        title: 'Homepage',
+        shortcuts: [
+            { keys: ['↑', '↓'], description: 'Navigate sections' },
+            { keys: ['Space'], description: 'Scroll down' },
+        ],
+    },
+    {
         title: 'Module Mode',
         shortcuts: [
             { keys: ['↑', '↓'], description: 'Navigate chapters' },
@@ -51,6 +58,14 @@ const KEYBOARD_SHORTCUTS: ShortcutGroup[] = [
             { keys: ['Ctrl', 'L'], description: 'Learning mode', winLink: true },
             { keys: ['⌘', 'O'], description: 'Quiz mode', mac: true },
             { keys: ['Ctrl', 'O'], description: 'Quiz mode', winLink: true },
+            { keys: ['Esc'], description: 'Exit mode / Back' },
+        ],
+    },
+    {
+        title: 'Learning Mode',
+        shortcuts: [
+            { keys: ['→'], description: 'Next lesson' },
+            { keys: ['←'], description: 'Previous lesson' },
         ],
     },
     {
@@ -58,7 +73,7 @@ const KEYBOARD_SHORTCUTS: ShortcutGroup[] = [
         shortcuts: [
             { keys: ['→', 'Space'], description: 'Next slide' },
             { keys: ['←'], description: 'Previous slide' },
-            { keys: ['Esc'], description: 'Exit fullscreen' },
+            { keys: ['Esc'], description: 'Exit presentation' },
         ],
     },
 ];

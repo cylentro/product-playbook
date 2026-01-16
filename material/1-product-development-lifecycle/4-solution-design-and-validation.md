@@ -4,6 +4,126 @@ order: 4
 estimatedTime: 15
 quiz: true
 description: "Prototyping and testing solutions with users before development."
+quizQuestions:
+  - id: "solution-design-q1"
+    question: "What is the primary goal of the Solution Design & Validation phase?"
+    options:
+      - "Build the final product immediately"
+      - "Test and validate solutions with users before development"
+      - "Write detailed technical specifications"
+      - "Launch to market as quickly as possible"
+    correctIndex: 1
+    explanation: "Solution Design & Validation focuses on prototyping and testing solutions with real users to validate assumptions before committing to full development."
+
+  - id: "solution-design-q2"
+    question: "What is a 'Lo-Fi Prototype'?"
+    options:
+      - "A fully functional product"
+      - "A low-fidelity wireframe or sketch to test concepts quickly"
+      - "A high-resolution design mockup"
+      - "A production-ready interface"
+    correctIndex: 1
+    explanation: "Lo-Fi (Low-Fidelity) prototypes are simple wireframes or sketches used to test concepts quickly and cheaply before investing in high-fidelity designs."
+
+  - id: "solution-design-q3"
+    question: "What does 'Wizard of Oz' testing mean?"
+    options:
+      - "Testing with fictional users"
+      - "Simulating automated features manually behind the scenes"
+      - "Using AI to test prototypes"
+      - "Testing in a fantasy environment"
+    correctIndex: 1
+    explanation: "Wizard of Oz testing simulates automated features manually behind the scenes to test user reactions before building the actual automation."
+
+  - id: "solution-design-q4"
+    question: "What is the '5-Second Test' used for?"
+    options:
+      - "Testing page load speed"
+      - "Measuring first impressions and visual hierarchy"
+      - "Testing user patience"
+      - "Measuring task completion time"
+    correctIndex: 1
+    explanation: "The 5-Second Test shows users a design for 5 seconds to measure first impressions, visual hierarchy, and whether key messages are immediately clear."
+
+  - id: "solution-design-q5"
+    question: "What is 'Desirability Testing'?"
+    options:
+      - "Testing if users can afford the product"
+      - "Testing if users want the solution and find it appealing"
+      - "Testing technical feasibility"
+      - "Testing market size"
+    correctIndex: 1
+    explanation: "Desirability Testing validates whether users actually want the solution and find it appealing, beyond just being usable or feasible."
+
+  - id: "solution-design-q6"
+    question: "What is an 'A/B Test'?"
+    options:
+      - "Testing two different user groups"
+      - "Comparing two versions of a feature to see which performs better"
+      - "Testing alphabetically"
+      - "Testing in two different countries"
+    correctIndex: 1
+    explanation: "A/B Testing compares two versions of a feature (A vs B) with real users to determine which performs better based on defined metrics."
+
+  - id: "solution-design-q7"
+    question: "What does 'Usability Testing' measure?"
+    options:
+      - "How many users want the feature"
+      - "How easily users can complete tasks with the design"
+      - "How much users are willing to pay"
+      - "How fast the system runs"
+    correctIndex: 1
+    explanation: "Usability Testing measures how easily users can complete specific tasks with the design, identifying friction points and confusion."
+
+  - id: "solution-design-q8"
+    question: "What is a 'Concierge MVP'?"
+    options:
+      - "A luxury version of the product"
+      - "Manually delivering the service to validate demand before automation"
+      - "A premium pricing tier"
+      - "An automated customer service system"
+    correctIndex: 1
+    explanation: "A Concierge MVP manually delivers the service to validate demand and learn user needs before investing in automation or scaling."
+
+  - id: "solution-design-q9"
+    question: "What is the purpose of a 'Clickable Prototype'?"
+    options:
+      - "To test server performance"
+      - "To simulate user flows and interactions without building the backend"
+      - "To measure click-through rates"
+      - "To test database queries"
+    correctIndex: 1
+    explanation: "Clickable Prototypes simulate user flows and interactions without building the actual backend, allowing rapid testing of UX concepts."
+
+  - id: "solution-design-q10"
+    question: "What is 'Fake Door Testing'?"
+    options:
+      - "Testing security vulnerabilities"
+      - "Measuring interest by showing a feature that doesn't exist yet"
+      - "Testing door animations"
+      - "Testing navigation menus"
+    correctIndex: 1
+    explanation: "Fake Door Testing measures interest in a feature by showing it in the UI (the 'door') but not building it yet, tracking how many users click."
+
+  - id: "solution-design-q11"
+    question: "When should you move from Lo-Fi to Hi-Fi prototypes?"
+    options:
+      - "Immediately after ideation"
+      - "After validating core concepts and user flows with Lo-Fi"
+      - "Never, always use Lo-Fi"
+      - "Before any user testing"
+    correctIndex: 1
+    explanation: "Move to Hi-Fi prototypes only after validating core concepts and user flows with Lo-Fi prototypes to avoid wasting design effort on unvalidated ideas."
+
+  - id: "solution-design-q12"
+    question: "What is the main risk of skipping validation?"
+    options:
+      - "Taking too long to launch"
+      - "Building something users don't want or can't use"
+      - "Spending too much on research"
+      - "Hiring too many designers"
+    correctIndex: 1
+    explanation: "Skipping validation risks building something users don't want or can't use, wasting development resources on solutions that fail in the market."
 ---
 
 # Solution Design & Validation Phase

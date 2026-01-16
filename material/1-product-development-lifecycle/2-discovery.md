@@ -4,6 +4,126 @@ order: 2
 estimatedTime: 10
 quiz: true
 description: "Identifying the right problem to solve through research and analysis."
+quizQuestions:
+  - id: "discovery-q1"
+    question: "What is the primary goal of the Discovery phase?"
+    options:
+      - "Build features as quickly as possible"
+      - "Validate the problem before designing solutions"
+      - "Launch to market immediately"
+      - "Optimize existing features for performance"
+    correctIndex: 1
+    explanation: "Discovery focuses on validating that you're solving the right problem through research and data triangulation before moving to solution design."
+
+  - id: "discovery-q2"
+    question: "Which metric is best for measuring user satisfaction with a specific transaction?"
+    options:
+      - "NPS (Net Promoter Score)"
+      - "CSAT (Customer Satisfaction)"
+      - "CES (Customer Effort Score)"
+      - "Churn Rate"
+    correctIndex: 1
+    explanation: "CSAT measures satisfaction with a specific interaction or transaction, while NPS measures long-term brand loyalty."
+
+  - id: "discovery-q3"
+    question: "What does 'Data Triangulation' mean in Discovery?"
+    options:
+      - "Using three different data analysts"
+      - "Validating insights with two or more conflicting sources"
+      - "Creating three different prototypes"
+      - "Testing with three user segments"
+    correctIndex: 1
+    explanation: "Data Triangulation means verifying a problem through multiple conflicting sources (e.g., quantitative analytics + qualitative interviews) to ensure validity."
+
+  - id: "discovery-q4"
+    question: "Which research methodology provides 'The Why' behind user behavior?"
+    options:
+      - "Analytics"
+      - "Surveys"
+      - "1-on-1 Interviews"
+      - "Focus Groups"
+    correctIndex: 2
+    explanation: "1-on-1 Interviews provide deep qualitative insights into user motivations and emotional friction—the 'why' behind behaviors."
+
+  - id: "discovery-q5"
+    question: "What is a 'Blue Ocean' opportunity?"
+    options:
+      - "A feature that competitors already have"
+      - "An area where competitors are weak or customer satisfaction is low"
+      - "A market with high competition"
+      - "A feature that requires ocean-themed design"
+    correctIndex: 1
+    explanation: "A 'Blue Ocean' opportunity is an untapped market space where competitors are weak, allowing you to create uncontested value."
+
+  - id: "discovery-q6"
+    question: "What is the biggest risk of 'Confirmation Bias' in Discovery?"
+    options:
+      - "Spending too much time on research"
+      - "Selectively choosing data that supports pre-existing ideas"
+      - "Interviewing too many users"
+      - "Using too many research methodologies"
+    correctIndex: 1
+    explanation: "Confirmation Bias occurs when you selectively use data that confirms what you already believe, ignoring contradictory evidence."
+
+  - id: "discovery-q7"
+    question: "Which entrance criterion ensures resources are allocated before Discovery starts?"
+    options:
+      - "Baseline Metrics"
+      - "Stakeholder Buy-in"
+      - "Strategic Objective"
+      - "Market Analysis"
+    correctIndex: 1
+    explanation: "Stakeholder Buy-in ensures that PM, Design, and Data resources are locked in and allocated before Discovery begins."
+
+  - id: "discovery-q8"
+    question: "What should you avoid asking in user interviews?"
+    options:
+      - "Tell me about the last time you tried to..."
+      - "Walk me through your current process for..."
+      - "How much do you like this feature?"
+      - "What challenges do you face when..."
+    correctIndex: 2
+    explanation: "Leading questions like 'How much do you like this?' create bias. Instead, ask users to describe their actual experiences and behaviors."
+
+  - id: "discovery-q9"
+    question: "When should technical feasibility be assessed?"
+    options:
+      - "After the product is launched"
+      - "During the Development phase"
+      - "During Discovery to flag blockers early"
+      - "Only if engineering raises concerns"
+    correctIndex: 2
+    explanation: "Technical feasibility should be assessed during Discovery to identify architectural blockers before wasting design and planning effort."
+
+  - id: "discovery-q10"
+    question: "What is CES (Customer Effort Score) used to measure?"
+    options:
+      - "Long-term brand loyalty"
+      - "Satisfaction with a transaction"
+      - "How much effort a user had to exert to complete a task"
+      - "The number of support tickets"
+    correctIndex: 2
+    explanation: "CES measures the effort required for a user to complete a task—lower effort typically correlates with higher satisfaction and retention."
+
+  - id: "discovery-q11"
+    question: "What is the 'One-Sentence Test' for Discovery?"
+    options:
+      - "Write the PRD in one sentence"
+      - "Describe the user problem in one sentence without mentioning a feature"
+      - "Summarize the market analysis in one sentence"
+      - "Explain the solution in one sentence"
+    correctIndex: 1
+    explanation: "If you can't describe the user problem in one sentence without mentioning a feature, you haven't truly validated the problem yet."
+
+  - id: "discovery-q12"
+    question: "Which deliverable provides a data-backed anchor for the project?"
+    options:
+      - "Market Report"
+      - "User Personas"
+      - "Validated Problem Statement"
+      - "Feasibility Memo"
+    correctIndex: 2
+    explanation: "The Validated Problem Statement is the core deliverable—a clear, data-backed anchor that ensures the team is solving the right problem."
 ---
 
 # Discovery Phase

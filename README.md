@@ -33,14 +33,18 @@ Curated deep-dives into specialized PM skills.
 - **Reference Materials**: Toolkits and stack guides.
 
 ### 📝 Learning & Quiz Engines
-- **Learning Mode**: Deep-dive documentation with GitHub-style alerts and premium typography.
-- **Quiz Engine**: Validate your knowledge at the end of every module with interactive assessments.
+- **Learning Mode**: Deep-dive documentation with GitHub-style alerts and premium typography. Now supports **Arrow Key Navigation** (← / →) for seamless transitions between lessons.
+- **Quiz Engine**: Validate your knowledge with interactive assessments. Features **Adaptive Randomization**:
+  - Dynamically selects 5 random questions from a larger pool for each attempt.
+  - Shuffles answer order for every question to ensure true knowledge retention.
+  - Interactive feedback with detailed explanations for every answer.
 
 ### ⌨️ Power User Navigation
 Comprehensive keyboard shortcuts and mouse controls for efficient navigation.
 - **Command Palette** (`⌘K` / `Ctrl+K`): Quick access to any module or lesson across the entire playbook.
 - **Module Page Navigation**: Use arrow keys or Vim-style `j`/`k` to navigate chapters, `Enter` to open, `Esc` to return home.
 - **Mode Switching**: Instantly switch between Learning, Presentation, and Quiz modes with keyboard shortcuts.
+- **Learning Mode Navigation**: Use **Arrow Left/Right** (← / →) to move between lessons without lifting your hands.
 - **Navigation Guide** (`?`): Interactive drawer with OS-aware shortcuts (Mac/Windows) organized by context, featuring both keyboard and mouse controls (including side-click navigation in Learning Mode).
 
 ### 🛠️ Developer-First Content

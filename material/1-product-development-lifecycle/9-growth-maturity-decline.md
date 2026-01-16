@@ -4,6 +4,126 @@ order: 9
 estimatedTime: 15
 quiz: true
 description: "Managing the product lifecycle beyond the initial launch."
+quizQuestions:
+  - id: "growth-q1"
+    question: "What is a 'PMF Signal' (Product-Market Fit Signal)?"
+    options:
+      - "High marketing spend"
+      - "Sustained organic usage and retention leveling off, indicating recurring value"
+      - "Positive press coverage"
+      - "High initial adoption"
+    correctIndex: 1
+    explanation: "PMF Signal is sustained organic usage or retention rates leveling off, indicating a core group of users who find recurring value—not just one-time adoption."
+
+  - id: "growth-q2"
+    question: "What is 'Metric Decay'?"
+    options:
+      - "Metrics getting outdated"
+      - "A feature's effectiveness decreasing over time due to market saturation or changing user habits"
+      - "Metrics dashboard breaking"
+      - "Data quality issues"
+    correctIndex: 1
+    explanation: "Metric Decay is when a feature that once performed well begins to lose impact due to market saturation, changing user habits, or competitor innovations."
+
+  - id: "growth-q3"
+    question: "What is the 'Macro Review' question to ask every 6 months?"
+    options:
+      - "Are we profitable?"
+      - "If we launched this feature today, would it still be a 'Must-Have' or just a 'Nice-to-Have'?"
+      - "Should we hire more people?"
+      - "What's our market share?"
+    correctIndex: 1
+    explanation: "Every 6 months, ask: 'If we launched this feature today, would it still be a Must-Have or just a Nice-to-Have?' This prevents maintaining outdated features."
+
+  - id: "growth-q4"
+    question: "What is 'Feature Creep'?"
+    options:
+      - "Features being developed slowly"
+      - "Adding so many features that the product becomes complex, confusing, and hard to maintain"
+      - "Features being copied by competitors"
+      - "Features degrading over time"
+    correctIndex: 1
+    explanation: "Feature Creep is when a product becomes a 'Swiss Army Knife' with too many features, making it difficult to maintain and confusing to use. Saying 'No' is critical."
+
+  - id: "growth-q5"
+    question: "What are the three strategic lifecycle decisions for a mature product?"
+    options:
+      - "Build, Test, Launch"
+      - "Scale (Growth), Optimize (Maturity), or Phase-out (Decline)"
+      - "Expand, Maintain, or Archive"
+      - "Grow, Pivot, or Restart"
+    correctIndex: 1
+    explanation: "The three paths are: Scale (expand to new segments), Optimize (reduce costs and maintain), or Phase-out (sunset if high-cost, low-value)."
+
+  - id: "growth-q6"
+    question: "What is the 'Sunk Cost Fallacy' in product management?"
+    options:
+      - "Spending too much on development"
+      - "Continuing to invest in a failing feature just because you spent months building it"
+      - "Not tracking costs properly"
+      - "Underestimating development costs"
+    correctIndex: 1
+    explanation: "Sunk Cost Fallacy is pouring resources into a failing feature simply because the team invested heavily in building it. PMs must objectively ask: 'What's the best use of our next dollar?'"
+
+  - id: "growth-q7"
+    question: "What is a QBR (Quarterly Business Review)?"
+    options:
+      - "A quarterly budget review"
+      - "A strategic assessment of long-term ROI to decide if a feature stays in active development or moves to maintenance"
+      - "A quarterly sales report"
+      - "A quarterly team retrospective"
+    correctIndex: 1
+    explanation: "QBR is a strategic assessment of long-term ROI, deciding if a feature deserves a dedicated squad or should move to 'Maintenance Mode' to free capacity."
+
+  - id: "growth-q8"
+    question: "What is 'Maintenance Mode'?"
+    options:
+      - "When a product is broken"
+      - "Allocating 20% maintenance budget to a valuable but non-growing feature to save 80% of squad capacity for new projects"
+      - "Regular bug fixing"
+      - "Scheduled downtime"
+    correctIndex: 1
+    explanation: "Maintenance Mode allocates 20% budget to keep a valuable feature running while freeing 80% of squad capacity for new discovery and growth projects."
+
+  - id: "growth-q9"
+    question: "What is required for a 'Graceful Sunset' of a product?"
+    options:
+      - "Just turn it off"
+      - "30-90 day notice, migration path, and transparent explanation of why"
+      - "Immediate shutdown"
+      - "Only internal communication"
+    correctIndex: 1
+    explanation: "Graceful Sunset requires: 30-90 day notice, transparent explanation of 'why,' migration path to alternatives, and protecting user trust and brand reputation."
+
+  - id: "growth-q10"
+    question: "What is 'Cost of Carry'?"
+    options:
+      - "Shipping costs"
+      - "Developer time, server costs, and support burden of maintaining a feature"
+      - "Marketing expenses"
+      - "Customer acquisition cost"
+    correctIndex: 1
+    explanation: "Cost of Carry is the total burden (developer time, server costs, support) of maintaining a feature. If it outweighs value delivered, sunset is justified."
+
+  - id: "growth-q11"
+    question: "What is the purpose of a 'Post-Mortem' after a sunset?"
+    options:
+      - "Blame assignment"
+      - "Documenting 'Lessons Learned' to prevent repeating mistakes in future projects"
+      - "Legal documentation"
+      - "Financial audit"
+    correctIndex: 1
+    explanation: "Post-Mortem after sunset documents 'Lessons Learned' so the organization doesn't repeat the same mistakes in the next Discovery cycle—turning failure into wisdom."
+
+  - id: "growth-q12"
+    question: "What does 'The Cycle Never Ends' mean in PDLC?"
+    options:
+      - "Products never get finished"
+      - "A successful Sunset feeds new pain points back into Discovery, beginning the next generation of solutions"
+      - "Work is never done"
+      - "Products are always in development"
+    correctIndex: 1
+    explanation: "The PDLC is cyclical—a successful Sunset or mature product identifies new pain points that feed back into Module 1: Discovery, beginning the next generation of solutions."
 ---
 
 # Growth, Maturity, & Decline Phase

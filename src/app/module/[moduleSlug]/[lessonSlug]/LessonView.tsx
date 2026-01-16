@@ -58,17 +58,25 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
         return () => window.removeEventListener('resize', checkDesktop);
     }, []);
 
-    const getLessonLink = (l: { slug: string; moduleSlug: string }, withMode = true) => {
+    const getLessonLink = React.useCallback((l: { slug: string; moduleSlug: string }, withMode = true) => {
         const path = l.moduleSlug === 'standalone' ? `/lesson/${l.slug}` : `/module/${l.moduleSlug}/${l.slug}`;
-        return withMode ? `${path}?mode=${mode}` : path;
-    };
+        if (!withMode) return path;
+        
+        // Use current mode, but convert quiz to learning for next chapter
+        const nextMode = mode === 'quiz' ? 'learning' : mode;
+        return `${path}?mode=${nextMode}`;
+    }, [mode]);
 
     // Sync and validate mode on lesson change or URL change
     useEffect(() => {
         const urlMode = searchParams.get('mode') as any;
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
         
-        let targetMode = (urlMode || mode) as any;
+        // Get stored preference only if no URL mode is specified
+        const storedMode = !urlMode && typeof window !== 'undefined' ? localStorage.getItem('lastLessonMode') : null;
+        
+        // Priority: URL mode > stored mode > current mode > default 'learning'
+        let targetMode = (urlMode || storedMode || mode || 'learning') as any;
 
         // 1. Force learning mode on mobile if they try presentation
         if (isMobile && targetMode === 'presentation') {
@@ -82,17 +90,22 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
             targetMode = 'learning';
         }
 
-        // 3. Apply state change to store if different
+        // 3. Store the validated mode in localStorage (but not quiz mode)
+        if (typeof window !== 'undefined' && targetMode !== 'quiz') {
+            localStorage.setItem('lastLessonMode', targetMode);
+        }
+
+        // 4. Apply state change to store if different
         if (targetMode !== mode) {
             setMode(targetMode);
         }
 
-        // 4. Sync URL if it was missing or wrong
+        // 5. Sync URL if it was missing or wrong
         if (urlMode !== targetMode) {
             router.replace(`${window.location.pathname}?mode=${targetMode}`, { scroll: false });
         }
 
-        // 5. Handle immersive presentation UI state
+        // 6. Handle immersive presentation UI state
         if (targetMode === 'presentation') {
             setPresentationFullscreen(true);
         } else {
@@ -100,13 +113,41 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
         }
     }, [searchParams, lesson.slug, lesson.slides.length, lesson.hasQuiz, mode, setMode, setPresentationFullscreen, router]);
 
-    // Keyboard shortcuts for mode switching
+    // Keyboard shortcuts for mode switching and navigation
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
+            // Check if a modal or dialog is open
+            const isModalOpen = document.querySelector('[role="dialog"], [data-state="open"]');
+            
+            // Handle Escape key (without modifiers)
+            if (e.key === 'Escape') {
+                if (isModalOpen) return; // Let the modal handle its own close
+                
+                e.preventDefault();
+                const backPath = lesson.moduleSlug === 'standalone' ? '/' : `/module/${lesson.moduleSlug}`;
+                router.push(backPath);
+                return;
+            }
+
+            // Handle Arrow navigation in Learning Mode (without modifiers)
+            if (mode === 'learning' && !isModalOpen) {
+                if (e.key === 'ArrowRight' && nextLesson && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+                    e.preventDefault();
+                    router.push(getLessonLink(nextLesson));
+                    return;
+                }
+                if (e.key === 'ArrowLeft' && prevLesson && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+                    e.preventDefault();
+                    router.push(getLessonLink(prevLesson));
+                    return;
+                }
+            }
+
             // Check for Cmd (Mac) or Ctrl (Windows/Linux)
             const isModifierPressed = e.metaKey || e.ctrlKey;
             
             if (!isModifierPressed) return;
+            if (isModalOpen) return;
 
             let newMode: 'presentation' | 'learning' | 'quiz' | null = null;
 
@@ -140,7 +181,7 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [mode, setMode, router, lesson.slides.length, lesson.hasQuiz, isDesktop]);
+    }, [mode, setMode, router, lesson.slides.length, lesson.hasQuiz, isDesktop, lesson.moduleSlug, nextLesson, prevLesson, getLessonLink]);
 
     // Mouse navigation for Learning Mode
     useEffect(() => {

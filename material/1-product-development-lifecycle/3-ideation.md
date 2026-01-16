@@ -4,6 +4,126 @@ order: 3
 estimatedTime: 12
 quiz: true
 description: "Exploring and prioritizing solutions for validated user problems."
+quizQuestions:
+  - id: "ideation-q1"
+    question: "What is the primary focus of the Ideation phase?"
+    options:
+      - "Building features as quickly as possible"
+      - "Finding the most effective 'How' to solve the validated 'Why'"
+      - "Launching to market immediately"
+      - "Creating detailed technical specifications"
+    correctIndex: 1
+    explanation: "Ideation is about finding the most effective solution approach ('How') to solve the validated problem ('Why') from Discovery, not about rushing to build features."
+
+  - id: "ideation-q2"
+    question: "What is the correct format for a JTBD (Jobs to be Done) statement?"
+    options:
+      - "We need to build [Feature] for [Users]"
+      - "As a [Persona], I want to [Action] so that [Outcome]"
+      - "The user wants [Feature] because [Reason]"
+      - "Build [Solution] to solve [Problem]"
+    correctIndex: 1
+    explanation: "JTBD format focuses on the progress the user wants to make: 'As a [Persona], I want to [Action] so that [Outcome].' This frames requirements by outcomes, not features."
+
+  - id: "ideation-q3"
+    question: "In RICE scoring, what does the formula calculate?"
+    options:
+      - "(Reach + Impact + Confidence) × Effort"
+      - "(Reach × Impact × Confidence) / Effort"
+      - "(Reach + Impact) / (Confidence + Effort)"
+      - "Reach × Impact × Effort / Confidence"
+    correctIndex: 1
+    explanation: "RICE = (Reach × Impact × Confidence) / Effort. Higher scores indicate higher priority features that balance broad reach against technical cost."
+
+  - id: "ideation-q4"
+    question: "What is the 'Cost of Inaction'?"
+    options:
+      - "The budget required to build a feature"
+      - "The business impact if we do nothing for 6 months"
+      - "The cost of hiring new team members"
+      - "The price competitors charge for similar features"
+    correctIndex: 1
+    explanation: "Cost of Inaction quantifies the business impact (revenue loss, churn, tech debt) if we do nothing for 6 months, justifying a project's urgency."
+
+  - id: "ideation-q5"
+    question: "What is a 'Workaround Audit' used to identify?"
+    options:
+      - "Technical bugs in the system"
+      - "Manual hacks users do because the product fails them"
+      - "Competitor features to copy"
+      - "Engineering shortcuts"
+    correctIndex: 1
+    explanation: "Workaround Audits identify manual things users do (like using Excel) because the product fails them. Workarounds are the 'smoking gun' for major product needs."
+
+  - id: "ideation-q6"
+    question: "What is the correct format for a Product Hypothesis?"
+    options:
+      - "We should build [Feature] because users want it"
+      - "We believe that [Feature] for [Persona] will achieve [Metric Impact] because [Behavioral Insight]"
+      - "Users need [Solution] to solve [Problem]"
+      - "[Feature] will make users happy"
+    correctIndex: 1
+    explanation: "A good hypothesis is testable and specific: 'We believe that [Feature] for [Persona] will achieve [Metric Impact] because [Behavioral Insight].'"
+
+  - id: "ideation-q7"
+    question: "In the 2x2 Value vs. Effort Matrix, what are 'Quick Wins'?"
+    options:
+      - "Low Value, Low Effort"
+      - "High Value, High Effort"
+      - "High Value, Low Effort"
+      - "Low Value, High Effort"
+    correctIndex: 2
+    explanation: "Quick Wins are High Value + Low Effort features that build momentum and deliver immediate business value with minimal engineering burden."
+
+  - id: "ideation-q8"
+    question: "What does WSJF stand for?"
+    options:
+      - "Weighted System Job Framework"
+      - "Weighted Shortest Job First"
+      - "Work Size Job Forecast"
+      - "Weekly Sprint Job Focus"
+    correctIndex: 1
+    explanation: "WSJF = Weighted Shortest Job First. It's calculated as Cost of Delay / Job Size and is best for portfolio prioritization where timing is critical."
+
+  - id: "ideation-q9"
+    question: "In the NOW-NEXT-LATER roadmap, what confidence level should 'NOW' items have?"
+    options:
+      - "1/5 - Gut feeling"
+      - "3/5 - Medium confidence"
+      - "5/5 - High confidence with finalized PRD"
+      - "2/5 - Low confidence"
+    correctIndex: 2
+    explanation: "'NOW' items must have 5/5 confidence on the Evidence Meter, with finalized PRD and Design. They are committed and ready for execution."
+
+  - id: "ideation-q10"
+    question: "What is the 'Hardest Case First' principle?"
+    options:
+      - "Always start with the easiest features"
+      - "Solve for the most demanding users first"
+      - "Build the most complex technical solution"
+      - "Target the largest user segment"
+    correctIndex: 1
+    explanation: "If you can fix the pain for your most demanding users, you'll likely delight the rest of the market. Solving the hardest case first ensures broad satisfaction."
+
+  - id: "ideation-q11"
+    question: "In the Kano Model, what are 'Delighters'?"
+    options:
+      - "Basic features that must exist"
+      - "Features where satisfaction increases linearly"
+      - "Unexpected features that create high delight"
+      - "Features that reduce customer effort"
+    correctIndex: 2
+    explanation: "Delighters (Excitement features) are unexpected capabilities that create high delight when present, but don't cause dissatisfaction when absent."
+
+  - id: "ideation-q12"
+    question: "What is the main pitfall of 'Solving for Everyone'?"
+    options:
+      - "It takes too much time"
+      - "It results in a mediocre product for all and great for none"
+      - "It costs too much money"
+      - "It requires too many engineers"
+    correctIndex: 1
+    explanation: "Trying to please every segment simultaneously results in a mediocre product for all and great for none. Focus on specific target segments instead."
 ---
 
 # Ideation Phase

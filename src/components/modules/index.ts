@@ -8,3 +8,4 @@ export { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 export { SmoothScroll } from './SmoothScroll';
 export { CommandPalette } from './CommandPalette';
 export { KeyboardShortcutsDialog } from './KeyboardShortcutsDialog';
+export { HomeKeyboardNav } from './HomeKeyboardNav';

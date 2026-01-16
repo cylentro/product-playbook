@@ -2,7 +2,7 @@
 title: "The Product operating Model"
 order: 1
 estimatedTime: 5
-quiz: true
+quiz: false
 description: "Overview of the Product Operating Model and PDLC Phases."
 ---
 

@@ -22,10 +22,32 @@ export function QuizEngine({ questions, lessonTitle }: QuizEngineProps) {
     const [showFeedback, setShowFeedback] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
-    // Shuffle questions on mount (for randomization)
-    const [shuffledQuestions] = useState(() =>
-        [...questions].sort(() => Math.random() - 0.5)
-    );
+    // Select 5 random questions and shuffle their answers
+    const [shuffledQuestions] = useState(() => {
+        // Step 1: Shuffle all questions and take 5 (or all if less than 5)
+        const selectedQuestions = [...questions]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, Math.min(5, questions.length));
+
+        // Step 2: For each question, shuffle the options and track the new correct index
+        return selectedQuestions.map(q => {
+            // Create array of indices to shuffle
+            const indices = q.options.map((_, i) => i);
+            const shuffledIndices = indices.sort(() => Math.random() - 0.5);
+            
+            // Reorder options based on shuffled indices
+            const shuffledOptions = shuffledIndices.map(i => q.options[i]);
+            
+            // Find where the correct answer ended up
+            const newCorrectIndex = shuffledIndices.indexOf(q.correctIndex);
+
+            return {
+                ...q,
+                options: shuffledOptions,
+                correctIndex: newCorrectIndex
+            };
+        });
+    });
 
     const handleOptionSelect = (optionIndex: number) => {
         if (showFeedback) return;

@@ -219,8 +219,10 @@ export async function getLessonContent(
     const orderMatch = lessonSlug.match(/^(\d+)/);
     const order = frontmatter.order ?? (orderMatch ? parseInt(orderMatch[1], 10) : 99);
 
-    // Generate quiz questions from content
-    const quiz = frontmatter.quiz !== false ? generateQuizFromContent(content, lessonSlug) : [];
+    // Get quiz questions from frontmatter or generate from content
+    const quiz = frontmatter.quiz !== false
+        ? ((data as any).quizQuestions || generateQuizFromContent(content, lessonSlug))
+        : [];
 
     return {
         slug: lessonSlug,
@@ -265,7 +267,9 @@ export async function getStandaloneLessonContent(
 
     const contentHtml = processedContent.toString();
     const slides = frontmatter.present !== false ? parseSlides(content) : [];
-    const quiz = frontmatter.quiz !== false ? generateQuizFromContent(content, lessonSlug) : [];
+    const quiz = frontmatter.quiz !== false
+        ? ((data as any).quizQuestions || generateQuizFromContent(content, lessonSlug))
+        : [];
 
     return {
         slug: lessonSlug,
