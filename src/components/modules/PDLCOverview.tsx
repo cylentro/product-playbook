@@ -88,7 +88,7 @@ export function PDLCOverview() {
                                     if (!phase) return null;
                                     return (
                                         <>
-                                            <div className={cn("inline-flex p-1.5 md:p-3 rounded-2xl mb-0 md:mb-4 mx-auto", phase.bg)}>
+                                            <div className={cn("inline-flex p-1.5 md:p-3 rounded-2xl mb-1 md:mb-2 mx-auto", phase.bg)}>
                                                 <phase.icon className={cn("w-5 h-5 md:w-8 md:h-8", phase.color)} />
                                             </div>
                                             <h4 className="text-sm md:text-lg font-black text-foreground mb-1 uppercase tracking-tighter leading-none">{phase.name}</h4>
