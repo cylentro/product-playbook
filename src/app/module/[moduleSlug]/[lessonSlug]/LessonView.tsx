@@ -292,8 +292,8 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                                     </button>
 
                                     <Dialog open={open} onOpenChange={setOpen}>
-                                        <DialogContent showCloseButton={false} className="p-0 w-screen h-screen max-w-none m-0 rounded-none border-none flex flex-col bg-background/95 backdrop-blur-xl gap-0">
-                                            <div className="flex items-center justify-between px-6 py-4 border-b border-border/40 shrink-0 bg-background/50">
+                                        <DialogContent showCloseButton={false} className="p-0 w-screen h-[100dvh] max-w-none m-0 rounded-none border-none flex flex-col bg-background/95 backdrop-blur-xl gap-0">
+                                            <div className="flex items-center justify-between px-6 py-4 pt-8 md:pt-4 border-b border-border/40 shrink-0 bg-background/50">
                                                 <div className="flex flex-col">
                                                     <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Chapters</span>
                                                     <span className="text-sm font-bold text-foreground">{moduleTitle}</span>
@@ -301,7 +301,7 @@ export function LessonView({ lesson, moduleTitle, allLessons, prevLesson, nextLe
                                                 <Button 
                                                     variant="ghost" 
                                                     size="icon" 
-                                                    className="h-8 w-8 rounded-xl"
+                                                    className="h-10 w-10 rounded-xl bg-primary/5 hover:bg-primary/10"
                                                     onClick={() => setOpen(false)}
                                                 >
                                                     <X className="h-5 w-5" />

@@ -33,7 +33,7 @@ export function PDLCOverview() {
 
     React.useEffect(() => {
         const updateRadius = () => {
-            setRadius(window.innerWidth < 768 ? 120 : 190);
+            setRadius(window.innerWidth < 768 ? 135 : 190);
         };
         updateRadius();
         window.addEventListener('resize', updateRadius);
@@ -72,7 +72,7 @@ export function PDLCOverview() {
             </motion.div>
 
             {/* Phase Items & Detail Card Container */}
-            <div className="relative w-[280px] h-[280px] md:w-[450px] md:h-[450px]">
+            <div className="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px]">
                 {/* Unified Active Detail Card - Placed BEFORE phases in DOM */}
                 <AnimatePresence>
                     {activePhase && (
@@ -81,18 +81,18 @@ export function PDLCOverview() {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
-                                className="w-44 h-44 md:w-56 md:h-56 p-6 md:p-8 rounded-full bg-background border-2 border-primary/20 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-center flex flex-col items-center justify-center pointer-events-auto"
+                                className="w-40 h-40 md:w-56 md:h-56 p-4 md:p-8 rounded-full bg-background border-2 border-primary/20 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-center flex flex-col items-center justify-center pointer-events-auto"
                             >
                                 {(() => {
                                     const phase = phases.find(p => p.id === activePhase);
                                     if (!phase) return null;
                                     return (
                                         <>
-                                            <div className={cn("inline-flex p-3 rounded-2xl mb-4 mx-auto", phase.bg)}>
-                                                <phase.icon className={cn("w-6 h-6 md:w-8 md:h-8", phase.color)} />
+                                            <div className={cn("inline-flex p-1.5 md:p-3 rounded-2xl mb-0 md:mb-4 mx-auto", phase.bg)}>
+                                                <phase.icon className={cn("w-5 h-5 md:w-8 md:h-8", phase.color)} />
                                             </div>
-                                            <h4 className="text-base md:text-lg font-black text-foreground mb-1.5 uppercase tracking-tighter">{phase.name}</h4>
-                                            <p className="text-xs md:text-sm font-medium text-muted-foreground leading-relaxed">
+                                            <h4 className="text-sm md:text-lg font-black text-foreground mb-1 uppercase tracking-tighter leading-none">{phase.name}</h4>
+                                            <p className="text-[10px] md:text-sm font-medium text-muted-foreground leading-tight px-1">
                                                 {phase.desc}
                                             </p>
                                         </>
