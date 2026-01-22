@@ -195,18 +195,17 @@ The first 14 days focus on the "Machine."
 ### Step 2: Adoption Monitoring
 Verifying the "Efficiency" of the design.
 
-:::cols
 :::col
-#### Quantitative (What)**
+**Quantitative (What)**
 * **Funnel Drop-offs**: Where do users stop?
 * **?[CSAT / NPS](Customer Satisfaction and Net Promoter Score: Triggering in-app surveys to measure user sentiment.)**: Triggered post-action.
 * **Leading Indicators**: Are CTRs moving?
+:::
 :::col
-#### Qualitative (Why)**
+**Qualitative (Why)**
 * **?[IDI](In-Depth Interviews: 1-on-1 sessions with early adopters to dig into 'Why' they use or skip a feature.)**: 1-on-1 sessions.
 * **Support Logs**: Recurring confusion themes.
 * **App Reviews**: High-level sentiment.
-:::
 :::
 ::::
 

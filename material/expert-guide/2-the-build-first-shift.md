@@ -35,7 +35,6 @@ From **Spec-First** (high cost of code) to a **Build-First** world (near-zero co
 ### The Economics of the Build
 #### From Scarcity to Abundance
 
-:::cols
 :::col
 **Old World (High Cost)**
 *   **Asset:** Code is high-stakes capital.
@@ -48,8 +47,8 @@ From **Spec-First** (high cost of code) to a **Build-First** world (near-zero co
 *   **Risk:** Mistakes cost a 30s prompt.
 *   **Behavior:** Focus on "feeling it out" via builds.
 :::
-:::
 ::::
+
 ::::present
 ### The Great Flipping
 #### Why We Build Before We Plan

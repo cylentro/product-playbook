@@ -197,18 +197,17 @@ This is a collaborative session between the PM, Designer, and the Engineering sq
 ### Step 1: System Impact & Edge Cases
 Exposing the "Invisible" work before it hits the sprint.
 
-:::cols
 :::col
-#### System Impact
+**System Impact**
 * Which microservices change?
 * New database fields needed?
 * Third-party API payload?
+:::
 :::col
-#### Edge Case ID
+**Edge Case ID**
 * Partner timeouts?
 * Partial success states?
 * Race conditions?
-:::
 :::
 
 > [!IMPORTANT]
@@ -281,17 +280,16 @@ The final alignment where the squad commits to the "Sprint Backlog."
 ### Step 3: Capacity & Goals
 Defining the "Why" behind the sprint scope.
 
-:::cols
 :::col
-#### The Sprint Goal
+**The Sprint Goal**
 * One-sentence mission.
 * *Example:* "Enable real-time premium calculation for ."
+:::
 :::col
-#### Capacity Check
+**Capacity Check**
 * Account for holidays/meetings.
 * Historical velocity limit.
 * Avoid 100% allocation.
-:::
 :::
 
 > [!TIP]

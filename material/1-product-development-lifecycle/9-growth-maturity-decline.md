@@ -201,16 +201,15 @@ Unlike the high-alert "Hyper-care" monitoring, long-term monitoring is about ide
 ### Step 2: Compound Interest
 Growth through high-leverage micro-optimizations.
 
-:::cols
 :::col
-#### Optimization**
+**Optimization**
 * **A/B Testing**: Refining funnels and copy.
 * **Psychological Triggers**: Visualization of progress (Pro near-win).
+:::
 :::col
-#### Feedback Loop**
+**Feedback Loop**
 * **IDI & FGDs**: Digging into the "middle 60%" of users.
 * **Fast-follow UX**: Removing minor friction at scale.
-:::
 :::
 
 > [!IMPORTANT]

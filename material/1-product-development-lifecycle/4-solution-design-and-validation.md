@@ -213,18 +213,17 @@ Gherkin provides a shared language for PMs, Designers, and Engineers to agree on
 ### Step 1: Verification Logic
 Differentiating the business rules (PM) from the technical paths (QA).
 
-:::cols
 :::col
-#### **Acceptance Criteria (PM)**
+**Acceptance Criteria (PM)**
 - **Perspective**: User-Centric.
 - **Objective**: Range & Rules.
 - **Format**: Gherkin.
+:::
 :::col
-#### **Test Case Scenario (QA)**
+**Test Case Scenario (QA)**
 - **Perspective**: System-Centric.
 - **Objective**: How can it fail?
 - **Format**: Action → Result.
-:::
 :::
 ::::
 

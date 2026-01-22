@@ -136,13 +136,13 @@ quizQuestions:
 A Product Requirement Document (PRD) is the **Single Source of Truth** for a feature. It acts as the bridge between a strategic **Why** and a technical **How.**
 
 :::col
-#### The "Feature Factory" ❌
+**The "Feature Factory" ❌**
 * Order Volume
 * Metric: Velocity
 * Focus: Output
 :::
 :::col
-#### The "Outcome" Mindset ✅
+**The "Outcome" Mindset ✅**
 * Resolving User Pain
 * Metric: Business Value
 * Focus: Result
@@ -173,12 +173,12 @@ A great PRD justifies its existence through 3 validation lenses:
 From a company perspective, a unified PRD repository is a strategic asset, not just a filing system.
 
 :::col
-#### Knowledge & Continuity
+**Knowledge & Continuity**
 * **Institutional Memory**: Decisions persist beyond employee tenure.
 * **Onboarding Velocity**: New hires ramp up 40% faster with access to historical context.
 :::
 :::col
-#### Governance & Visibility
+**Governance & Visibility**
 * **Audit Trail**: Full change history for compliance and post-mortems.
 * **Cross-Team Alignment**: One link, one truth, zero Slack threads.
 :::
@@ -265,12 +265,12 @@ A PRD is a **living document.** Versioning is mandatory to track "Logic Drift."
 Anchor the squad in the objective before a single line of code is written.
 
 :::col
-#### Problem & Persona
+**Problem & Persona**
 * **Problem**: Focus on the "Proof of Pain."
 * **Persona**: JTBD framework. Who are they hiring this code to help?
 :::
 :::col
-#### Hypothesis & Goals
+**Hypothesis & Goals**
 * **Hypothesis**: "If we build X, then Y, which results in Z."
 * **Goals**: Primary (Bullseye) vs. Secondary.
 :::
@@ -337,13 +337,13 @@ Before full engineering commitment, we must validate our blueprint.
 The handshake between PM, Design, and Engineering.
 
 :::col
-#### Flow Design
+**Flow Design**
 * **User Flow**: Screen journey.
 * **Business Flow**: The "Brain" (Logics).
 * **System Flow**: The API handshake.
 :::
 :::col
-#### Requirements
+**Requirements**
 * **Acceptance Criteria**: Testable.
 * **Gherkin Format**: Given/When/Then.
 * **Figma**: Mandatory High-Fidelity.
@@ -373,12 +373,12 @@ This is the technical handshake between PM, Design, and Engineering.
 Apply these layers to prove the feature's impact.
 
 :::col
-#### North Star & Key
+**North Star & Key**
 * **North Star**: Core Task Completion (e.g. Orders via Search).
 * **Key Metric**: Conversion Success (e.g. Search-to-Cart %).
 :::
 :::col
-#### Levers & Health
+**Levers & Health**
 * **Levers**: Micro-engagement (e.g. Filter Adoption).
 * **Health**: The Safety Net (e.g. Zero-Result Rate).
 :::

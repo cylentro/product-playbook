@@ -415,7 +415,7 @@ Transform the prioritized hypotheses into actionable product concepts. This step
 Decide what enters the roadmap using objective data.
 
 :::col
-#### 1. RICE (Impact Focused): Higher Score = Higher Priority
+**1. RICE (Impact Focused): Higher Score = Higher Priority**
 **Formula**: `(Reach × Impact × Confidence) / Effort`
 * **Reach**: Customers per quarter.
 * **Impact**: 3 (Massive) to 0.25 (Minimal).
@@ -426,7 +426,7 @@ Decide what enters the roadmap using objective data.
 > Use **RICE** for individual feature comparison within a single product.
 :::
 :::col
-#### 2. WSJF (Time Focused): Higher Score = Higher Priority
+**2. WSJF (Time Focused): Higher Score = Higher Priority**
 **Formula**: `(User Value + Criticality + RR|OE) / Job Size`
 
 * **User Value**: Business impact.
@@ -517,14 +517,14 @@ For when you need stakeholder alignment over formulas.
 Aligning stakeholders through spatial and gamified prioritization.
 
 :::col
-#### The 2x2 Matrix
+**The 2x2 Matrix**
 * **?[Quick Wins](High Value, Low Effort. These build momentum and deliver immediate business value with minimal engineering burden.)**: High Value + Low Effort.
 * **?[Strategic Initiatives](High Value, High Effort. These are the mission-critical "Big Bets" that move the North Star metrics.)**: High Value + High Effort.
 * **?[Fill-ins](Low Value, Low Effort. Low priority tasks to be done only when the squad has extra capacity.)**: Low Value + Low Effort.
 * **Thankless Tasks**: Discard immediately.
 :::
 :::col
-#### Buy a Feature
+**Buy a Feature**
 A gamification ritual to uncover the *true* priorities of your stakeholders.
 
 * **Limited Budget**: Participants are given fixed "cash" to spend.

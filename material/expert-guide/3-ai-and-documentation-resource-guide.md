@@ -19,13 +19,13 @@ This repository serves as a centralized hub for modern Product Management tools 
 Standardizing how we communicate requirements and logic ensures clarity and reduces debt.
 
 :::col
-#### Markdown Standards
+**Markdown Standards**
 Essential for tools like GitHub, Azure DevOps, and Notion.
 * [Markdown Guide](https://www.markdownguide.org/)
 * [Markdownlint](https://github.com/DavidAnson/markdownlint)
 :::
 :::col
-#### Mermaid (Visual Logic)
+**Mermaid (Visual Logic)**
 Embed diagrams directly in your PRDs.
 * [Mermaid.dev](https://mermaid.dev/)
 * [Live Editor](https://mermaid.live/)
@@ -55,13 +55,13 @@ Use Mermaid to create diagrams within your Markdown files (User Flows, Business 
 Mastering the interface to LLMs to generate high-fidelity product artifacts.
 
 :::col
-#### Community & Collections
+**Community & Collections**
 * [r/ChatGPTPromptGenius](https://www.reddit.com/r/ChatGPTPromptGenius/)
 * [r/PromptEngineering](https://www.reddit.com/r/PromptEngineering/)
 * [The Prompt Collection](https://the-prompt-collection.github.io/)
 :::
 :::col
-#### Techniques & Courses
+**Techniques & Courses**
 * [Core Prompting](https://bychris.me/gaillery/core-prompting-techniques)
 * [CASTR Frameworks](https://bychris.me/gaillery/prompt-frameworks)
 * [Prompting 101](https://bychris.me/courses/prompting-101/)
@@ -74,12 +74,12 @@ Mastering the interface to LLMs to generate high-fidelity product artifacts.
 Official prompt engineering resources from leading AI providers.
 
 :::col
-#### Anthropic (Claude)
+**Anthropic (Claude)**
 * [Prompt Engineering Guide](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)
 * [Interactive Exercises](https://docs.google.com/spreadsheets/d/19jzLgRruG9kjUQNKtCg1ZjdD6l6weA6qRXG5zLIAhC8/edit?gid=1308675322#gid=1308675322)
 :::
 :::col
-#### Google (Gemini)
+**Google (Gemini)**
 * [Intro to Prompt Engineering](https://cloud.google.com/discover/what-is-prompt-engineering)
 * [Whitepaper](https://drive.google.com/file/d/1AbaBYbEa_EbPelsT40-vj64L-2IwUJHy/view)
 * [Workspace Guide 101](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
@@ -125,12 +125,12 @@ Official resources from leading AI providers to master their specific models.
 Tools categorized by their application in the PDLC.
 
 :::col
-#### Discovery & Insights
+**Discovery & Insights**
 * **Prototyping**: Lovable, Bolt.new, v0.dev.
 * **Customer Intel**: Dovetail, Enterpret, Sprig.
 :::
 :::col
-#### Delivery & Execution
+**Delivery & Execution**
 * **Vibe Coding**: Cursor, Claude Code, Antigravity.
 * **Experimentation**: Optimizely, Amplitude, Pendo.
 :::
@@ -155,12 +155,12 @@ Tools categorized by their application in the Product Development Lifecycle (PDL
 Scale through productivity and automation agents.
 
 :::col
-#### Productivity & Comms
+**Productivity & Comms**
 * **Voice/Dictation**: Wispr, SuperWhisper.
 * **General LLMs**: Claude, Gemini, NotebookLM.
 :::
 :::col
-#### Agents & Automation
+**Agents & Automation**
 * **Meetings**: Granola, Fathom, tldv.
 * **Platforms**: Zapier, Make, Parabola.
 :::
@@ -184,12 +184,12 @@ Scale through productivity and automation agents.
 Leveraging internal infrastructure for research and design.
 
 :::col
-#### Core Research
+**Core Research**
 * **Gemini**: High-performance LLM with Deep Research.
 * **Gemini Gems**: Custom prompt standards.
 :::
 :::col
-#### Product Strategy
+**Product Strategy**
 * **NotebookLM**: AI Research Assistant grounded in your own PRDs and PDFs.
 :::
 ::::
@@ -211,13 +211,13 @@ As a team integrated into Google’s infrastructure, leveraging these specific t
 Creative sandboxes and technical development tools.
 
 :::col
-#### Creative & Design
+**Creative & Design**
 * **Stitch**: UX design assistant.
 * **Pomelli**: Identity generator.
 * **Mixboard**: Moodboarding.
 :::
 :::col
-#### Sandbox & Dev
+**Sandbox & Dev**
 * **AI Studio**: Prompt sandbox.
 * **Antigravity**: Product visualization.
 * **Jules**: AI-powered coding.

@@ -261,13 +261,13 @@ Formal validation from a business and end-user perspective to ensure the solutio
 Verifying in the "Real World" without impacting the masses.
 
 :::col
-#### Closed Testing**
+**Closed Testing**
 * Use "Test Accounts."
 * Verify behind a feature flag.
 * Internal-only rollout.
 :::
 :::col
-#### Smoke Check**
+**Smoke Check**
 * Rapid core path test.
 * Success = **Launch.**
 * Failure = **Rollback.**

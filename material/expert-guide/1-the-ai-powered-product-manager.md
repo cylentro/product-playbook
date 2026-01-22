@@ -407,7 +407,7 @@ Compare what the enhanced prompt delivered:
 ### Side-by-Side Comparison
 
 :::col
-#### First Prompt
+**First Prompt**
 "Create a 7-day itinerary for Japan."
 
 **Output:**
@@ -419,7 +419,7 @@ Compare what the enhanced prompt delivered:
 :::
 
 :::col
-#### Enhanced Prompt
+**Enhanced Prompt**
 Included: traveler profile, preferences, constraints, specific requirements, desired format
 
 **Output:**
@@ -545,11 +545,11 @@ The CASTR version produces dev-ready, context-aware acceptance criteria that acc
 Move beyond basics with these senior-level techniques.
 
 :::col
-#### Chain-of-Thought (CoT)
+**Chain-of-Thought (CoT)**
 Ask the AI to "think step-by-step." Reduces errors in complex financial or business logic.
 :::
 :::col
-#### Few-Shot Prompting
+**Few-Shot Prompting**
 Provide 1-2 examples of your "Gold Standard" documents within the prompt to set the bar.
 :::
 ::::

@@ -199,13 +199,13 @@ For PMs unfamiliar with GTM, this step is about translating the technical build 
 Preparing the organization's "Internal Source of Truth."
 
 :::col
-#### ?[NPI Protocol](New Product Introduction: The definitive internal deck that explains the problem, solution, and roadmap to the entire company.)
+**?[NPI Protocol](New Product Introduction: The definitive internal deck that explains the problem, solution, and roadmap to the entire company.)**
 * Problem/Solution summary.
 * Roadmap visual.
 * Success metrics.
 :::
 :::col
-#### Enablement**
+**Enablement**
 * **Sales**: Demo accounts & Scripts.
 * **CS**: Troubleshooting & FAQs.
 * **Ops**: Hub Manager briefings.
