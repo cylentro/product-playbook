@@ -137,7 +137,7 @@ A Product Requirement Document (PRD) is the **Single Source of Truth** for a fea
 
 :::col
 #### The "Feature Factory" ❌
-* Shipping Volume
+* Order Volume
 * Metric: Velocity
 * Focus: Output
 :::
@@ -151,7 +151,7 @@ A Product Requirement Document (PRD) is the **Single Source of Truth** for a fea
 
 A Product Requirement Document (PRD) is the "Single Source of Truth" for a feature or product. It acts as the bridge between a strategic "Why" and a technical "How."
 
-In our team, we are moving away from being a "Feature Factory" (where success is defined by shipping volume) to being Outcome-Driven. A great PRD doesn't just describe a button; it justifies its existence through:
+In our team, we are moving away from being a "Feature Factory" (where success is defined by task velocity) to being Outcome-Driven. A great PRD doesn't just describe a button; it justifies its existence through:
 
 ::::present
 ### The Three Discovery Pillars
@@ -195,7 +195,7 @@ When a PM leaves, their Notion pages often become digital graveyards. A centrali
 
 ### 2. Governance, Compliance, and Audit Trails
 
-For companies handling sensitive data (financial, health, logistics), regulators may ask: *"Why was this feature built this way?"*
+For companies handling sensitive data (financial, health, enterprise analytics), regulators may ask: *"Why was this feature built this way?"*
 
 * **Version History**: The Versioning Table (Section 0) provides a clear audit trail of every logic change.
 * **Accountability**: RACI-style ownership (Accountable, Responsible, Consulted) is baked into the document.
@@ -255,7 +255,7 @@ A PRD is a **living document.** Versioning is mandatory to track "Logic Drift."
 ::::
 
 * **Target Release**: Setting an estimated launch window (e.g., Q3 2025) sets the baseline for the "Feasibility" pillar.
-* **Classification**: Defining if the data is Internal or Confidential ensures compliance, especially for insurance and financial logic.
+* **Classification**: Defining if the data is Internal or Confidential ensures compliance, especially for advanced analytics and proprietary logic.
 * **Document Versioning**: A PRD is a living document. The versioning table is mandatory to track "Logic Drift"—any change in requirements must be logged here so Eng/QA stay aligned.
 
 ### Section 1: Background & Overview (The "Why")
@@ -278,10 +278,10 @@ Anchor the squad in the objective before a single line of code is written.
 
 This section anchors the squad in the strategic objective before a single line of code is written.
 
-* **Problem Statement**: Focus on the "Proof of Pain." Use data from support logs or research. Example: "High-volume B2B users in business portal have a 15% error rate due to manual data entry for insurance."
+* **Problem Statement**: Focus on the "Proof of Pain." Use data from support logs or research. Example: "High-volume B2B users in the analytics portal have a 15% error rate due to manual data entry for custom reports."
 * **User Persona**: Use the Jobs to be Done (JTBD) framework. Describe their "Pain Hotspots" and what they are "hiring" this feature to do.
 * **Hypothesis**: This is your testable assumption. Format: If we [Build X], then [Result Y], which will [Benefit Z]. If you can't state this clearly, the feature is not ready for development.
-* **Goals**: Divide into Primary (the bullseye) and Secondary (additional value like "reduced CS load").
+* **Goals**: Divide into Primary (the bullseye) and Secondary (additional value like "reduced manual workload").
 
 ### Section 2: Scope (The Guardrails)
 
@@ -311,7 +311,7 @@ Evidence justifies the build. Never start a PRD without these three layers:
 
 * **Desk Study**: What does our internal data (Mixpanel, SQL logs) say?
 * **User Research**: Summarize the "Aha! moments" from user interviews or FGDs.
-* **Market Study**: Benchmarking against competitors. If we are building an insurance aggregator, how do competitors handle the "underwriting" toggle?
+* **Market Study**: Benchmarking against competitors. If we are building a multi-cloud analytics hub, how do competitors handle the "encryption" toggle?
 
 ### Section 4: Solution Validation (The Reality Check)
 
@@ -354,8 +354,8 @@ This is the technical handshake between PM, Design, and Engineering.
 
 #### Flow Design (The Three Layers): 
 * **User Flow**: The visual journey through screens.
-* **Business Flow**: The "brain" (e.g., "If shipment > 60, then upgrade to Pro").
-* **System Flow**: The API handshake (e.g., "App calls Insurance API v2").
+* **Business Flow**: The "brain" (e.g., "If active days > 20, then upgrade to Pro").
+* **System Flow**: The API handshake (e.g., "App calls Analytics API v2").
 
 #### User Stories, Requirements, & Acceptance Criteria
 * Every story must have detailed requirements andAcceptance Criteria 
@@ -418,7 +418,7 @@ Identify blockers early.
 #### Potential Risks
 
 * **Technical Risks**: (e.g., Third-party API instability).
-* **Operational Risks**: (e.g., Customer Service team needs training for the new business portal).
+* **Operational Risks**: (e.g., Customer Success team needs training for the new analytics dashboard).
 
 #### Mitigation
 
@@ -434,7 +434,7 @@ Focus on Deliverables, not just arbitrary dates.
 * **Gantt Chart**: Visualizing dependencies helps stakeholders manage timelines.
 ::::
 
-* **Key Milestones**: Focus on Deliverables, not just dates. (e.g., "Backend API Ready," "UAT Sign-off").
+* **Key Milestones**: Focus on Deliverables, not just dates. (e.g., "Resource API Ready," "UAT Sign-off").
 * **Gantt Chart**: A visual timeline helps stakeholders understand dependencies.
 
 ### Section 9: Appendix

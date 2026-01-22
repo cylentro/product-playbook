@@ -242,7 +242,7 @@ Focus your effort using disciplined models:
 - **Segmentation**
   - **Demographics**: Age, gender, income, occupation.
   - **Psychographics**: Lifestyle, values, personality traits, and social status.
-  - **Geography**: Specific regions, urban vs. rural, or climate-based logistics needs.
+  - **Geography**: Specific regions, urban vs. rural, or usage-based infrastructure needs.
   - **Behavior**: Usage frequency (heavy vs. light), brand loyalty, and readiness to purchase.
 - **Customer Profiling & JTBD**: 
   - Select primary and secondary personas. Document their Jobs to be Done" (JTBD)—the underlying goal a user is trying to "hire" your product to achieve.
@@ -312,8 +312,8 @@ Frame requirements by the **Outcome**, not the Feature.
 > "As a **[Persona]**, I need **[Requirement]** so that **[Outcome]**"
 
 **Examples:**
-- **E-commerce**: Item Value >Rp1M → Auto-Insurance.
-- **SaaS**: Bulk Upload CSV → Zero manual effort.
+  - **SaaS (B2B)**: Organization Size > 500 → Auto-Compliance Audit.
+  - **SaaS (B2C)**: Bulk Export PDF → Zero manual compilation.
 ::::
 
 Transform raw discovery data into structured, actionable requirements. This ensures the solution is anchored in human needs rather than technical assumptions.
@@ -368,9 +368,9 @@ Translate pain into testable assumptions:
 | **Type** | **Example** | **Why it's Good/Bad** |
 | :--- | :--- | :--- |
 | **Bad** | "We should build a new dashboard for business users because they like data." | Too vague. No target metric, no clear reason, and assumes the solution (dashboard) is the answer without a 'why'. |
-| **Good** | "We believe that adding a 'Quick-Claim' button to the shipment history for VIP users will reduce the 'File a Claim' drop-off rate by 15% because high-volume users value speed and find the current 5-step form too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
-| **Bad** | "We will improve Shipping Insurance sales by making the UI look modern." | 'Modern' is subjective. There is no measurable hypothesis or evidence-based reasoning. |
-| **Good** | "We believe that defaulting the 'Basic Insurance' toggle to 'ON' during the checkout for retail users will increase insurance TPV by 10% because Discovery showed users aren't avoiding insurance, they are simply overlooking it." | Testable. It identifies a specific friction point (overlooking) and predicts a business outcome. |
+| **Good** | "We believe that adding a 'Bulk-Export' button to the analytics dashboard for Pro users will reduce the 'Manual Report' time by 15% because high-volume users value speed and find the current row-by-row export too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
+| **Bad** | "We will improve Subscription Upgrade conversion by making the UI look modern." | 'Modern' is subjective. There is no measurable hypothesis or evidence-based reasoning. |
+| **Good** | "We believe that defaulting the 'Premium Analytics' trial to 'ON' during the onboarding for new users will increase conversion by 10% because Discovery showed users aren't avoiding the feature, they are simply unaware of its value." | Testable. It identifies a specific friction point (unawareness) and predicts a business outcome. |
 ::::
 
 Translate prioritized pain points into testable assumptions.
@@ -381,9 +381,9 @@ Translate prioritized pain points into testable assumptions.
 | **Type** | **Example** | **Why it's Good/Bad** |
 | :--- | :--- | :--- |
 | **Bad** | "We should build a new dashboard for business users because they like data." | Too vague. No target metric, no clear reason, and assumes the solution (dashboard) is the answer without a 'why'. |
-| **Good** | "We believe that adding a 'Quick-Claim' button to the shipment history for VIP users will reduce the 'File a Claim' drop-off rate by 15% because high-volume users value speed and find the current 5-step form too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
-| **Bad** | "We will improve Shipping Insurance sales by making the UI look modern." | 'Modern' is subjective. There is no measurable hypothesis or evidence-based reasoning. |
-| **Good** | "We believe that defaulting the 'Basic Insurance' toggle to 'ON' during the checkout for retail users will increase insurance TPV by 10% because Discovery showed users aren't avoiding insurance, they are simply overlooking it." | Testable. It identifies a specific friction point (overlooking) and predicts a business outcome. |
+| **Good** | "We believe that adding a 'Bulk-Export' button to the analytics dashboard for Pro users will reduce the 'Manual Report' time by 15% because high-volume users value speed and find the current row-by-row export too tedious." | Crystal Clear. It defines the persona, the action, the exact metric to move, and the behavioral insight. |
+| **Bad** | "We will improve Subscription Upgrade conversion by making the UI look modern." | 'Modern' is subjective. There is no measurable hypothesis or evidence-based reasoning. |
+| **Good** | "We believe that defaulting the 'Premium Analytics' trial to 'ON' during the onboarding for new users will increase conversion by 10% because Discovery showed users aren't avoiding the feature, they are simply unaware of its value." | Testable. It identifies a specific friction point (unawareness) and predicts a business outcome. |
 
 ## Explore Solutions (Divergent Thinking)
 
@@ -456,7 +456,7 @@ Best used when comparing multiple features for a single product. It balances bro
 | **Effort** | Estimated "Person-Months" (e.g., 1 PM, 2 Devs = 3 points/mo). |
 
 * **Rule of Thumb**: Higher Score = Higher Priority.
-* **Example**: Automated Claims Submission Portal. Reach (2,000) x Impact (3) x Confidence (0.8) / Effort (3 months) = 1,600.
+* **Example**: Automated Resource Migration Portal. Reach (2,000) x Impact (3) x Confidence (0.8) / Effort (3 months) = 1,600.
 
 ---
 
@@ -477,7 +477,7 @@ Best used for Portfolio management or when "Cost of Delay" (CoD) is the primary 
 | **Job Size** | Relative technical effort/complexity (1, 2, 3, 5, 8, 13, 21). |
 
 * **Rule of Thumb**: Higher Score = Higher Priority.
-* **Example**: Automated Claims Submission Portal. User-Business Value (21) x Time Criticality (3) x RR / OE Value (2) x Job Size (5) = 630.
+* **Example**: Automated Resource Migration Portal. User-Business Value (21) x Time Criticality (3) x RR / OE Value (2) x Job Size (5) = 630.
 
 #### When to use which?
 * **Use RICE when**: You need to justify a feature to a broad set of stakeholders and want to prove its reach across the user base.
@@ -582,7 +582,7 @@ The roadmap is the strategic communication tool that balances high-confidence ex
 ::::present
 - **Solving for Everyone**: Resulting in a mediocre product for all.
 - **Gut-Only Decisions**: Ignoring the "Evidence Meter."
-- **Output over Outcome**: Shipping features vs. shipping impact.
+- **Output over Outcome**: Launching features vs. creating impact.
 ::::
 
 * **Solving for Everyone**: Resulting in a mediocre product for all and great for none.
