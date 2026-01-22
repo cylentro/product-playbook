@@ -1,5 +1,5 @@
 ---
-title: "The Product operating Model"
+title: "The Product Operating Model"
 order: 1
 estimatedTime: 5
 quiz: false
