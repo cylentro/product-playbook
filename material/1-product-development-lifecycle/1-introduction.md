@@ -47,9 +47,19 @@ Our lifecycle is divided into nine distinct phases to ensure rigor, quality, and
 ## Strategic Alignment (The "Big Three")
 
 ::::present
+
+<figure class="flex flex-col items-center">
+  <img src="/pdlc/pm.png" alt="Product Management" class="max-w-full h-auto" style="width: 500px;" />
+  <figcaption class="text-center italic text-gray-500 mt-2">Product Management Intersection</figcaption>
+</figure>
+::::
+::::present
 - **Desirability**: Do users want it? (Product/UX)
 - **Viability**: Does it support business goals? (Product Management)
 - **Feasibility**: Can we build it? (Engineering)
+
+
+
 ::::
 
 For the PDLC to function, three core pillars must be in constant synchronization. If one is missing, the product fails.
