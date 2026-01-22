@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { PDLCOverview } from './PDLCOverview';
 import { MermaidDiagram } from './MermaidDiagram';
+import { CopyPromptTemplate } from './CopyPromptTemplate';
 
 interface LearningEngineProps {
   content: string;
@@ -10,8 +11,8 @@ interface LearningEngineProps {
 }
 
 export function LearningEngine({ content, title }: LearningEngineProps) {
-  // Split content by the [PDLC_MAP] marker
-  const segments = content.split('[PDLC_MAP]');
+  // Split content by custom markers
+  const segments = content.split(/(\[PDLC_MAP\]|\[MASTER_PROMPT_TEMPLATE\])/);
 
   const normalizeText = (text: string): string => {
     return text
@@ -54,6 +55,13 @@ export function LearningEngine({ content, title }: LearningEngineProps) {
               <div class="alert-content">${content.trim()}</div>
             </div>
           `;
+        }
+      )
+      .replace(
+        /<pre><code(?:\s+class="language-([^"]+)")?>([\s\S]*?)<\/code><\/pre>/g,
+        (match, lang, content) => {
+          const language = lang || 'text';
+          return `<pre class="px-4 py-4 rounded-2xl bg-muted/50 border border-border/40 mb-6 font-mono text-sm shadow-inner group not-prose relative !indent-0"><div class="flex justify-between mb-1 sticky left-0 top-0"><span class="text-[10px] uppercase tracking-wider text-muted-foreground">${language}</span></div><code class="text-primary !bg-transparent !p-0 !border-0 block font-mono leading-relaxed whitespace-pre-wrap break-words">${content.trim()}</code></pre>`;
         }
       );
   };
@@ -105,6 +113,18 @@ export function LearningEngine({ content, title }: LearningEngineProps) {
     >
       <article className="prose prose-lg dark:prose-invert max-w-none">
         {segments.map((segment, index) => {
+          if (segment === '[PDLC_MAP]') {
+            return (
+              <div key={index} className="my-12 not-prose">
+                <PDLCOverview />
+              </div>
+            );
+          }
+          
+          if (segment === '[MASTER_PROMPT_TEMPLATE]') {
+            return <CopyPromptTemplate key={index} />;
+          }
+
           // Identify Mermaid blocks within the segment
           const parts = segment.split(/(<pre><code[^>]*class="[^"]*language-mermaid[^"]*"[^>]*>[\s\S]*?<\/code><\/pre>)/g);
           
@@ -121,12 +141,6 @@ export function LearningEngine({ content, title }: LearningEngineProps) {
                 
                 return <div key={pIndex} dangerouslySetInnerHTML={{ __html: processText(part) }} />;
               })}
-              
-              {index < segments.length - 1 && (
-                <div className="my-12 not-prose">
-                  <PDLCOverview />
-                </div>
-              )}
             </div>
           );
         })}

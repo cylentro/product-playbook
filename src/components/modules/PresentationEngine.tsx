@@ -131,6 +131,10 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
 
     // Keyboard navigation
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        // Check if a modal or dialog is open to prevent stealing focus from Command Palette
+        const isModalOpen = document.querySelector('[role="dialog"], [data-state="open"]');
+        if (isModalOpen) return;
+
         if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
             handleNext();
@@ -440,7 +444,7 @@ export function PresentationEngine({ slides, title, moduleTitle = '', allLessons
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4 }}
                             className={cn(
-                                "w-full h-full flex flex-col items-center justify-center overflow-visible",
+                                "w-full h-full flex flex-col items-center justify-center overflow-hidden",
                                 isTitleSlide ? "p-0" : "p-4 md:p-8 lg:p-12"
                             )}
                         >
@@ -516,8 +520,8 @@ function SlideContent({ slide, index }: { slide: Slide; index: number }) {
     }
 
     return (
-        <div className="w-full h-full flex flex-col relative group/slide max-w-[1800px] mx-auto px-10 md:px-20 pointer-events-auto overflow-visible">
-            <div className="space-y-2 flex-1 flex flex-col overflow-visible py-2">
+        <div className="w-full h-full flex flex-col relative group/slide max-w-[1800px] mx-auto px-10 md:px-20 pointer-events-auto overflow-hidden">
+            <div className="space-y-2 flex-1 flex flex-col overflow-hidden py-2">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -527,6 +531,16 @@ function SlideContent({ slide, index }: { slide: Slide; index: number }) {
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground leading-tight">
                         {slide.title}
                     </h2>
+                    {slide.subtitle && (
+                        <motion.p
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl md:text-2xl font-medium text-muted-foreground/80 mt-2 pl-1"
+                        >
+                            {slide.subtitle}
+                        </motion.p>
+                    )}
                 </motion.div>
 
                 <div className="flex-1 overflow-visible px-2">
@@ -544,7 +558,7 @@ function SlideContent({ slide, index }: { slide: Slide; index: number }) {
                         </div>
                     ) : (
                         <div className="overflow-y-auto pr-4 no-scrollbar pb-20 h-full w-full" data-lenis-prevent>
-                            <div className="w-full">
+                            <div className="w-full h-full flex flex-col">
                                 <EnhancedMarkdown content={cleanContent} />
                             </div>
                         </div>
@@ -568,12 +582,28 @@ function EnhancedMarkdown({ content }: { content: string }) {
     let currentList: { text: string; indent: number }[] = [];
     let currentTable: string[][] = [];
     let currentQuote: { type: string | null; lines: string[] } | null = null;
+    let htmlBuffer: string[] = [];
     let inCodeBlock = false;
     let codeContent = '';
     let codeLanguage = '';
 
+    const flushHtml = (key: number) => {
+        if (htmlBuffer.length > 0) {
+            const htmlContent = htmlBuffer.join('\n');
+            addToCurrentSection(
+                <div 
+                    key={`html-${key}`} 
+                    dangerouslySetInnerHTML={{ __html: htmlContent }} 
+                    className="not-prose w-full mb-6"
+                />
+            );
+            htmlBuffer = [];
+        }
+    };
+
     const flushCols = (key: number) => {
         if (inCols) {
+            flushHtml(key);
             // Only push if we have actual content in columns
             if (colBuffer.some(nodes => nodes.length > 0)) {
                 sections.push(
@@ -603,6 +633,7 @@ function EnhancedMarkdown({ content }: { content: string }) {
 
     const flushList = (key: number) => {
         if (currentList.length > 0) {
+            flushHtml(key);
             const listNode = (
                 <motion.ul
                     key={`list-${key}`}
@@ -637,6 +668,7 @@ function EnhancedMarkdown({ content }: { content: string }) {
 
     const flushTable = (key: number) => {
         if (currentTable.length > 0) {
+            flushHtml(key);
             const tableNode = (
                 <div key={`table-wrapper-${key}`} className="relative overflow-hidden rounded-xl border border-border/40 mb-6 mt-3 group">
                     <div className="absolute inset-0 bg-primary/5 opacity-20 transition-opacity" />
@@ -673,6 +705,7 @@ function EnhancedMarkdown({ content }: { content: string }) {
 
     const flushQuote = (key: number) => {
         if (currentQuote && currentQuote.lines.length > 0) {
+            flushHtml(key);
             const { type, lines } = currentQuote;
             const text = lines.join(' ').trim();
             
@@ -805,11 +838,11 @@ function EnhancedMarkdown({ content }: { content: string }) {
                     }
                 } else {
                     codeNode = (
-                        <pre key={`code-${index}`} className="p-6 rounded-2xl bg-muted/50 border border-border/40 mb-6 overflow-x-auto font-mono text-sm shadow-inner group">
-                            <div className="flex justify-between mb-2">
+                        <pre key={`code-${index}`} className="px-4 py-4 rounded-2xl bg-muted/50 border border-border/40 mb-6 font-mono text-sm shadow-inner group relative !indent-0">
+                            <div className="flex justify-between mb-1 sticky left-0 top-0">
                                 <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{codeLanguage || 'code'}</span>
                             </div>
-                            <code className="text-primary">{codeContent}</code>
+                            <code className="text-primary !bg-transparent !p-0 !border-0 block font-mono leading-relaxed whitespace-pre-wrap break-words">{codeContent.trim()}</code>
                         </pre>
                     );
                 }
@@ -830,10 +863,22 @@ function EnhancedMarkdown({ content }: { content: string }) {
         }
 
         if (!trimmed) {
+            flushHtml(index);
             flushList(index);
             flushTable(index);
             flushQuote(index);
             return;
+        }
+
+        // Handle HTML blocks
+        if (trimmed.startsWith('<')) {
+            flushList(index);
+            flushTable(index);
+            flushQuote(index);
+            htmlBuffer.push(line);
+            return;
+        } else {
+            flushHtml(index);
         }
 
         // Special PDLC Map Marker
@@ -902,6 +947,31 @@ function EnhancedMarkdown({ content }: { content: string }) {
             }
         }
         // Header (H3 to H6)
+        else if (trimmed.match(/^!\[(.*?)\]\((.*?)\)$/)) {
+            flushList(index);
+            flushTable(index);
+            flushQuote(index);
+            const match = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
+            if (match) {
+                const [_, alt, src] = match;
+                const imageNode = (
+                    <motion.div
+                        key={`image-${index}`}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="my-auto flex-1 flex justify-center items-center w-full h-full p-4"
+                    >
+                        <img 
+                            src={src} 
+                            alt={alt} 
+                            className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl bg-black/10"
+                        />
+                    </motion.div>
+                );
+                addToCurrentSection(imageNode);
+            }
+        }
         else if (trimmed.match(/^#{3,6}/)) {
             flushList(index);
             flushTable(index);
@@ -949,20 +1019,21 @@ function EnhancedMarkdown({ content }: { content: string }) {
     });
 
     // Final flushes
+    flushHtml(lines.length);
     flushList(lines.length);
     flushTable(lines.length);
     flushQuote(lines.length);
     flushCols(lines.length);
 
-    return <div className="space-y-4">{sections}</div>;
+    return <div className="space-y-4 h-full flex flex-col">{sections}</div>;
 }
 
 function FormattedText({ text }: { text: string | undefined | null }) {
     if (!text) return null;
     
     // Use a combined regex for all tokens to find the first match of any type
-    // Hierarchy: Tooltip > Bold > Italic > Code > BR
-    const regex = /(!!.*?!!)|(\?\[.*?\]\(.*?\))|(\*\*.*?\*\*)|(\*.*?\*)|(`.*?`)|(<br\s*\/?>)/gi;
+    // Hierarchy: Tooltip > Link > Bold > Italic > Code > BR
+    const regex = /(!!.*?!!)|(\?\[.*?\]\(.*?\))|(\[.*?\]\(.*?\))|(\*\*.*?\*\*)|(\*.*?\*)|(`.*?`)|(<br\s*\/?>)/gi;
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
     
@@ -990,13 +1061,33 @@ function FormattedText({ text }: { text: string | undefined | null }) {
                 </span>
             );
         }
-        else if (fullMatch.match(/^\?\[(.*?)\]\((.*?)\)$/i)) {
-            const tooltipMatch = fullMatch.match(/^\?\[(.*?)\]\((.*?)\)$/i);
+        // Check if it's a tooltip (starts with ?) or a regular link
+        else if (fullMatch.match(/^\?\[(.*?)\]\((.*?)\)$/)) {
+            // Tooltip: ?[label](content)
+            const tooltipMatch = fullMatch.match(/^\?\[(.*?)\]\((.*?)\)$/);
             if (tooltipMatch) {
                 const [_, label, content] = tooltipMatch;
                 parts.push(<InteractiveTooltip key={`tooltip-${i}`} label={label} content={content} />);
             }
-        } 
+        }
+        else if (fullMatch.match(/^\[(.*?)\]\((.*?)\)$/)) {
+            // Regular markdown link: [text](url)
+            const linkMatch = fullMatch.match(/^\[(.*?)\]\((.*?)\)$/);
+            if (linkMatch) {
+                const [_, linkText, url] = linkMatch;
+                parts.push(
+                    <a 
+                        key={`link-${i}`} 
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors"
+                    >
+                        {linkText}
+                    </a>
+                );
+            }
+        }
         else if (fullMatch.startsWith('**') && fullMatch.endsWith('**')) {
             parts.push(<b key={`bold-${i}`} className="text-foreground font-bold"><FormattedText text={fullMatch.slice(2, -2)} /></b>);
         }

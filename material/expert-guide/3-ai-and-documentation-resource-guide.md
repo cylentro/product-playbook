@@ -55,21 +55,48 @@ Use Mermaid to create diagrams within your Markdown files (User Flows, Business 
 Mastering the interface to LLMs to generate high-fidelity product artifacts.
 
 :::col
+#### Community & Collections
+* [r/ChatGPTPromptGenius](https://www.reddit.com/r/ChatGPTPromptGenius/)
+* [r/PromptEngineering](https://www.reddit.com/r/PromptEngineering/)
+* [The Prompt Collection](https://the-prompt-collection.github.io/)
+:::
+:::col
 #### Techniques & Courses
 * [Core Prompting](https://bychris.me/gaillery/core-prompting-techniques)
 * [CASTR Frameworks](https://bychris.me/gaillery/prompt-frameworks)
 * [Prompting 101](https://bychris.me/courses/prompting-101/)
+* [Prompting Guide.ai](https://www.promptingguide.ai/)
+:::
+::::
+
+::::present
+### Platform-Specific Guides
+Official prompt engineering resources from leading AI providers.
+
+:::col
+#### Anthropic (Claude)
+* [Prompt Engineering Guide](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)
+* [Interactive Exercises](https://docs.google.com/spreadsheets/d/19jzLgRruG9kjUQNKtCg1ZjdD6l6weA6qRXG5zLIAhC8/edit?gid=1308675322#gid=1308675322)
 :::
 :::col
-#### Technical & Automation
-* [Prompting Guide.ai](https://www.promptingguide.ai/)
-* [n8n Automation](https://n8n.io/)
+#### Google (Gemini)
+* [Intro to Prompt Engineering](https://cloud.google.com/discover/what-is-prompt-engineering)
+* [Whitepaper](https://drive.google.com/file/d/1AbaBYbEa_EbPelsT40-vj64L-2IwUJHy/view)
+* [Workspace Guide 101](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
 :::
 ::::
 
 ## AI Strategy & Prompt Engineering
 
 Mastering the "Interface" to LLMs to generate high-fidelity product artifacts.
+
+### Prompt Collections & Community
+
+Engage with active communities and curated collections to discover and share effective prompts.
+
+* [r/ChatGPTPromptGenius](https://www.reddit.com/r/ChatGPTPromptGenius/): Reddit community for sharing and discussing ChatGPT prompts.
+* [r/PromptEngineering](https://www.reddit.com/r/PromptEngineering/): Technical discussions on prompt engineering techniques.
+* [The Prompt Collection](https://the-prompt-collection.github.io/): Curated repository of high-quality prompts.
 
 ### Prompting Techniques & Frameworks
 
@@ -78,9 +105,20 @@ Mastering the "Interface" to LLMs to generate high-fidelity product artifacts.
 * [Prompting 101](https://bychris.me/courses/prompting-101/): Introductory course for team members.
 * [Prompting Guide.ai](https://www.promptingguide.ai/): A technical deep-dive into LLM interaction.
 
-### Workflow Automation
+### Platform-Specific Guides
 
-* [n8n](https://n8n.io/): A powerful, self-hosted or cloud-based workflow automation tool to build AI agents and sync data across platforms.
+Official resources from leading AI providers to master their specific models.
+
+#### Anthropic (Claude)
+
+* [Prompt Engineering Overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview): Comprehensive guide to building with Claude.
+* [Interactive Exercises](https://docs.google.com/spreadsheets/d/19jzLgRruG9kjUQNKtCg1ZjdD6l6weA6qRXG5zLIAhC8/edit?gid=1308675322#gid=1308675322): Hands-on practice with Claude prompting techniques.
+
+#### Google (Gemini)
+
+* [Introduction to Prompt Engineering](https://cloud.google.com/discover/what-is-prompt-engineering): Foundational concepts and best practices.
+* [Prompt Engineering Whitepaper](https://drive.google.com/file/d/1AbaBYbEa_EbPelsT40-vj64L-2IwUJHy/view): In-depth technical guide.
+* [Gemini for Workspace Prompting Guide 101](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf): Practical guide for using Gemini in Google Workspace.
 
 ::::present
 ### The PM AI Tech Stack (1/2)

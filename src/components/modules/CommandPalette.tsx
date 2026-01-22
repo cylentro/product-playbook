@@ -31,48 +31,12 @@ interface NavigationItem {
     isSubchapter?: boolean;
 }
 
-// Static navigation data - this could be fetched from an API in the future
-const NAVIGATION_DATA: {
-    modules: { title: string; slug: string; icon: string; description: string }[];
-    chapters: NavigationItem[];
-} = {
-    modules: [
-        {
-            title: 'Product Development Lifecycle',
-            slug: '1-product-development-lifecycle',
-            icon: 'Workflow',
-            description: '9 chapters • Core framework',
-        },
-        {
-            title: 'PRD Masterclass',
-            slug: '2-product-requirement-document-masterclass',
-            icon: 'FileText',
-            description: '1 chapter • Documentation deep-dive',
-        },
-    ],
-    chapters: [
-        // PDLC Chapters
-        { title: 'The Product Operating Model', slug: '1-introduction', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Discovery Phase', slug: '2-discovery', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Ideation Phase', slug: '3-ideation', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Solution Design & Validation', slug: '4-solution-design-and-validation', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Flow Design Deep-Dive', slug: '4.A-flow-design-deep-dive', moduleSlug: '1-product-development-lifecycle', type: 'chapter', isSubchapter: true },
-        { title: 'The Metrics Framework', slug: '4.B-the-metrics-framework', moduleSlug: '1-product-development-lifecycle', type: 'chapter', isSubchapter: true },
-        { title: 'Metrics in Practice', slug: '4.C-metrics-in-practice', moduleSlug: '1-product-development-lifecycle', type: 'chapter', isSubchapter: true },
-        { title: 'Planning & Alignment', slug: '5-planning-and-alignment', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Product Development & Testing', slug: '6-product-development-and-testing', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Launch & Go-To-Market', slug: '7-launch-and-go-to-market', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Hyper-Care & Stability', slug: '8-hyper-care-and-stability', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        { title: 'Growth, Maturity, & Decline', slug: '9-growth-maturity-and-decline', moduleSlug: '1-product-development-lifecycle', type: 'chapter' },
-        // PRD Chapters
-        { title: 'PRD Masterclass', slug: '1-prd-masterclass', moduleSlug: '2-product-requirement-document-masterclass', type: 'chapter' },
-        { title: 'PRD Template', slug: '1.A-prd-template', moduleSlug: '2-product-requirement-document-masterclass', type: 'chapter', isSubchapter: true },
-        { title: 'PRD Example: YouTube StudySpace', slug: '1.B-prd-example-youtube-studyspace', moduleSlug: '2-product-requirement-document-masterclass', type: 'chapter', isSubchapter: true },
-        // Expert Guide (Standalone)
-        { title: 'The AI-Powered Product Manager', slug: '1-the-ai-powered-product-manager', moduleSlug: 'standalone', type: 'chapter', icon: 'Brain' },
-        { title: 'Resources', slug: '2-resources', moduleSlug: 'standalone', type: 'chapter', icon: 'BookOpen' },
-    ],
-};
+interface CommandPaletteProps {
+    initialData?: {
+        modules: { title: string; slug: string; icon: string; description: string }[];
+        chapters: NavigationItem[];
+    };
+}
 
 const iconMap: Record<string, React.ReactNode> = {
     Workflow: <Workflow className="h-4 w-4" />,
@@ -81,9 +45,11 @@ const iconMap: Record<string, React.ReactNode> = {
     BookOpen: <BookOpen className="h-4 w-4" />,
 };
 
-export function CommandPalette() {
+export function CommandPalette({ initialData }: CommandPaletteProps) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
+
+    const data = initialData;
 
     // Listen for ⌘K / Ctrl+K
     useEffect(() => {
@@ -113,6 +79,8 @@ export function CommandPalette() {
         }
     }, [router]);
 
+    if (!data) return null;
+
     return (
         <CommandDialog 
             open={open} 
@@ -140,12 +108,12 @@ export function CommandPalette() {
                         </div>
                     </CommandItem>
                 </CommandGroup>
-
+ 
                 <CommandSeparator />
 
                 {/* Modules */}
                 <CommandGroup heading="Modules">
-                    {NAVIGATION_DATA.modules.map((module) => (
+                    {data.modules.map((module) => (
                         <CommandItem
                             key={module.slug}
                             value={`module ${module.title}`}
@@ -167,7 +135,7 @@ export function CommandPalette() {
 
                 {/* Expert Guides */}
                 <CommandGroup heading="Expert Guides">
-                    {NAVIGATION_DATA.chapters
+                    {data.chapters
                         .filter(c => c.moduleSlug === 'standalone')
                         .map((chapter) => (
                             <CommandItem
@@ -188,10 +156,10 @@ export function CommandPalette() {
 
                 {/* All Chapters */}
                 <CommandGroup heading="All Chapters">
-                    {NAVIGATION_DATA.chapters
+                    {data.chapters
                         .filter(c => c.moduleSlug !== 'standalone')
                         .map((chapter) => {
-                            const module = NAVIGATION_DATA.modules.find(m => m.slug === chapter.moduleSlug);
+                            const module = data.modules.find(m => m.slug === chapter.moduleSlug);
                             return (
                                 <CommandItem
                                     key={`${chapter.moduleSlug}-${chapter.slug}`}

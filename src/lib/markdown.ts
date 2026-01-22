@@ -112,6 +112,7 @@ export async function getStandaloneLessons(): Promise<LessonMeta[]> {
             lessons.push({
                 slug,
                 title: frontmatter.title || formatTitle(slug),
+                description: frontmatter.description || `A deep-dive into ${frontmatter.title || formatTitle(slug)}.`,
                 order: frontmatter.order ?? 99,
                 hasQuiz: frontmatter.quiz ?? false,
                 estimatedTime: frontmatter.estimatedTime ?? estimateReadingTime(fileContents),
@@ -326,9 +327,18 @@ function parseSlides(content: string): Slide[] {
                     slideContent = slideContent.replace(internalTitleMatch[0], '').trim();
                 }
 
+                // Try to find a subtitle (e.g. #### from within the block)
+                const subtitleMatch = slideContent.match(/^####\s+(.+)$/m);
+                let slideSubtitle: string | undefined;
+                if (subtitleMatch) {
+                    slideSubtitle = subtitleMatch[1].replace(/\*\*/g, '').trim();
+                    slideContent = slideContent.replace(subtitleMatch[0], '').trim();
+                }
+
                 slides.push({
                     id: `slide-${slideCount++}`,
                     title: slideTitle,
+                    subtitle: slideSubtitle,
                     content: slideContent,
                     order: slideCount - 1,
                 });
@@ -457,4 +467,36 @@ function getModuleIcon(moduleSlug: string): string {
     }
 
     return 'BookOpen';
+}
+/**
+ * Get all navigation data for the Command Palette
+ */
+export async function getNavigationData() {
+    const modules = await getAllModules();
+    const standaloneLessons = await getStandaloneLessons();
+
+    return {
+        modules: modules.map(m => ({
+            title: m.title,
+            slug: m.slug,
+            icon: m.icon,
+            description: m.description,
+        })),
+        chapters: [
+            ...modules.flatMap(m => m.lessons.map(l => ({
+                title: l.title,
+                slug: l.slug,
+                moduleSlug: m.slug,
+                type: 'chapter' as const,
+                isSubchapter: l.isSubchapter,
+            }))),
+            ...standaloneLessons.map(l => ({
+                title: l.title,
+                slug: l.slug,
+                moduleSlug: 'standalone',
+                type: 'chapter' as const,
+                icon: l.slug.includes('resource') ? 'BookOpen' : 'Brain',
+            }))
+        ]
+    };
 }

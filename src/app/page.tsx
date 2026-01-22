@@ -134,7 +134,7 @@ export default async function HomePage() {
                           {item.title}
                         </h3>
                         <p className="text-muted-foreground text-sm leading-relaxed font-medium line-clamp-2 mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                          Advanced strategic framework for high-performance product management.
+                          {item.description}
                         </p>
                         <div className="mt-auto flex items-center justify-between">
                           <div className="flex items-center gap-2">

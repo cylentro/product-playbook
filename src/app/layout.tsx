@@ -43,19 +43,22 @@ export const viewport: Viewport = {
 
 import { SmoothScroll, CommandPalette, KeyboardShortcutsDialog } from "@/components/modules";
 import { ServiceWorkerRegistration } from "@/components/pwa";
+import { getNavigationData } from "@/lib/markdown";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navData = await getNavigationData();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} font-sans antialiased`}
       >
         <ServiceWorkerRegistration />
-        <CommandPalette />
+        <CommandPalette initialData={navData} />
         <KeyboardShortcutsDialog />
         <SmoothScroll>
           {children}

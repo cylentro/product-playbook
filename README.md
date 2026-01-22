@@ -8,6 +8,7 @@ An interactive platform designed for Product Managers to master the **Product De
 Turn any module into a professional slide deck with one click.
 - **60fps Transitions**: Powered by Framer Motion for buttery smooth navigation.
 - **Smart Formatting**: Automatic slide generation from Markdown using the `::::present` syntax.
+- **Enhanced Rendering**: Now supports **Smart Subtitles** (using `####` in present blocks) and **Multi-line HTML** (figures, images with captions) directly within slides.
 - **Interactive Diagrams**: Large-scale, legible Mermaid.js flowcharts and SVG diagrams.
 
 ### 📱 fully Responsive & Mobile-First
@@ -29,7 +30,7 @@ A central, circular visualization of the entire product lifecycle—from Discove
 
 ### 📚 Expert Guides & Resources
 Curated deep-dives into specialized PM skills.
-- **Standalone Lessons**: Advanced topics like "The AI-Powered PM".
+- **Standalone Lessons**: Advanced topics like "The AI-Powered PM" and **"The Build-First Shift"**.
 - **Reference Materials**: Toolkits and stack guides.
 
 ### 📝 Learning & Quiz Engines

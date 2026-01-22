@@ -14,6 +14,7 @@ export interface ModuleMeta {
 export interface LessonMeta {
   slug: string;
   title: string;
+  description?: string;
   order: number;
   hasQuiz: boolean;
   estimatedTime: number; // in minutes
@@ -32,6 +33,7 @@ export interface LessonContent extends LessonMeta {
 export interface Slide {
   id: string;
   title: string;
+  subtitle?: string;
   content: string;
   order: number;
 }
