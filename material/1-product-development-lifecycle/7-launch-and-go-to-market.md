@@ -176,7 +176,7 @@ Marketing drives the "Volume," PM drives the "Truth."
 The "How to Win" in the market.
 
 * **Segmentation**: Who is this for? (Pro users vs. B2B).
-* **Value Prop**: Translating "Features" into "Outcomes."
+* **Value Proposition**: Translating "Features" into "Outcomes."
 * **?[Commercial Mechanisms](The specific financial structures like pricing models, subscription fees, or insurance premium logic.)**: Finalizing pricing & fees.
 * **Settlement Readiness**: Ensuring Finance can actually bill & payout.
 
@@ -288,7 +288,7 @@ Standardizing the launch and communication environment.
 
 ## Deliverables
 
-* **Final GTM Document**: Comprehensive strategy covering target market, value prop, and pricing.
+* **Final GTM Document**: Comprehensive strategy covering target market, value proposition, and pricing.
 * **NPI Presentation**: The finalized "Internal Source of Truth" deck.
 * **Sales Enablement Kit**: Demo accounts, sales scripts, and one-pagers.
 * **External Guides**: Library of written/video tutorials for the end-user.

@@ -577,17 +577,6 @@ The roadmap is the strategic communication tool that balances high-confidence ex
 * **North Star Metric**: The highest-level metric measuring core value delivered to the customer.
 * **Key metrics**: Indicators of progress toward the North Star.
 
-## Common Pitfalls
-
-::::present
-- **Solving for Everyone**: Resulting in a mediocre product for all.
-- **Gut-Only Decisions**: Ignoring the "Evidence Meter."
-- **Output over Outcome**: Launching features vs. creating impact.
-::::
-
-* **Solving for Everyone**: Resulting in a mediocre product for all and great for none.
-* **Gut-Only Decisions**: Ignoring the "Evidence Meter."
-* **Output over Outcome**: Measuring success by "number of features shipped" rather than "business impact."
 
 ## Rituals & Syncs
 
@@ -616,10 +605,10 @@ The heartbeat and tangible outcomes of the Ideation phase.
 * **Prioritized Backlog**: A ranked list of validated solutions.
 * **Product Roadmap**: A phased execution plan shared with the organization.
 
-## Common Pitfalls (Anti-patterns)
+## Common Pitfalls
 
 ::::present
-### Ideation Pitfalls
+### Common Pitfalls
 Red flags that signal "Process Drift" or poor strategic thinking.
 
 - **?[Solving for Everyone](Trying to build a product that pleases every segment simultaneously. Result: A mediocre product for all and great for none.)**: The "Averaging" Trap.

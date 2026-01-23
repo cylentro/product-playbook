@@ -238,9 +238,9 @@ Choosing the final trajectory for the product.
 
 Every product eventually hits a maturity plateau. The PM must facilitate a high-level decision on which of the three paths to take:
 
-1. **Scale (Growth)**: Expanding the successful solution to new segments or regions (e.g., taking a successful mobile Order Management UI and adapting it for the web portal).
-2. **Optimize (Maturity)**: Focus on Operational Excellence and "milking" the feature. This involves reducing API third-party costs, automating manual support processes, and simplifying the codebase to minimize maintenance overhead.
-3. **Phase-out (Decline/Sunset)**: If a feature no longer contributes to the North Star or has become a "Maintenance Burden" (high cost, low value), the team must have the courage to initiate a sunset.
+* **Scale (Growth)**: Expanding the successful solution to new segments or regions (e.g., taking a successful mobile Order Management UI and adapting it for the web portal).
+* **Optimize (Maturity)**: Focus on Operational Excellence and "milking" the feature. This involves reducing API third-party costs, automating manual support processes, and simplifying the codebase to minimize maintenance overhead.
+* **Phase-out (Decline/Sunset)**: If a feature no longer contributes to the North Star or has become a "Maintenance Burden" (high cost, low value), the team must have the courage to initiate a sunset.
 
 ### Step 4: Decline & Sunset Management
 

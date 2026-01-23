@@ -10,3 +10,4 @@ export { CommandPalette } from './CommandPalette';
 export { KeyboardShortcutsDialog } from './KeyboardShortcutsDialog';
 export { HomeKeyboardNav } from './HomeKeyboardNav';
 export { CopyPromptTemplate } from './CopyPromptTemplate';
+export { GuideLink } from './GuideLink';

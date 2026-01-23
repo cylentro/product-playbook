@@ -322,7 +322,7 @@ The routine that maintains operational health.
 ### Tools of the Trade
 Standardizing the planning environment.
 
-* **Backlog Mgmt**: Jira, Azure DevOps, or Trello.
+* **Backlog Management**: Jira, Azure DevOps, or Trello.
 * **Documentation**: Notion/Confluence (Technical Specs).
 * **Estimation**: Planning Poker Apps or Sizing Matrices.
 

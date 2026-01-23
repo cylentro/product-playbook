@@ -1,3 +1,4 @@
+import { GuideLink } from '@/components/modules/GuideLink';
 import Link from 'next/link';
 import { getAllModules, getStandaloneLessons } from '@/lib/markdown';
 import { Badge } from '@/components/ui/badge';
@@ -119,7 +120,7 @@ export default async function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
               {standaloneLessons.map((item) => (
                 <StaggerItem key={item.slug}>
-                  <Link 
+                  <GuideLink 
                     href={`/lesson/${item.slug}`}
                     className="group block h-full"
                   >
@@ -151,7 +152,7 @@ export default async function HomePage() {
                       {/* Animated Background Gradient */}
                       <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/10 transition-colors duration-700" />
                     </div>
-                  </Link>
+                  </GuideLink>
                 </StaggerItem>
               ))}
             </div>

@@ -12,8 +12,8 @@ A centralized hub for modern Product Management tools and techniques.
 
 This repository serves as a centralized hub for modern Product Management tools and techniques. It covers the essential stack for documentation, visualization, and AI-powered product development.
 
-## Documentation & Logic
 
+## Documentation & Visualization
 ::::present
 ### Documentation & Visualization
 Standardizing how we communicate requirements and logic ensures clarity and reduces debt.
@@ -31,8 +31,6 @@ Embed diagrams directly in your PRDs.
 * [Live Editor](https://mermaid.live/)
 :::
 ::::
-
-## Documentation & Visualization
 
 Standardizing how we communicate requirements and logic ensures clarity during handovers and reduces technical debt.
 

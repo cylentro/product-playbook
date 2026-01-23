@@ -1,4 +1,5 @@
 'use client';
+import { useAppStore } from '@/store/appStore';
 
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -29,6 +30,7 @@ interface NavigationItem {
     type: 'module' | 'chapter';
     icon?: string;
     isSubchapter?: boolean;
+    hasPresentation?: boolean;
 }
 
 interface CommandPaletteProps {
@@ -48,6 +50,7 @@ const iconMap: Record<string, React.ReactNode> = {
 export function CommandPalette({ initialData }: CommandPaletteProps) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
+    const mode = useAppStore((state) => state.mode);
 
     const data = initialData;
 
@@ -75,9 +78,24 @@ export function CommandPalette({ initialData }: CommandPaletteProps) {
             const path = item.moduleSlug === 'standalone' 
                 ? `/lesson/${item.slug}` 
                 : `/module/${item.moduleSlug}/${item.slug}`;
-            router.push(`${path}?mode=learning`);
+            
+            // Determine target mode based on current mode and chapter capabilities
+            let targetMode: 'presentation' | 'learning' | 'quiz' = 'learning';
+            
+            if (mode === 'presentation' && 'hasPresentation' in item && item.hasPresentation) {
+                // If currently in presentation mode and chapter supports it, stay in presentation
+                targetMode = 'presentation';
+            } else if (mode === 'learning') {
+                // If in learning mode, stay in learning mode
+                targetMode = 'learning';
+            } else {
+                // If in quiz mode or presentation mode but chapter doesn't support it, go to learning
+                targetMode = 'learning';
+            }
+            
+            router.push(`${path}?mode=${targetMode}`);
         }
-    }, [router]);
+    }, [router, mode]);
 
     if (!data) return null;
 

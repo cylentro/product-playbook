@@ -328,7 +328,7 @@ function parseSlides(content: string): Slide[] {
                 }
 
                 // Try to find a subtitle (e.g. #### from within the block)
-                const subtitleMatch = slideContent.match(/^####\s+(.+)$/m);
+                const subtitleMatch = slideContent.match(/^####\s+(.+)$/);
                 let slideSubtitle: string | undefined;
                 if (subtitleMatch) {
                     slideSubtitle = subtitleMatch[1].replace(/\*\*/g, '').trim();
@@ -475,6 +475,28 @@ export async function getNavigationData() {
     const modules = await getAllModules();
     const standaloneLessons = await getStandaloneLessons();
 
+    // Helper to check if a lesson has presentation mode
+    const hasPresentation = (moduleSlug: string, lessonSlug: string): boolean => {
+        try {
+            const filePath = moduleSlug === 'standalone'
+                ? path.join(contentDirectory, 'expert-guide', `${lessonSlug}.md`)
+                : path.join(contentDirectory, moduleSlug, `${lessonSlug}.md`);
+
+            if (!fs.existsSync(filePath)) return false;
+
+            const fileContents = fs.readFileSync(filePath, 'utf8');
+            const { data, content } = matter(fileContents);
+            const frontmatter = data as LessonFrontmatter;
+
+            // Check if presentation is explicitly disabled or if there are slides
+            if (frontmatter.present === false) return false;
+            const slides = parseSlides(content);
+            return slides.length > 0;
+        } catch {
+            return false;
+        }
+    };
+
     return {
         modules: modules.map(m => ({
             title: m.title,
@@ -489,6 +511,7 @@ export async function getNavigationData() {
                 moduleSlug: m.slug,
                 type: 'chapter' as const,
                 isSubchapter: l.isSubchapter,
+                hasPresentation: hasPresentation(m.slug, l.slug),
             }))),
             ...standaloneLessons.map(l => ({
                 title: l.title,
@@ -496,6 +519,7 @@ export async function getNavigationData() {
                 moduleSlug: 'standalone',
                 type: 'chapter' as const,
                 icon: l.slug.includes('resource') ? 'BookOpen' : 'Brain',
+                hasPresentation: hasPresentation('standalone', l.slug),
             }))
         ]
     };
