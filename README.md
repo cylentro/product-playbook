@@ -42,7 +42,7 @@ Curated deep-dives into specialized PM skills.
 
 ### ⌨️ Power User Navigation
 Comprehensive keyboard shortcuts and mouse controls for efficient navigation.
-- **Command Palette** (`⌘K` / `Ctrl+K`): Quick access to any module or lesson across the entire playbook.
+- **Command Palette** (`⌘K` / `Ctrl+K`): Quick access to any module or lesson across the entire playbook. **Mode-aware navigation**: Stays in your current mode (Presentation/Learning) when switching chapters.
 - **Module Page Navigation**: Use arrow keys or Vim-style `j`/`k` to navigate chapters, `Enter` to open, `Esc` to return home.
 - **Mode Switching**: Instantly switch between Learning, Presentation, and Quiz modes with keyboard shortcuts.
 - **Learning Mode Navigation**: Use **Arrow Left/Right** (← / →) to move between lessons without lifting your hands.
